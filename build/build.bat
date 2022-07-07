@@ -1,8 +1,3 @@
 @echo off
-
-set filesToBuild=..\src\main.c ..\src\shader.c ..\src\textureLoader.c ..\src\eventHandler.c ..\src\stb_image.c ..\src\glad.c
-
-set addFlags=-llibassimp -lopengl32 -lglfw3 -lgdi32
-
-gcc -o main.exe %filesToBuild% %addFlags%
+g++ -o main.exe ..\src\main.cpp ..\src\shader.cpp ..\src\buffer.cpp ..\src\textureLoader.cpp ..\src\stb_image.cpp ..\src\glad.c -llibassimp -lopengl32 -lglfw3 -lgdi32
 
