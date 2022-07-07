@@ -1,0 +1,21 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "C: Compile Game",
+			"command": "..\\build\\build.bat",
+			"args": [],
+			"options": {
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "Compiler: C:\\mingw64\\bin\\gcc.exe"
+		}
+	]
+}
