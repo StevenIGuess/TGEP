@@ -1,21 +1,17 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <cglm/vec4.h>
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
 
-// public varibales, that define the initial staring values will be declared here
-#include "settings.h"
-// general functions like initWindow() and for callbacc functions
+#include "settings.h" //temporary public variables for testing purposes
 #include "helper.h"
-// functions for creating shader
 #include "shader.h"
-// handle events like input
 #include "eventHandler.h"
-// load textures
 #include "textureLoader.h"
-#include "vectorcalc.h"
-// vector math
+
+
 
 float lastFrame = 0.0f;
 float deltaTime = 0.0f;
@@ -29,19 +25,6 @@ struct BufferArray
     unsigned int ID;
 };
 
-struct CameraData
-{
-    vec3 Position;
-    vec3 Front;
-    vec3 FrontMove;
-    vec3 Up;
-    vec3 Right;
-    vec3 WorldUp;
-    // euler angles, this needs to be swapped for quaternions
-    float Yaw, Pitch;
-    // cameraSettings
-    float MovementSpeed, MouseSensitivity, Fov;
-};
 
 void genBuffers(struct BufferArray *VBOs, struct BufferArray *VAOs)
 {
@@ -64,15 +47,6 @@ int main()
 
     GLFWwindow *window = initWindow(SCR_WIDTH, SCR_HEIGHT, WINDOW_TITLE);
 
-    if (initGlad(window) == -1)
-    {
-        return -1;
-    }
-
-    mat4 view = lookAtMatrix(Vector3(0.0f, 0.0f, 3.0f), Vector3(1.0f, 1.0f, 1.0f), Vector3(0.0f, 1.0f, 0.0f));
-
-    printf("Both::\n");
-    printM4(view);
 
     /*
 

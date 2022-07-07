@@ -1,7 +1,7 @@
 /*
 
 This is temporary and only for testing purposes
-Later variables like scr_width will be set by for example the actual screen width
+Later variables like scr_width will be set in the game settings
 
 */
 #ifndef SETTINGS_H
