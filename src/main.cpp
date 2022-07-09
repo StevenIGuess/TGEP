@@ -313,7 +313,7 @@ GLFWwindow* initWindow(int windowWidth, int windowHeigth, const char* Title) {
 int initGlad(GLFWwindow* window) {
 
 	if (window == NULL) {
-		std::cout << "You fukked something up" << std::endl;
+		std::cout << "somethings wrong i can feel it" << std::endl;
 		glfwTerminate();
 		return -1;
 	}
