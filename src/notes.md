@@ -21,4 +21,5 @@
 ## ToDo: 
 
 Create basic build system (DONE)
-Add entry point
+Add entry point (DONE)
+Add logging system 
