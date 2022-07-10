@@ -8,7 +8,11 @@ Most of the code comes from the Hazel game engine tutorial series or the learnop
 - https://learnopengl.com/ 
 
 ## Used libraries
-I'm planning on not using too many libraries, but for the sake of simplicity, I'll be using the following libraries: 
+I'm planning on not using too many libraries, but for the sake of simplicity, I'll still be using the following libraries: 
 - Spdlog
+- Assimp
+- Glm
+- Glfw
+- Glad
 
 These Libraries will (hopefully) later be replaced or removed.
