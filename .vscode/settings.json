@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "textureloader.h": "c"
+        "textureloader.h": "c",
+        "event.h": "c",
+        "mousecodes.h": "c"
     }
 }

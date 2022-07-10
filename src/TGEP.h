@@ -13,3 +13,7 @@
 
 #include "./TGEP/EntryPoint.h"
 
+//Event system 
+
+#include "./TGEP/Events/Event.h"
+
