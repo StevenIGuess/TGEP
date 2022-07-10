@@ -1,11 +1,10 @@
 #pragma once 
-#define TGEP_PLATFORM_WINDOWS
-#define TGEP_BUILD_DLL
+#include "Core.h"
 
 namespace TGEP 
 {
     
-    class Application
+    class DLLEXP Application
     {
     public:
         Application();

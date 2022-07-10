@@ -22,4 +22,9 @@
 
 Create basic build system (DONE)
 Add entry point (DONE)
-Add logging system 
+Add logging system (DONE)
+Add Engine init 
+
+## ToDo (Later):
+
+Replace SPDLOG with owh logging system 
