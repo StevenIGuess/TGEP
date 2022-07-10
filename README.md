@@ -2,7 +2,7 @@
 The Official GitHub repo for the "GameEngineProject"
 
 ## What and Why?
-This is and GameEngine from an Indie dev, that was created for the development of small Games using Opengl & C++.
+This is an GameEngine, that was created for the development of small games using Opengl & C++.
 Most of the code comes from the Hazel game engine tutorial series or the learnopengl website.
 - https://github.com/TheCherno/Hazel
 - https://learnopengl.com/ 
