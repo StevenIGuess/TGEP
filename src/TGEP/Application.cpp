@@ -1,5 +1,6 @@
 #include "Application.h"
 
+#include "Log.h"
 
 namespace TGEP {
     
@@ -15,6 +16,10 @@ namespace TGEP {
 
     void Application::Run()
     {
+        WindowResizeEvent e(1280, 720);
+
+        LOG_CORE_WARN(e);
+
         while (true);
     }
 

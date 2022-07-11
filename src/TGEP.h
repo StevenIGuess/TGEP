@@ -1,6 +1,5 @@
 #pragma once 
 
-
 // Only for use by applications outside of engine
 
 #include "./TGEP/Application.h"

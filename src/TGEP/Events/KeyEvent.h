@@ -1,6 +1,6 @@
 #pragma once
 
-#include "TGEP/Events/Event.h"
+#include "Event.h"
 #include "TGEP/KeyCodes.h"
 
 
