@@ -1,12 +1,11 @@
 #include "Application.h"
-
 #include "Log.h"
 
 namespace TGEP {
     
     Application::Application()
     {
-
+        m_Window = std::unique_ptr<Window>(Window::Create());
     }
 
     Application::~Application()
@@ -16,11 +15,10 @@ namespace TGEP {
 
     void Application::Run()
     {
-        WindowResizeEvent e(1280, 720);
-
-        LOG_CORE_WARN(e);
-
-        while (true);
+        while (m_Running)
+        {
+            m_Window->OnUpdate();
+        }
     }
 
 }

@@ -1,6 +1,7 @@
 #pragma once 
 #include "Core.h"
-#include "Events\ApplicationEvent.h"
+#include "Events/ApplicationEvent.h"
+#include "Window.h"
 
 namespace TGEP 
 {
@@ -12,6 +13,10 @@ namespace TGEP
         virtual ~Application();
 
         void Run();
+
+    private:
+        std::unique_ptr<Window> m_Window;
+        bool m_Running = true;
     };
 
     //Defined on client side
