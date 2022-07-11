@@ -4,16 +4,18 @@ cls
 echo STARTING ENGINE COMPILATION
 
 if exist glad.o (
-    g++ -c ..\src\TGEP\Application.cpp ..\src\TGEP\Log.cpp ..\src\TGEP\Window.cpp
+    g++ -c ..\src\TGEP\Application.cpp ..\src\TGEP\Log.cpp ..\src\TGEP\Window.cpp ..\src\TGEP\Layer.cpp ..\src\TGEP\LayerStack.cpp
 ) else (
-    g++ -c ..\src\TGEP\Application.cpp ..\src\TGEP\Log.cpp ..\src\TGEP\Window.cpp ..\src\TGEP\glad.c
+    g++ -c ..\src\TGEP\Application.cpp ..\src\TGEP\Log.cpp ..\src\TGEP\Window.cpp ..\src\TGEP\Layer.cpp ..\src\TGEP\LayerStack.cpp ..\src\TGEP\glad.c
 )
 
-g++ -shared -o TGEP.dll Application.o Log.o Window.o glad.o -lopengl32 -lglfw3 -lgdi32
+g++ -shared -o TGEP.dll Application.o Log.o Window.o Layer.o LayerStack.o glad.o -lopengl32 -lglfw3 -lgdi32
 
 del Application.o
 del Log.o
 del Window.o
+del Layer.o 
+del LayerStack.o
 
 echo ENGINE COMPILATION DONE!
 
