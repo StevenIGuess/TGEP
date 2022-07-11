@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Event.h"
-#include "TGEP/MouseCodes.h"
+#include "MouseCodes.h"
 
 namespace TGEP {
 

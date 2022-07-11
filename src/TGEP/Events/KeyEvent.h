@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Event.h"
-#include "TGEP/KeyCodes.h"
+#include "KeyCodes.h"
 
 
 namespace TGEP {
