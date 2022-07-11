@@ -3,7 +3,12 @@ cls
 
 echo STARTING ENGINE COMPILATION
 
-g++ -c ..\src\TGEP\Application.cpp ..\src\TGEP\Log.cpp ..\src\TGEP\Window.cpp ..\src\TGEP\glad.c 
+if exist glad.o (
+    g++ -c ..\src\TGEP\Application.cpp ..\src\TGEP\Log.cpp ..\src\TGEP\Window.cpp
+) else (
+    g++ -c ..\src\TGEP\Application.cpp ..\src\TGEP\Log.cpp ..\src\TGEP\Window.cpp ..\src\TGEP\glad.c
+)
+
 g++ -shared -o TGEP.dll Application.o Log.o Window.o glad.o -lopengl32 -lglfw3 -lgdi32
 
 del Application.o
