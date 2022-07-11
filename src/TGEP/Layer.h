@@ -9,12 +9,12 @@ namespace TGEP
     {
     public:
         Layer(const std::string& name = "Layer"); //remove layer name in release versions to safe processing power
-        ~Layer();
+        virtual ~Layer();
 
-        void OnAttach();
-        void OnDetach();
-        void OnUpdate();
-        void OnEvent(Event &event);
+        virtual void OnAttach() {};
+        virtual void OnDetach() {};
+        virtual void OnUpdate() {};
+        virtual void OnEvent(Event &event) {};
 
         inline const std::string &GetName() const { return m_DebugName; } //remove later
     protected:

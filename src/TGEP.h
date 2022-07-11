@@ -1,6 +1,6 @@
 #pragma once 
 
-// Only for use by applications outside of engine
+// For use by applications outside of engine
 
 #include "./TGEP/Application.h"
 
@@ -15,4 +15,8 @@
 //Event system 
 
 #include "./TGEP/Events/Event.h"
+
+//Layer system
+
+#include "./TGEP/Layer.h"
 
