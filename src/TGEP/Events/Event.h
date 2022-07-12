@@ -1,8 +1,6 @@
 #pragma once
 
-#include <string>
-#include <sstream>
-#include <functional>
+#include "pch.h"
 
 namespace TGEP {
 

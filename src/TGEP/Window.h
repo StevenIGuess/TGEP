@@ -1,14 +1,11 @@
 #pragma once 
-#include <string>
-#include <stdexcept>
+
+#include "pch.h"
 
 #include "Core.h"
 #include "Log.h"
 #include "Events/Event.h"
 
-//temporary include 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
 
 namespace TGEP 
 {
