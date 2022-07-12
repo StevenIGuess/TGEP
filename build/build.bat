@@ -5,7 +5,7 @@ if not exist "imgui.o" (
 
     echo COMPILING IMGUI
 
-    g++ -c ..\src\TGEP\ImGui\imgui.cpp ..\src\TGEP\ImGui\imgui_draw.cpp  ..\src\TGEP\ImGui\imgui_tables.cpp  ..\src\TGEP\ImGui\imgui_widgets.cpp 
+    g++ -c ..\src\TGEP\ImGui\imgui.cpp ..\src\TGEP\ImGui\imgui_draw.cpp  ..\src\TGEP\ImGui\imgui_tables.cpp  ..\src\TGEP\ImGui\imgui_widgets.cpp ..\src\TGEP\ImGui\ImGuiOpenGlRenderer.cpp ..\src\TGEP\ImGui\imgui_demo.cpp
 )
 
 if not exist "glad.o" (
@@ -17,15 +17,16 @@ if not exist "glad.o" (
 
 echo STARTING ENGINE COMPILATION
 
-g++ -c ..\src\TGEP\Application.cpp ..\src\TGEP\Log.cpp ..\src\TGEP\Window.cpp ..\src\TGEP\Layer.cpp ..\src\TGEP\LayerStack.cpp 
+g++ -c ..\src\TGEP\Application.cpp ..\src\TGEP\Log.cpp ..\src\TGEP\Window.cpp ..\src\TGEP\Layer.cpp ..\src\TGEP\LayerStack.cpp  ..\src\TGEP\ImGui\ImGuiLayer.cpp 
 
-g++ -shared -o TGEP.dll Application.o Log.o Window.o Layer.o LayerStack.o glad.o imgui.o imgui_draw.o imgui_tables.o imgui_widgets.o -lopengl32 -lglfw3 -lgdi32
+g++ -shared -o TGEP.dll Application.o Log.o Window.o Layer.o LayerStack.o glad.o imgui.o imgui_draw.o imgui_tables.o imgui_widgets.o ImGuiOpenGlRenderer.o imgui_demo.o ImGuiLayer.o -lopengl32 -lglfw3 -lgdi32
 
 del Application.o
 del Log.o
 del Window.o
 del Layer.o 
 del LayerStack.o
+del ImGuiLayer.o
 
 echo ENGINE COMPILATION DONE!
 

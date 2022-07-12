@@ -13473,6 +13473,9 @@ void ImGui::ShowStackToolWindow(bool* p_open)
     End();
 }
 
+
+
+
 #else
 
 void ImGui::ShowMetricsWindow(bool*) {}

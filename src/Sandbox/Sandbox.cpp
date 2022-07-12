@@ -27,6 +27,7 @@ public:
     Sandbox()
     {
         PushLayer(new TestLayer());
+        PushOverlay(new TGEP::ImGuiLayer());
     }
 
     ~Sandbox()

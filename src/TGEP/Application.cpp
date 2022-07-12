@@ -5,13 +5,15 @@ namespace TGEP {
     
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
+    Application* Application::s_Instance = nullptr;
+
     Application::Application()
     {
+        ASSERT_CORE(!s_Instance, "APPLICATION ALREADY EXISTS");
+        s_Instance = this;
+
         m_Window = std::unique_ptr<Window>(Window::Create());
         m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
-
-        unsigned int VAO;
-        glGenVertexArrays(1, &VAO);
     }
 
     Application::~Application()
@@ -22,11 +24,13 @@ namespace TGEP {
     void Application::PushLayer(Layer *layer)
     {
         m_LayerStack.PushLayer(layer);
+        layer->OnAttach();
     }
 
     void Application::PushOverlay(Layer *overlay)
     {
         m_LayerStack.PushLayer(overlay);
+        overlay->OnAttach();
     }
 
     void Application::OnEvent(Event &e)
