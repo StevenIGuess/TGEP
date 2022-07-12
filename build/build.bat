@@ -1,15 +1,25 @@
 @echo off
 cls
 
-echo STARTING ENGINE COMPILATION
+if not exist "imgui.o" (
 
-if exist glad.o (
-    g++ -c ..\src\TGEP\Application.cpp ..\src\TGEP\Log.cpp ..\src\TGEP\Window.cpp ..\src\TGEP\Layer.cpp ..\src\TGEP\LayerStack.cpp -I..\src\TGEP
-) else (
-    g++ -c ..\src\TGEP\Application.cpp ..\src\TGEP\Log.cpp ..\src\TGEP\Window.cpp ..\src\TGEP\Layer.cpp ..\src\TGEP\LayerStack.cpp ..\src\TGEP\glad.c -I..\src\TGEP
+    echo COMPILING IMGUI
+
+    g++ -c ..\src\TGEP\ImGui\imgui.cpp ..\src\TGEP\ImGui\imgui_draw.cpp  ..\src\TGEP\ImGui\imgui_tables.cpp  ..\src\TGEP\ImGui\imgui_widgets.cpp 
 )
 
-g++ -shared -o TGEP.dll Application.o Log.o Window.o Layer.o LayerStack.o glad.o -lopengl32 -lglfw3 -lgdi32
+if not exist "glad.o" (
+
+    echo COMPILING GLAD
+
+    g++ -c ..\src\TGEP\glad.c 
+)
+
+echo STARTING ENGINE COMPILATION
+
+g++ -c ..\src\TGEP\Application.cpp ..\src\TGEP\Log.cpp ..\src\TGEP\Window.cpp ..\src\TGEP\Layer.cpp ..\src\TGEP\LayerStack.cpp 
+
+g++ -shared -o TGEP.dll Application.o Log.o Window.o Layer.o LayerStack.o glad.o imgui.o imgui_draw.o imgui_tables.o imgui_widgets.o -lopengl32 -lglfw3 -lgdi32
 
 del Application.o
 del Log.o

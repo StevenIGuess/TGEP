@@ -9,6 +9,9 @@ namespace TGEP {
     {
         m_Window = std::unique_ptr<Window>(Window::Create());
         m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+
+        unsigned int VAO;
+        glGenVertexArrays(1, &VAO);
     }
 
     Application::~Application()
