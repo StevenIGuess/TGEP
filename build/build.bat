@@ -17,7 +17,7 @@ if not exist "glad.o" (
 
 echo STARTING ENGINE COMPILATION
 
-g++ -c ..\src\TGEP\Application.cpp ..\src\TGEP\Log.cpp ..\src\TGEP\Window.cpp ..\src\TGEP\Layer.cpp ..\src\TGEP\LayerStack.cpp  ..\src\TGEP\ImGui\ImGuiLayer.cpp 
+g++ -c ..\src\TGEP\Application.cpp ..\src\TGEP\Log.cpp ..\src\TGEP\Window.cpp ..\src\TGEP\Layer.cpp ..\src\TGEP\LayerStack.cpp  ..\src\TGEP\Layers\ImGuiLayer.cpp
 
 g++ -shared -o TGEP.dll Application.o Log.o Window.o Layer.o LayerStack.o glad.o imgui.o imgui_draw.o imgui_tables.o imgui_widgets.o ImGuiOpenGlRenderer.o imgui_demo.o ImGuiLayer.o -lopengl32 -lglfw3 -lgdi32
 

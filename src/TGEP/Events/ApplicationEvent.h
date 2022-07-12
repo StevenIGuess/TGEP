@@ -5,10 +5,10 @@
 
 namespace TGEP {
 
-	class WindowResizeEvent : public Event
+	class WindowResizedEvent : public Event
 	{
 	public:
-		WindowResizeEvent(unsigned int width, unsigned int height)
+		WindowResizedEvent(unsigned int width, unsigned int height)
 			: m_Width(width), m_Height(height) {}
 
 		unsigned int GetWidth() const { return m_Width; }
@@ -17,7 +17,7 @@ namespace TGEP {
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "WindowResizeEvent: " << m_Width << ", " << m_Height;
+			ss << "WindowResizedEvent: " << m_Width << ", " << m_Height;
 			return ss.str();
 		}
 

@@ -3,7 +3,6 @@
 
 namespace TGEP {
     
-#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
     Application* Application::s_Instance = nullptr;
 
@@ -13,7 +12,7 @@ namespace TGEP {
         s_Instance = this;
 
         m_Window = std::unique_ptr<Window>(Window::Create());
-        m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+        m_Window->SetEventCallback(BIND_EVENT_FUNC(Application::OnEvent));
     }
 
     Application::~Application()
@@ -36,9 +35,7 @@ namespace TGEP {
     void Application::OnEvent(Event &e)
     {
         EventDispatcher dispatcher(e);
-        dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
-
-        LOG_CORE_INFO("{0}", e);
+        dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FUNC(Application::OnWindowClose));
 
         for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
         {
@@ -61,6 +58,8 @@ namespace TGEP {
             }
 
             m_Window->OnUpdate();
+            glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+            glClear(GL_COLOR_BUFFER_BIT);
         }
     }
 
