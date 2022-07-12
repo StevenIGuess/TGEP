@@ -4,6 +4,7 @@
 #include "../ImGui/ImGuiOpenGlRenderer.h"
 #include "../ImGui/imgui.h"
 #include "../Application.h"
+#include "../Events/KeyCodes.h"
 
 namespace TGEP
 {
@@ -106,13 +107,23 @@ namespace TGEP
 
     bool ImGuiLayer::OnKeyPressedEvent(KeyPressedEvent &e)
     {
-        ImGuiIO  &io = ImGui::GetIO();
+        ImGuiIO& io = ImGui::GetIO();
+        ImGuiKey imgui_key = TGEPKeycodeToImGuiKeycode(e.GetKeyCode());
+        io.AddKeyEvent(imgui_key, GLFW_PRESS);
+
+        LOG_CORE_INFO("KEY PRESS {0}", TGEPKeycodeToImGuiKeycode(e.GetKeyCode()));
+
         return false; //not sure if already handled
     }
 
     bool ImGuiLayer::OnKeyReleasedEvent(KeyReleasedEvent &e)
     {
-        ImGuiIO  &io = ImGui::GetIO();
+        ImGuiIO& io = ImGui::GetIO();
+        ImGuiKey imgui_key = TGEPKeycodeToImGuiKeycode(e.GetKeyCode());
+        io.AddKeyEvent(imgui_key, GLFW_RELEASE);
+
+        LOG_CORE_INFO("KEY RELEASE {0}", TGEPKeycodeToImGuiKeycode(e.GetKeyCode()));
+
         return false; //not sure if already handled
     }
 

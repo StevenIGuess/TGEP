@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../pch.h"
+#include "../ImGui/imgui.h"
 
 
 namespace TGEP
@@ -143,5 +144,81 @@ namespace TGEP
 			RightSuper          = 347,
 			Menu                = 348
 		};
+	}
+
+	static ImGuiKey TGEPKeycodeToImGuiKeycode(int key)
+	{
+		switch (key)
+		{
+			case TGEP::Key::Tab: return ImGuiKey_Tab;
+			case TGEP::Key::Delete: return ImGuiKey_Delete;
+			case TGEP::Key::Backspace: return ImGuiKey_Backspace;
+			case TGEP::Key::Space: return ImGuiKey_Space;
+			case TGEP::Key::Enter: return ImGuiKey_Enter;
+			case TGEP::Key::Escape: return ImGuiKey_Escape;
+			case TGEP::Key::Apostrophe: return ImGuiKey_Apostrophe;
+			case TGEP::Key::Comma: return ImGuiKey_Comma;
+			case TGEP::Key::Minus: return ImGuiKey_Minus;
+			case TGEP::Key::Period: return ImGuiKey_Period;
+			case TGEP::Key::Slash: return ImGuiKey_Slash;
+			case TGEP::Key::Semicolon: return ImGuiKey_Semicolon;
+			case TGEP::Key::Equal: return ImGuiKey_Equal;
+			case TGEP::Key::LeftBracket: return ImGuiKey_LeftBracket;
+			case TGEP::Key::Backslash: return ImGuiKey_Backslash;
+			case TGEP::Key::RightBracket: return ImGuiKey_RightBracket;
+			case TGEP::Key::LeftShift: return ImGuiKey_LeftShift;
+			case TGEP::Key::LeftControl: return ImGuiKey_LeftCtrl;
+			case TGEP::Key::LeftAlt: return ImGuiKey_LeftAlt;
+			case TGEP::Key::Menu: return ImGuiKey_Menu;
+			case TGEP::Key::D0: return ImGuiKey_0;
+			case TGEP::Key::D1: return ImGuiKey_1;
+			case TGEP::Key::D2: return ImGuiKey_2;
+			case TGEP::Key::D3: return ImGuiKey_3;
+			case TGEP::Key::D4: return ImGuiKey_4;
+			case TGEP::Key::D5: return ImGuiKey_5;
+			case TGEP::Key::D6: return ImGuiKey_6;
+			case TGEP::Key::D7: return ImGuiKey_7;
+			case TGEP::Key::D8: return ImGuiKey_8;
+			case TGEP::Key::D9: return ImGuiKey_9;
+			case TGEP::Key::A: return ImGuiKey_A;
+			case TGEP::Key::B: return ImGuiKey_B;
+			case TGEP::Key::C: return ImGuiKey_C;
+			case TGEP::Key::D: return ImGuiKey_D;
+			case TGEP::Key::E: return ImGuiKey_E;
+			case TGEP::Key::F: return ImGuiKey_F;
+			case TGEP::Key::G: return ImGuiKey_G;
+			case TGEP::Key::H: return ImGuiKey_H;
+			case TGEP::Key::I: return ImGuiKey_I;
+			case TGEP::Key::J: return ImGuiKey_J;
+			case TGEP::Key::K: return ImGuiKey_K;
+			case TGEP::Key::L: return ImGuiKey_L;
+			case TGEP::Key::M: return ImGuiKey_M;
+			case TGEP::Key::N: return ImGuiKey_N;
+			case TGEP::Key::O: return ImGuiKey_O;
+			case TGEP::Key::P: return ImGuiKey_P;
+			case TGEP::Key::Q: return ImGuiKey_Q;
+			case TGEP::Key::R: return ImGuiKey_R;
+			case TGEP::Key::S: return ImGuiKey_S;
+			case TGEP::Key::T: return ImGuiKey_T;
+			case TGEP::Key::U: return ImGuiKey_U;
+			case TGEP::Key::V: return ImGuiKey_V;
+			case TGEP::Key::W: return ImGuiKey_W;
+			case TGEP::Key::X: return ImGuiKey_X;
+			case TGEP::Key::Y: return ImGuiKey_Y;
+			case TGEP::Key::Z: return ImGuiKey_Z;
+			case TGEP::Key::F1: return ImGuiKey_F1;
+			case TGEP::Key::F2: return ImGuiKey_F2;
+			case TGEP::Key::F3: return ImGuiKey_F3;
+			case TGEP::Key::F4: return ImGuiKey_F4;
+			case TGEP::Key::F5: return ImGuiKey_F5;
+			case TGEP::Key::F6: return ImGuiKey_F6;
+			case TGEP::Key::F7: return ImGuiKey_F7;
+			case TGEP::Key::F8: return ImGuiKey_F8;
+			case TGEP::Key::F9: return ImGuiKey_F9;
+			case TGEP::Key::F10: return ImGuiKey_F10;
+			case TGEP::Key::F11: return ImGuiKey_F11;
+			case TGEP::Key::F12: return ImGuiKey_F12;
+			default: return ImGuiKey_None;
+		}
 	}
 }
