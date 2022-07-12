@@ -7,6 +7,7 @@
 #include "Events/Event.h"
 
 //temporary include 
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 namespace TGEP 

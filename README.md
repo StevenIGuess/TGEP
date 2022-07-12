@@ -12,7 +12,7 @@ I'm planning on not using too many libraries, but for the sake of simplicity, I'
 - Spdlog
 - Assimp
 - Glm
-- Glfw
-- Glad
+- Glfw 
+- Glad v.4.2.0
 
 These Libraries will (hopefully) later be replaced or removed.
