@@ -3,9 +3,12 @@
 #include "Events/ApplicationEvent.h"
 #include "Events/MouseEvent.h"
 #include "Events/KeyEvent.h"
+#include "Input.h"
 
 namespace TGEP 
 {
+    Input* Input::s_Instance = new Input();
+
     static bool GLFWInitalized = false;
 
     static void GLFWErrorCallback(int error, const char* desc)
