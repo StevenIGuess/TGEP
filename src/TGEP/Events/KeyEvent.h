@@ -19,7 +19,7 @@ namespace TGEP {
 		KeyCode m_KeyCode;
 	};
 
-	class KeyPressedEvent : public KeyEvent
+	class DLLEXP KeyPressedEvent : public KeyEvent
 	{
 	public:
 		KeyPressedEvent(const KeyCode keycode, bool isRepeat = false) : KeyEvent(keycode), m_IsRepeat(isRepeat) {}
@@ -38,7 +38,7 @@ namespace TGEP {
 		bool m_IsRepeat;
 	};
 
-	class KeyReleasedEvent : public KeyEvent
+	class DLLEXP KeyReleasedEvent : public KeyEvent
 	{
 	public:
 		KeyReleasedEvent(const KeyCode keycode)
@@ -54,12 +54,10 @@ namespace TGEP {
 		EVENT_CLASS_TYPE(KeyReleased)
 	};
 
-	class KeyTypedEvent : public KeyEvent
+	class DLLEXP KeyTypedEvent : public KeyEvent
 	{
 	public:
-		KeyTypedEvent(const KeyCode keycode)
-			: KeyEvent(keycode) {}
-
+		KeyTypedEvent(const KeyCode keycode): KeyEvent(keycode) {}
 		std::string ToString() const override
 		{
 			std::stringstream ss;

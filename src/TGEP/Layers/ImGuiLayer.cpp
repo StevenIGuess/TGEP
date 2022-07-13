@@ -94,6 +94,7 @@ namespace TGEP
         dispatcher.Dispatch<MouseScrolledEvent>(BIND_EVENT_FUNC(ImGuiLayer::OnMouseScrolledEvent));
         dispatcher.Dispatch<KeyPressedEvent>(BIND_EVENT_FUNC(ImGuiLayer::OnKeyPressedEvent));
         dispatcher.Dispatch<KeyReleasedEvent>(BIND_EVENT_FUNC(ImGuiLayer::OnKeyReleasedEvent));
+        dispatcher.Dispatch<KeyTypedEvent>(BIND_EVENT_FUNC(ImGuiLayer::OnKeyTypedEvent));
         dispatcher.Dispatch<WindowResizedEvent>(BIND_EVENT_FUNC(ImGuiLayer::OnWindowResizedEvent));
     }
 
@@ -136,8 +137,10 @@ namespace TGEP
         ImGuiIO& io = ImGui::GetIO();
         io.KeysDown[e.GetKeyCode()] = true;
 
-        LOG_CORE_INFO("KEY PRESS {0}", e.GetKeyCode());
+        io.KeyCtrl = io.KeysDown[GLFW_KEY_LEFT_CONTROL] || io.KeysDown[GLFW_KEY_RIGHT_CONTROL];
+        io.KeyShift = io.KeysDown[GLFW_KEY_LEFT_SHIFT] || io.KeysDown[GLFW_KEY_RIGHT_SHIFT];
 
+        LOG_CORE_INFO("KEY PRESS {0}", e.GetKeyCode());
         return false; //not sure if already handled
     }
 
@@ -151,9 +154,25 @@ namespace TGEP
         return false; //not sure if already handled
     }
 
+    bool ImGuiLayer::OnKeyTypedEvent(KeyTypedEvent &e)
+    {
+        ImGuiIO& io = ImGui::GetIO();
+        int c = e.GetKeyCode();
+        if(c > 0 && c < 0x10000)
+        {
+            io.AddInputCharacter((unsigned short)c);
+        }
+
+        return false; //not sure if already handled
+    } 
+
     bool ImGuiLayer::OnWindowResizedEvent(WindowResizedEvent &e)
     {
         ImGuiIO  &io = ImGui::GetIO();
+        io.DisplaySize = ImVec2(e.GetWidth(), e.GetHeight());
+        io.DisplayFramebufferScale = ImVec2(1.0f, 1.0f);
+        glViewport(0, 0, e.GetWidth(), e.GetHeight());
+
         return false; //not sure if already handled
     }
 }

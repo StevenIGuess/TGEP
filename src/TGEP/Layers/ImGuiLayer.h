@@ -29,7 +29,7 @@ namespace TGEP
         bool OnMouseScrolledEvent(MouseScrolledEvent &e);
         bool OnKeyPressedEvent(KeyPressedEvent &e);
         bool OnKeyReleasedEvent(KeyReleasedEvent &e);
-        //bool OnKeyTypedEvent(KeyTypedEvent &e);
+        bool OnKeyTypedEvent(KeyTypedEvent &e);
         bool OnWindowResizedEvent(WindowResizedEvent &e);
     private:
         float m_Time = 0.0f;
