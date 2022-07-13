@@ -1,6 +1,7 @@
 #include "Application.h"
 #include "Input.h"
 #include "Log.h"
+#include "Events/KeyCodes.h"
 
 namespace TGEP {
     
@@ -59,7 +60,7 @@ namespace TGEP {
                 layer->OnUpdate();
             }
 
-            LOG_CORE_INFO("KEY 'A' PRESSED = {0}", Input::IsKeyPressed(GLFW_KEY_A));
+            LOG_CORE_INFO("KEY 'A' PRESSED = {0}", Input::IsKeyPressed(TGEP_KEY_A));
             auto[x, y] = Input::GetMousePosition();
             LOG_CORE_WARN("MOUSE POS = {0}, {1}", x, y);
 

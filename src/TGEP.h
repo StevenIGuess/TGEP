@@ -27,3 +27,8 @@
 //Input
 
 #include "./TGEP/Input.h"
+
+//Key/Mouse codes
+
+#include "./TGEP/Events/KeyCodes.h"
+#include "./TGEP/Events/MouseCodes.h"
