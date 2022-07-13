@@ -48,14 +48,13 @@ namespace TGEP
         void SetVSync(bool enabled);
         bool IsVsync() const;
 
-        virtual void* GetWindow() const { return m_Window; }
+        void* GetNativeWindow() const { return m_Window; }
 
         static Window* Create(const WindowProperties& props = WindowProperties());
     private:
         virtual void Init(const WindowProperties& properties);
         virtual void Shutdown();
     private:
-
         GLFWwindow* m_Window;
         struct WindowData
         {

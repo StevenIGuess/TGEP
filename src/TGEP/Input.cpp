@@ -1,0 +1,32 @@
+#include "Input.h"
+#include "Application.h"
+
+namespace TGEP
+{
+
+    bool Input::IsKeyPressed(int keycode)
+    {
+        auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
+        auto state = glfwGetKey(window, keycode);
+        LOG_CORE_ERROR("STATE = {0}", state);
+        return state == GLFW_PRESS || GLFW_REPEAT;
+    }
+
+    bool Input::IsMouseButtonPressed(int button)
+    {
+        auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
+        auto state = glfwGetMouseButton(window, button);
+        return state == GLFW_PRESS;
+    }
+
+    std::pair<float, float> Input::GetMousePosition()
+    {
+        auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
+        double xpos, ypos;
+        glfwGetCursorPos(window, &xpos, &ypos);
+
+        return { (float)xpos, (float)ypos };
+    }
+
+    
+}
