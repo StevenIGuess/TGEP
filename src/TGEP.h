@@ -23,3 +23,7 @@
 //Imgui
 
 #include "./TGEP/Layers/ImGuiLayer.h"
+
+//Input
+
+#include "./TGEP/Input.h"

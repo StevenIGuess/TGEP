@@ -8,8 +8,7 @@ namespace TGEP
     {
         auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
         auto state = glfwGetKey(window, keycode);
-        LOG_CORE_ERROR("STATE = {0}", state);
-        return state == GLFW_PRESS || GLFW_REPEAT;
+        return state == GLFW_PRESS;
     }
 
     bool Input::IsMouseButtonPressed(int button)
