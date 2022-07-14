@@ -5,6 +5,7 @@
 #include "Window.h"
 #include "Log.h"
 #include "LayerStack.h"
+#include "Layers/ImGuiLayer.h"
 
 namespace TGEP 
 {
@@ -28,6 +29,7 @@ namespace TGEP
         bool OnWindowClose(WindowCloseEvent &e);
 
         std::unique_ptr<Window> m_Window;
+        ImGuiLayer* m_ImGuiLayer;
         bool m_Running = true;
         LayerStack m_LayerStack;
     private:

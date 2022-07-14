@@ -15,6 +15,10 @@ namespace TGEP {
 
         m_Window = std::unique_ptr<Window>(Window::Create());
         m_Window->SetEventCallback(BIND_EVENT_FUNC(Application::OnEvent));
+
+        m_ImGuiLayer = new ImGuiLayer();
+        PushOverlay(m_ImGuiLayer);
+
     }
 
     Application::~Application()
@@ -53,6 +57,9 @@ namespace TGEP {
     {
         while (m_Running)
         {
+            //clear color 
+            glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+            glClear(GL_COLOR_BUFFER_BIT);
 
             //call OnUpdate() for each layer
             for (Layer* layer : m_LayerStack)
@@ -60,15 +67,16 @@ namespace TGEP {
                 layer->OnUpdate();
             }
 
-            LOG_CORE_INFO("KEY 'A' PRESSED = {0}", Input::IsKeyPressed(TGEP_KEY_A));
-            auto[x, y] = Input::GetMousePosition();
-            LOG_CORE_WARN("MOUSE POS = {0}, {1}", x, y);
+            m_ImGuiLayer->Begin();
+            for (Layer* layer : m_LayerStack)
+            {
+                layer->OnImGuiRender();
+            }
+            m_ImGuiLayer->End();
 
             //update window
             m_Window->OnUpdate();
-            //clear color 
-            glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-            glClear(GL_COLOR_BUFFER_BIT);
+
         }
     }
 

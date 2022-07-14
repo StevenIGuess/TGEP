@@ -6,7 +6,6 @@ public:
 
     Sandbox()
     {
-        PushOverlay(new TGEP::ImGuiLayer());
     }
 
     ~Sandbox()
