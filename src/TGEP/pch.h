@@ -1,5 +1,5 @@
 #include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include "./GLFW/glfw3.h"
 #include <glm/glm.hpp>
 
 #include "ImGui/imgui.h"
