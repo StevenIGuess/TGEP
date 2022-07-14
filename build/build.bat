@@ -9,7 +9,7 @@ if not exist "imgui.o" (
     g++ -c ..\src\TGEP\ImGui\imgui_draw.cpp  
     g++ -c ..\src\TGEP\ImGui\imgui_tables.cpp  
     g++ -c ..\src\TGEP\ImGui\imgui_widgets.cpp
-    g++ -c ..\src\TGEP\ImGui\ImGuiOpenGlRenderer.cpp 
+    g++ -c ..\src\TGEP\ImGui\imgui_impl_opengl3.cpp 
     g++ -c ..\src\TGEP\ImGui\imgui_demo.cpp
 )
 
@@ -30,7 +30,7 @@ g++ -c ..\src\TGEP\LayerStack.cpp
 g++ -c ..\src\TGEP\Layers\ImGuiLayer.cpp
 g++ -c ..\src\TGEP\Input.cpp
 
-g++ -shared -o TGEP.dll Application.o Log.o Window.o Layer.o LayerStack.o glad.o imgui.o imgui_draw.o imgui_tables.o imgui_widgets.o ImGuiOpenGlRenderer.o imgui_demo.o ImGuiLayer.o Input.o -lopengl32 -lglfw3 -lgdi32
+g++ -shared -o TGEP.dll Application.o Log.o Window.o Layer.o LayerStack.o glad.o imgui.o imgui_draw.o imgui_tables.o imgui_widgets.o imgui_impl_opengl3.o imgui_demo.o ImGuiLayer.o Input.o -lopengl32 -lglfw3 -lgdi32
 
 del Application.o
 del Log.o

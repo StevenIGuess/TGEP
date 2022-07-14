@@ -1,8 +1,6 @@
 #include "ImGuiLayer.h"
 #include "../pch.h"
 
-#include "../ImGui/ImGuiOpenGlRenderer.h"
-#include "../ImGui/imgui.h"
 #include "../Application.h"
 #include "../Events/KeyCodes.h"
 
