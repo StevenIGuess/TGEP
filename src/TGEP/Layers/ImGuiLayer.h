@@ -21,6 +21,8 @@ namespace TGEP
         
         void Begin();
         void End();
+
+        bool show_ImGui = true;
     private:
         float m_Time = 0.0f;
     };
