@@ -32,3 +32,7 @@
 
 #include "./TGEP/Events/KeyCodes.h"
 #include "./TGEP/Events/MouseCodes.h"
+
+//ImGui
+
+#include "./TGEP/ImGui/imgui.h"

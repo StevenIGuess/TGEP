@@ -5,11 +5,11 @@ if not exist "imgui.o" (
 
     echo COMPILING IMGUI
 
-    g++ -c ..\src\TGEP\ImGui\imgui.cpp 
-    g++ -c ..\src\TGEP\ImGui\imgui_draw.cpp  
-    g++ -c ..\src\TGEP\ImGui\imgui_tables.cpp  
+    g++ -c ..\src\TGEP\ImGui\imgui.cpp
+    g++ -c ..\src\TGEP\ImGui\imgui_draw.cpp
+    g++ -c ..\src\TGEP\ImGui\imgui_tables.cpp
     g++ -c ..\src\TGEP\ImGui\imgui_widgets.cpp
-    g++ -c ..\src\TGEP\ImGui\imgui_impl_opengl3.cpp 
+    g++ -c ..\src\TGEP\ImGui\imgui_impl_opengl3.cpp
     g++ -c ..\src\TGEP\ImGui\imgui_demo.cpp
     g++ -c ..\src\TGEP\ImGui\imgui_impl_glfw.cpp
 )
