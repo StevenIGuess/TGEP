@@ -42,6 +42,7 @@ namespace TGEP {
     {
         EventDispatcher dispatcher(e);
         dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FUNC(Application::OnWindowClose));
+        
 
         for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
         {

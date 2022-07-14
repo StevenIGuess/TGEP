@@ -88,4 +88,26 @@ namespace TGEP
         }
     }
 
+    void ImGuiLayer::OnEvent(Event &e)
+    {
+        EventDispatcher dispatcher(e);
+
+        dispatcher.Dispatch<KeyPressedEvent>(BIND_EVENT_FUNC(ImGuiLayer::OnKeyPressed));
+    }
+
+    bool ImGuiLayer::OnKeyPressed(KeyPressedEvent &e)
+    {
+        if(e.GetKeyCode() == Key::ScrollLock)
+        {
+            if(show_ImGui)
+            {
+                show_ImGui = false;
+                return false; // not completely handled yet
+            }
+            show_ImGui = true;
+        }
+
+        return false; // not completely handled yet
+    }
+
 }

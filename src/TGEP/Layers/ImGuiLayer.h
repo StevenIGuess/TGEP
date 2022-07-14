@@ -17,13 +17,16 @@ namespace TGEP
 
         void OnAttach() override;
         void OnDetach() override;
+        void OnEvent(Event &e) override;
         void OnImGuiRender() override;
         
         void Begin();
         void End();
 
-        bool show_ImGui = true;
     private:
         float m_Time = 0.0f;
+    private:
+        bool show_ImGui = false;
+        bool OnKeyPressed(KeyPressedEvent &e);
     };
 }
