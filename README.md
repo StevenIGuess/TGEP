@@ -13,6 +13,6 @@ I'm planning on not using too many libraries, but for the sake of simplicity, I'
 - Assimp
 - Glm
 - Glfw 
-- Glad v.4.2.0
+- Glad v.4.6.0
 
 These Libraries will (hopefully) later be replaced or removed.
