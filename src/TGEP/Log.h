@@ -20,10 +20,8 @@ namespace TGEP
 }
 
 //log macros
+#ifdef _ENGINE_LOG_MACROS_
 #define LOG_CORE_ERROR(...) ::TGEP::Log::GetCoreLogger()->error(__VA_ARGS__)
 #define LOG_CORE_WARN(...) ::TGEP::Log::GetCoreLogger()->warn(__VA_ARGS__)
 #define LOG_CORE_INFO(...) ::TGEP::Log::GetCoreLogger()->info(__VA_ARGS__)
-
-#define LOG_ERROR(...) ::TGEP::Log::GetClientLogger()->error(__VA_ARGS__)
-#define LOG_WARN(...) ::TGEP::Log::GetClientLogger()->warn(__VA_ARGS__)
-#define LOG_INFO(...) ::TGEP::Log::GetClientLogger()->info(__VA_ARGS__)
+#endif

@@ -29,8 +29,6 @@ public:
 
     }
 
-
-
 };
 
 TGEP::Application* TGEP::CreateApplication()
