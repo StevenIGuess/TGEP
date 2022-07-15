@@ -23,11 +23,11 @@ if not exist "glad.o" (
 
 echo STARTING ENGINE COMPILATION
 
-g++ -c ..\src\TGEP\Application.cpp 
-g++ -c ..\src\TGEP\Log.cpp 
-g++ -c ..\src\TGEP\Window.cpp 
+g++ -c ..\src\TGEP\Application.cpp       
+g++ -c ..\src\TGEP\Log.cpp
+g++ -c ..\src\TGEP\Window.cpp  
 g++ -c ..\src\TGEP\Layer.cpp 
-g++ -c ..\src\TGEP\LayerStack.cpp  
+g++ -c ..\src\TGEP\LayerStack.cpp 
 g++ -c ..\src\TGEP\Layers\ImGuiLayer.cpp
 g++ -c ..\src\TGEP\Input.cpp
 
