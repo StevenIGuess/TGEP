@@ -45,7 +45,7 @@ echo ENGINE COMPILATION DONE!
 
 echo STARTING COMPILATION OF TEST PROJECT
 
-g++ -o sandbox.exe ..\src\Sandbox\sandbox.cpp -L./ -lTGEP -I ..\src
+g++ -o sandbox.exe ..\src\Sandbox\sandbox.cpp -L./ -lTGEP -I ..\src -static-libgcc -static-libstdc++
 
 echo COMPILATION DONE!
 
