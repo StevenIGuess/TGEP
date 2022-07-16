@@ -65,7 +65,8 @@ File Type: DLL /(TGEP.dll)
     SHELL32.dll (resolved by windows)
     USER32.dll (resolved by windows)
 
-Remaining: 
+Remaining:
+
     libgcc_s_seh-1.dll
     libstdc++-6.dll
     api-ms-win-crt-stdio-l1-1-0.dll
