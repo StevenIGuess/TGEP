@@ -47,23 +47,30 @@ File Type: DLL /(TGEP.dll)
 
     libgcc_s_seh-1.dll
     libstdc++-6.dll
-    GDI32.dll
-    KERNEL32.dll
+    GDI32.dll (resolved by windows)
+    KERNEL32.dll (resolved by windows)
     api-ms-win-crt-time-l1-1-0.dll (resolved by windows)
     api-ms-win-crt-string-l1-1-0.dll (resolved by windows)
     api-ms-win-crt-stdio-l1-1-0.dll
-    api-ms-win-crt-runtime-l1-1-0.dll
-    api-ms-win-crt-filesystem-l1-1-0.dll
-    api-ms-win-crt-locale-l1-1-0.dll
-    api-ms-win-crt-convert-l1-1-0.dll
-    api-ms-win-crt-private-l1-1-0.dll
-    api-ms-win-crt-environment-l1-1-0.dll
-    api-ms-win-crt-math-l1-1-0.dll
-    api-ms-win-crt-heap-l1-1-0.dll
-    api-ms-win-crt-utility-l1-1-0.dll
+    api-ms-win-crt-runtime-l1-1-0.dll 
+    api-ms-win-crt-filesystem-l1-1-0.dll (resolved by windows)
+    api-ms-win-crt-locale-l1-1-0.dll (resolved by windows)
+    api-ms-win-crt-convert-l1-1-0.dll (resolved by windows)
+    api-ms-win-crt-private-l1-1-0.dll (resolved by windows)
+    api-ms-win-crt-environment-l1-1-0.dll (resolved by windows)
+    api-ms-win-crt-math-l1-1-0.dll (resolved by windows)
+    api-ms-win-crt-heap-l1-1-0.dll (resolved by windows)
+    api-ms-win-crt-utility-l1-1-0.dll (resolved by windows)
     libwinpthread-1.dll
-    SHELL32.dll
-    USER32.dll
+    SHELL32.dll (resolved by windows)
+    USER32.dll (resolved by windows)
+
+Remaining: 
+    libgcc_s_seh-1.dll
+    libstdc++-6.dll
+    api-ms-win-crt-stdio-l1-1-0.dll
+    api-ms-win-crt-runtime-l1-1-0.dll
+    libwinpthread-1.dll
 
 File Type: EXECUTABLE IMAGE (sandbox.exe) //not important for TGEP
 
