@@ -41,7 +41,7 @@ Remove layer name in release versions to safe processing power
 
 ## dependencies (dumpbin /dependents)
 
-File Type: DLL /(TGEP.dll)
+File Type: DLL (TGEP.dll)
 
   Image has the following dependencies:
 
