@@ -29,11 +29,11 @@ Add engine init
 
 ## ToDo (Later):
 
-Replace SPDLOG with owh logging system 
-Replace Event system 
-Add licenses 
-Precompiled headers
-Resolve dependencies
+    Replace SPDLOG with owh logging system 
+    Replace Event system 
+    Add licenses 
+    Precompiled headers
+    Resolve dependencies
 
 ## ToDo (Production): 
 
