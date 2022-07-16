@@ -33,8 +33,54 @@ Replace SPDLOG with owh logging system
 Replace Event system 
 Add licenses 
 Precompiled headers
+Resolve dependencies
 
 ## ToDo (Production): 
 
 Remove layer name in release versions to safe processing power
 
+## dependencies (dumpbin /dependents)
+
+File Type: DLL /(TGEP.dll)
+
+  Image has the following dependencies:
+
+    libgcc_s_seh-1.dll
+    libstdc++-6.dll
+    GDI32.dll
+    KERNEL32.dll
+    api-ms-win-crt-time-l1-1-0.dll (resolved by windows)
+    api-ms-win-crt-string-l1-1-0.dll (resolved by windows)
+    api-ms-win-crt-stdio-l1-1-0.dll
+    api-ms-win-crt-runtime-l1-1-0.dll
+    api-ms-win-crt-filesystem-l1-1-0.dll
+    api-ms-win-crt-locale-l1-1-0.dll
+    api-ms-win-crt-convert-l1-1-0.dll
+    api-ms-win-crt-private-l1-1-0.dll
+    api-ms-win-crt-environment-l1-1-0.dll
+    api-ms-win-crt-math-l1-1-0.dll
+    api-ms-win-crt-heap-l1-1-0.dll
+    api-ms-win-crt-utility-l1-1-0.dll
+    libwinpthread-1.dll
+    SHELL32.dll
+    USER32.dll
+
+File Type: EXECUTABLE IMAGE (sandbox.exe) //not important for TGEP
+
+  Image has the following dependencies:
+
+    KERNEL32.dll
+    api-ms-win-crt-time-l1-1-0.dll
+    api-ms-win-crt-string-l1-1-0.dll
+    api-ms-win-crt-stdio-l1-1-0.dll
+    api-ms-win-crt-runtime-l1-1-0.dll
+    api-ms-win-crt-filesystem-l1-1-0.dll
+    api-ms-win-crt-locale-l1-1-0.dll
+    api-ms-win-crt-convert-l1-1-0.dll
+    api-ms-win-crt-private-l1-1-0.dll
+    api-ms-win-crt-environment-l1-1-0.dll
+    api-ms-win-crt-math-l1-1-0.dll
+    api-ms-win-crt-heap-l1-1-0.dll
+    api-ms-win-crt-utility-l1-1-0.dll
+    libwinpthread-1.dll
+    TGEP.dll
