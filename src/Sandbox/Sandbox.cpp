@@ -1,5 +1,4 @@
 #include <TGEP.h>
-
 class Testlayer : public TGEP::Layer
 {
 public:
