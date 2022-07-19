@@ -18,7 +18,7 @@ if not exist "glad.o" (
 
     echo COMPILING GLAD
 
-    g++ -c ..\src\TGEP\glad.c 
+    g++ -c ..\src\TGEP\glad\glad.c 
 )
 
 echo STARTING ENGINE COMPILATION
@@ -31,7 +31,7 @@ g++ -c ..\src\TGEP\LayerStack.cpp
 g++ -c ..\src\TGEP\Layers\ImGuiLayer.cpp
 g++ -c ..\src\TGEP\Input.cpp
 
-g++ -shared -o TGEP.dll Application.o Log.o Window.o Layer.o LayerStack.o glad.o imgui.o imgui_draw.o imgui_tables.o imgui_widgets.o imgui_impl_opengl3.o imgui_impl_glfw.o imgui_demo.o ImGuiLayer.o Input.o -lopengl32 -lglfw3 -lgdi32
+ar rcs libTGEP.a Application.o Log.o Window.o Layer.o LayerStack.o glad.o imgui.o imgui_draw.o imgui_tables.o imgui_widgets.o imgui_impl_opengl3.o imgui_impl_glfw.o imgui_demo.o ImGuiLayer.o Input.o
 
 del Application.o
 del Log.o
@@ -45,7 +45,7 @@ echo ENGINE COMPILATION DONE!
 
 echo STARTING COMPILATION OF TEST PROJECT
 
-g++ -o sandbox.exe ..\src\Sandbox\sandbox.cpp -L./ -lTGEP -I ..\src -static-libgcc -static-libstdc++
+g++ -o sandbox.exe ..\src\Sandbox\sandbox.cpp -L./ -lTGEP -lglfw3 -lgdi32 -lopengl32 -I../src -static-libgcc -static-libstdc++
 
 echo COMPILATION DONE!
 

@@ -2,9 +2,9 @@
 *.d
 
 # Object files
-*.o
 *.ko
 *.elf
+*.o
 
 # Linker output
 *.ilk
@@ -13,13 +13,6 @@
 
 # Precompiled Headers
 *.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
 
 
 
