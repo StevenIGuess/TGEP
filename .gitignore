@@ -18,7 +18,8 @@
 # Precompiled Headers
 *.gch
 
-
+#temporary ImGui folder
+ImGui/
 
 
 

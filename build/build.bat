@@ -2,40 +2,33 @@
 cls
 
 if not exist "imgui.o" (
-
+    echo COPYING IMGUI FILES
+    mkdir ..\src\ImGui\
+    copy ..\submodules\imgui\backends\imgui_impl_opengl3.h ..\src\ImGui
+    copy ..\submodules\imgui\backends\imgui_impl_opengl3.cpp ..\src\ImGui
+    copy ..\submodules\imgui\backends\imgui_impl_opengl3_loader.h ..\src\ImGui
+    copy ..\submodules\imgui\backends\imgui_impl_glfw.h ..\src\ImGui
+    copy ..\submodules\imgui\backends\imgui_impl_glfw.cpp ..\src\ImGui
+    copy ..\submodules\imgui\*.cpp ..\src\ImGui
+    copy ..\submodules\imgui\*.h ..\src\ImGui
     echo COMPILING IMGUI
-
-    g++ -c ..\vendor\imgui\
-
-    g++ -c ..\vendor\imgui\imgui.cpp
-    g++ -c ..\vendor\imgui\imgui_draw.cpp
-    g++ -c ..\vendor\imgui\imgui_tables.cpp
-    g++ -c ..\vendor\imgui\imgui_widgets.cpp
-    g++ -c ..\vendor\imgui\imgui_impl_opengl3.cpp
-    g++ -c ..\vendor\imgui\imgui_demo.cpp
-    g++ -c ..\vendor\imgui\imgui_impl_glfw.cpp
+    g++ -c ..\src\ImGui\*.cpp
 )
 
 if not exist "glad.o" (
-
     echo COMPILING GLAD
-
-    g++ -c ..\src\TGEP\glad\glad.c 
+    g++ -c ..\src\glad\glad.c 
 )
 
 echo STARTING ENGINE COMPILATION
 
-g++ -c ..\src\TGEP\Application.cpp       
-g++ -c ..\src\TGEP\Log.cpp
-g++ -c ..\src\TGEP\Layer.cpp 
-g++ -c ..\src\TGEP\LayerStack.cpp 
-g++ -c ..\src\TGEP\Layers\ImGuiLayer.cpp
-g++ -c ..\src\TGEP\Input.cpp
-g++ -c ..\src\TGEP\Windows\OpenGL\OpenGLWindow.cpp
-g++ -c ..\src\TGEP\RenderApi\OpenGL\OpenGLContext.cpp
-g++ -c ..\src\TGEP\Window.cpp
+g++ -c ..\src\TGEP\*.cpp -I../src/ImGui
+g++ -c ..\src\TGEP\Layers\*.cpp -I../src/ImGui
+g++ -c ..\src\TGEP\Windows\OpenGL\*.cpp -I../src/ImGui
+g++ -c ..\src\TGEP\RenderApi\OpenGL\*.cpp -I../src/ImGui
 
-ar rcs libTGEP.a Application.o Log.o Layer.o LayerStack.o glad.o imgui.o imgui_draw.o imgui_tables.o imgui_widgets.o imgui_impl_opengl3.o imgui_impl_glfw.o imgui_demo.o ImGuiLayer.o Input.o OpenGLWindow.o OpenGLContext.o Window.o
+
+ar rcs libTGEP.a *.o
 
 del Application.o
 del Log.o
