@@ -1,12 +1,6 @@
 #pragma once 
 
-#include "pch.h"
-
-#include "Core.h"
-#include "Log.h"
 #include "Events/Event.h"
-
-
 
 namespace TGEP 
 {
@@ -32,39 +26,19 @@ namespace TGEP
     public:
         using EventCallbackFn = std::function<void(Event&)>;
 
-        Window(const WindowProperties& properties);
+        virtual ~Window() = default;
 
-        ~Window();
+        virtual void OnUpdate() = 0;
 
-        void OnUpdate();
-
-        unsigned int GetWidth() { return m_Data.Width; }
-        unsigned int GetHeight() { return m_Data.Height; }
+        virtual unsigned int GetWidth() const = 0;
+        virtual unsigned int GetHeight() const = 0;
 
         //Atributes
-        void SetEventCallback(const EventCallbackFn& callback) { m_Data.EventCallback = callback; }
-        void SetVSync(bool enabled);
-        bool IsVsync() const;
+        virtual void SetEventCallback(const EventCallbackFn& callback) = 0;
+        virtual void SetVSync(bool enabled) = 0;
+        virtual bool IsVsync() const = 0;
 
-        void* GetNativeWindow() const { return m_Window; }
-
-        static Window* Create(const WindowProperties& props = WindowProperties());
-    private:
-        virtual void Init(const WindowProperties& properties);
-        virtual void Shutdown();
-    private:
-        GLFWwindow* m_Window;
-        struct WindowData
-        {
-            std::string Title;
-            unsigned int Width, Height;
-            bool VSync;
-
-            EventCallbackFn EventCallback;
-        };
-
-        WindowData m_Data;
-
+        virtual void* GetNativeWindow() const = 0;
     };
 
 }

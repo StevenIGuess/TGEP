@@ -2,6 +2,7 @@
 #include "Input.h"
 #include "Log.h"
 #include "Events/KeyCodes.h"
+#include "Windows/OpenGL/OpenGLWindow.h"
 
 namespace TGEP {
     
@@ -13,7 +14,7 @@ namespace TGEP {
         ASSERT_CORE(!s_Instance, "APPLICATION ALREADY EXISTS");
         s_Instance = this;
 
-        m_Window = std::unique_ptr<Window>(Window::Create());
+        m_Window = std::unique_ptr<Window>(OpenGLWindow::Create());
         m_Window->SetEventCallback(BIND_EVENT_FUNC(Application::OnEvent));
 
         m_ImGuiLayer = new ImGuiLayer();
