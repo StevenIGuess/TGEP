@@ -4,9 +4,9 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
-#include "ImGui/imgui.h"
-#include "ImGui/imgui_impl_opengl3.h"
-#include "ImGui/imgui_impl_glfw.h"
+#include "../../vendor/imgui/imgui.h"
+#include "../../vendor/imgui/imgui_impl_opengl3.h"
+#include "../../vendor/imgui/imgui_impl_glfw.h"
 
 #include "Core.h"
 
