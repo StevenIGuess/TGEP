@@ -17,6 +17,8 @@ namespace TGEP
         glfwMakeContextCurrent(m_Window);
         int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
         ASSERT_CORE(status, "FAILED TO LOAD GLAD");
+
+        LOG_CORE_INFO("OpenGL Renderer: {0} {1} OpenGl Version: {2}", glGetString(GL_VENDOR), glGetString(GL_RENDERER), glGetString(GL_VERSION));
     }
 
     void OpenGLContext::SwapBuffers()

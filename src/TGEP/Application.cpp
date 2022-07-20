@@ -3,6 +3,7 @@
 #include "Log.h"
 #include "Events/KeyCodes.h"
 #include "Windows/OpenGL/OpenGLWindow.h"
+#include "Layers/OpenGLInfoLayer.h"
 
 namespace TGEP {
     
@@ -19,6 +20,9 @@ namespace TGEP {
 
         m_ImGuiLayer = new ImGuiLayer();
         PushOverlay(m_ImGuiLayer);
+
+        OpenGLInfoLayer* openGLInfoLayer = new OpenGLInfoLayer();
+        PushOverlay(openGLInfoLayer);
 
         glGenVertexArrays(1, &m_VertexArray);
         glBindVertexArray(m_VertexArray);
