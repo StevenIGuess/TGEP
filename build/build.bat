@@ -22,10 +22,13 @@ if not exist "glad.o" (
 
 echo STARTING ENGINE COMPILATION
 
-g++ -c ..\src\TGEP\*.cpp -I../src/ImGui
-g++ -c ..\src\TGEP\Layers\*.cpp -I../src/ImGui
-g++ -c ..\src\TGEP\Windows\OpenGL\*.cpp -I../src/ImGui
-g++ -c ..\src\TGEP\RenderApi\OpenGL\*.cpp -I../src/ImGui
+set Includes=-I../src/ImGui/ -I../src/TGEP/
+
+g++ -c ..\src\TGEP\*.cpp %Includes%
+g++ -c ..\src\TGEP\Layers\*.cpp %Includes%
+g++ -c ..\src\TGEP\Windows\OpenGL\*.cpp %Includes%
+g++ -c ..\src\TGEP\RenderApi\OpenGL\*.cpp %Includes%
+g++ -c ..\src\TGEP\Shader\*.cpp %Includes%
 
 
 ar rcs libTGEP.a *.o
@@ -39,6 +42,7 @@ del Input.o
 del OpenGLWindow.o
 del OpenGLContext.o
 del Window.o
+del OpenGLShader.o
 
 echo ENGINE COMPILATION DONE!
 
