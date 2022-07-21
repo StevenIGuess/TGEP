@@ -14,6 +14,9 @@ if not exist "imgui.o" (
     echo COMPILING IMGUI
     g++ -c ..\src\ImGui\*.cpp
 )
+if not exist "libglfw3.a" (
+    echo BUILDING GLAD 
+)
 
 if not exist "glad.o" (
     echo COMPILING GLAD
