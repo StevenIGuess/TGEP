@@ -18,8 +18,10 @@
 # Precompiled Headers
 *.gch
 
-#temporary ImGui folder
+#temporary folders
 ImGui/
+Libraries/
+tmplib/
 
 
 
