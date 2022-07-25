@@ -4,4 +4,6 @@ Expand-Archive .\cmake.zip -DestinationPath C:\ -Force
 
 del .\cmake.zip
 
-..\build\build.bat
+cd build
+
+.\build.bat
