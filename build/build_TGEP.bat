@@ -1,5 +1,6 @@
 @echo off
 cls
+[Environment]::SetEnvironmentVariable('PATH', ${env:path} + ';C:\mingw64\bin\', 'Machine')
 
 if not exist "imgui.o" (
 

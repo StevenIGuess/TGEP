@@ -1,5 +1,7 @@
 @echo off
 cls
+[Environment]::SetEnvironmentVariable('PATH', ${env:path} + ';C:\mingw64\bin\', 'Machine')
+[Environment]::SetEnvironmentVariable('PATH', ${env:path} + ';C:\cmake-3.23.2-windows-x86_64\bin\', 'Machine')
 
 set Includes=-I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/
 
