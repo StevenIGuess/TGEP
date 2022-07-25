@@ -14,12 +14,12 @@ if errorlevel 1 (
 
 :installergcc
 echo Installing MinGW-w64 from https://github.com/niXman/mingw-builds-binaries/releases/download/12.1.0-rt_v10-rev3/x86_64-12.1.0-release-win32-seh-rt_v10-rev3.7z @ C:\mingw64
-Powershell.exe -Command "& {Start-Process Powershell.exe -ArgumentList '-ExecutionPolicy Bypass -File %~dp0installergcc.ps1' -Verb RunAs}"
+START /WAIT Powershell.exe -Command "& {Start-Process Powershell.exe -ArgumentList '-ExecutionPolicy Bypass -File %~dp0installergcc.ps1' -Verb RunAs}"
 goto :checkcmake
 
 :installercmake
 echo Installing Cmake from https://github.com/Kitware/CMake/releases/download/v3.23.2/cmake-3.23.2-windows-x86_64.zip @ C:\cmake-3.23.2-windows-x86_64
-Powershell.exe -Command "& {Start-Process Powershell.exe -ArgumentList '-ExecutionPolicy Bypass -File %~dp0installercmake.ps1' -Verb RunAs}"
+START /WAIT Powershell.exe -Command "& {Start-Process Powershell.exe -ArgumentList '-ExecutionPolicy Bypass -File %~dp0installercmake.ps1' -Verb RunAs}"
 exit
 
 :endsetup
