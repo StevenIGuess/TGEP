@@ -1,15 +1,15 @@
 @echo off
 cls
 
-set Includes=-I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/
+set Includes=-I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/
 
 if not exist ".\Libraries\lib\libglfw3.a" (
 
     echo COPYING GLFW FILES
+    mkdir tmplib
     robocopy ../submodules/glfw/ tmplib/ /s /e
 
     echo BUILDING GLFW
-    mkdir tmplib
     cd tmplib
     mkdir build
     cd build
@@ -23,17 +23,45 @@ if not exist ".\Libraries\lib\libglfw3.a" (
 
     cd ../../
 
-    robocopy ./tmplib/build/install/include/GLFW/ ./Libraries/include
+    robocopy ./tmplib/build/install/include/GLFW/ ./Libraries/include/GLFW/
+    robocopy ./tmplib/build/install/lib ./Libraries/lib
+
+    echo DELETING OLD FILES 
+    
+    RD /S /Q .\tmplib
+
+)
+
+if not exist "libspdlog.a" (
+
+    echo COPYING SPDLOG FILES
+    mkdir tmplib
+    robocopy ../submodules/spdlog/ tmplib/ /s /e
+
+    echo BUILDING SPDLOG
+    cd tmplib
+    mkdir build
+    cd build
+
+    cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX:PATH=./install
+
+    mingw32-make
+    mingw32-make install
+
+    echo COPYING COMPILED FILES
+
+    cd ../../
+
+    robocopy ./tmplib/build/install/include/ ./Libraries/include
     robocopy ./tmplib/build/install/lib ./Libraries/lib
 
     echo DELETING OLD FILES 
 
-    RD /S /Q ".\tmplib"
 )
 
 if not exist "glad.o" (
     echo COMPILING GLAD
-    g++ -c ..\src\glad\glad.c 
+    g++ -c ..\src\glad\glad.c %Includes%
 )
 
 if not exist "imgui.o" (
@@ -77,7 +105,7 @@ echo ENGINE COMPILATION DONE!
 
 echo STARTING COMPILATION OF TEST PROJECT
 
-g++ -o sandbox.exe ..\src\Sandbox\sandbox.cpp -L./Libraries/lib/ -L./ -lTGEP -lglfw3 -lgdi32 -lopengl32 -I../src/ -I./Libraries/include/ -static-libgcc -static-libstdc++
+g++ -o sandbox.exe ..\src\Sandbox\sandbox.cpp -L./Libraries/lib/ -L./ -lTGEP -lglfw3 -lgdi32 -lopengl32 -I../src/ -I./Libraries/include/ -I../src/glad/ -static-libgcc -static-libstdc++
 
 echo COMPILATION DONE!
 
