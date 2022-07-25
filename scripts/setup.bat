@@ -1,5 +1,6 @@
 @echo off
 cls
+
 gcc --version
 if errorlevel 1 (
     cls
