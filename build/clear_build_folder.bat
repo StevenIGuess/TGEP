@@ -3,5 +3,6 @@ del *.o
 del imgui.ini
 del libTGEP.a
 del .\tmplib\*
-del .\Libraries\Include\*
-del .\Libraries\Lib\*
+RD /S /Q .\tmplib
+del /S /Q  .\Libraries\Include\*
+del /S /Q  .\Libraries\Lib\*

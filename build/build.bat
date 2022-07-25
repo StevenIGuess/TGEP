@@ -1,40 +1,15 @@
-cls
 @echo off
+cls
 
-:: BatchGotAdmin
-:-------------------------------------
-REM  --> Check for permissions
-    IF "%PROCESSOR_ARCHITECTURE%" EQU "amd64" (
->nul 2>&1 "%SYSTEMROOT%\SysWOW64\cacls.exe" "%SYSTEMROOT%\SysWOW64\config\system"
-) ELSE (
->nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
-)
+set Includes=-I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/
 
-REM --> If error flag set, we do not have admin.
-if '%errorlevel%' NEQ '0' (
-    echo Requesting administrative privileges...
-    goto UACPrompt
-) else ( goto gotAdmin )
+if not exist ".\Libraries\lib\libglfw3.a" (
 
-:UACPrompt
-    echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
-    set params= %*
-    echo UAC.ShellExecute "cmd.exe", "/c ""%~s0"" %params:"=""%", "", "runas", 1 >> "%temp%\getadmin.vbs"
-
-    "%temp%\getadmin.vbs"
-    del "%temp%\getadmin.vbs"
-    exit /B
-
-:gotAdmin
-    pushd "%CD%"
-    CD /D "%~dp0"
-
-:: change to Libraries/lib/libglfw3.a
-if not exist "libglfw3.a" (
     echo COPYING GLFW FILES
     robocopy ../submodules/glfw/ tmplib/ /s /e
 
     echo BUILDING GLFW
+    mkdir tmplib
     cd tmplib
     mkdir build
     cd build
@@ -53,9 +28,12 @@ if not exist "libglfw3.a" (
 
     echo DELETING OLD FILES 
 
-    :: delete the stupid folder
+    RD /S /Q ".\tmplib"
+)
 
-
+if not exist "glad.o" (
+    echo COMPILING GLAD
+    g++ -c ..\src\glad\glad.c 
 )
 
 if not exist "imgui.o" (
@@ -69,17 +47,11 @@ if not exist "imgui.o" (
     copy ..\submodules\imgui\*.cpp ..\src\ImGui
     copy ..\submodules\imgui\*.h ..\src\ImGui
     echo COMPILING IMGUI
-    g++ -c ..\src\ImGui\*.cpp
+    g++ -c ..\src\ImGui\*.cpp %Includes%
 )
 
-if not exist "glad.o" (
-    echo COMPILING GLAD
-    g++ -c ..\src\glad\glad.c 
-)
 
 echo STARTING ENGINE COMPILATION
-
-set Includes=-I../src/ImGui/ -I../src/TGEP/
 
 g++ -c ..\src\TGEP\*.cpp %Includes%
 g++ -c ..\src\TGEP\Layers\*.cpp %Includes%
@@ -105,10 +77,9 @@ echo ENGINE COMPILATION DONE!
 
 echo STARTING COMPILATION OF TEST PROJECT
 
-g++ -o sandbox.exe ..\src\Sandbox\sandbox.cpp -L./ -lTGEP -lglfw3 -lgdi32 -lopengl32 -I../src/ -static-libgcc -static-libstdc++
+g++ -o sandbox.exe ..\src\Sandbox\sandbox.cpp -L./Libraries/lib/ -L./ -lTGEP -lglfw3 -lgdi32 -lopengl32 -I../src/ -I./Libraries/include/ -static-libgcc -static-libstdc++
 
 echo COMPILATION DONE!
-
 
 
 .\sandbox.exe
