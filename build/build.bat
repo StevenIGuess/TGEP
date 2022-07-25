@@ -32,6 +32,12 @@ if not exist ".\Libraries\lib\libglfw3.a" (
 
 )
 
+if not exist ".\Libraries\include\glm\glm.hpp" (
+
+    echo COPYING GLM FILES
+    robocopy ../submodules/glm/glm/ ./Libraries/include/glm/ /s /e 
+)
+
 if not exist "glad.o" (
     echo COMPILING GLAD
     g++ -c ..\src\glad\glad.c %Includes%
