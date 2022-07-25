@@ -3,7 +3,6 @@
 #include "Core.h"
 #include "Events/ApplicationEvent.h"
 #include "Window.h"
-#include "Log.h"
 #include "LayerStack.h"
 #include "Layers/ImGuiLayer.h"
 #include "Shader/OpenGlShader.h"

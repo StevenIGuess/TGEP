@@ -1,6 +1,5 @@
 #include "Application.h"
 #include "Input.h"
-#include "Log.h"
 #include "Events/KeyCodes.h"
 #include "Windows/OpenGL/OpenGLWindow.h"
 #include "Layers/OpenGLInfoLayer.h"

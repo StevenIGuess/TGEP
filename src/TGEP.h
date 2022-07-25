@@ -30,11 +30,6 @@
 
 
 #include "./TGEP/Application.h"
-//Logging system 
-#include "./TGEP/Log.h"
-//#define LOG_ERROR(...) ::TGEP::Log::GetClientLogger()->error(__VA_ARGS__)
-//#define LOG_WARN(...) ::TGEP::Log::GetClientLogger()->warn(__VA_ARGS__)
-//#define LOG_INFO(...) ::TGEP::Log::GetClientLogger()->info(__VA_ARGS__)
 // ---ENTRY POINT---
 #include "./TGEP/EntryPoint.h"
 //Event system 

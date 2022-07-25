@@ -32,33 +32,6 @@ if not exist ".\Libraries\lib\libglfw3.a" (
 
 )
 
-if not exist "libspdlog.a" (
-
-    echo COPYING SPDLOG FILES
-    mkdir tmplib
-    robocopy ../submodules/spdlog/ tmplib/ /s /e
-
-    echo BUILDING SPDLOG
-    cd tmplib
-    mkdir build
-    cd build
-
-    cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX:PATH=./install
-
-    mingw32-make
-    mingw32-make install
-
-    echo COPYING COMPILED FILES
-
-    cd ../../
-
-    robocopy ./tmplib/build/install/include/ ./Libraries/include
-    robocopy ./tmplib/build/install/lib ./Libraries/lib
-
-    echo DELETING OLD FILES 
-
-)
-
 if not exist "glad.o" (
     echo COMPILING GLAD
     g++ -c ..\src\glad\glad.c %Includes%
@@ -91,7 +64,6 @@ g++ -c ..\src\TGEP\Shader\*.cpp %Includes%
 ar rcs libTGEP.a *.o
 
 del Application.o
-del Log.o
 del Layer.o 
 del LayerStack.o
 del ImGuiLayer.o

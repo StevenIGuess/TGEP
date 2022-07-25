@@ -1,7 +1,6 @@
 #include "OpenGLShader.h"
 
 #include "pch.h"
-#include "Log.h"
 #include <glad/glad.h>
 
 
@@ -31,8 +30,8 @@ namespace TGEP
             // The maxLength includes the NULL character
             std::vector<GLchar> infoLog(maxLength);
             glGetShaderInfoLog(vertexShader, maxLength, &maxLength, &infoLog[0]);
-            LOG_CORE_ERROR("VERTEX SHADER COMPILATION FAILED");
-            LOG_CORE_ERROR("{0}", infoLog.data());
+            printf("%s", "VERTEX SHADER COMPILATION FAILED");
+            printf("%s", infoLog.data());
             
             // We don't need the shader anymore.
             glDeleteShader(vertexShader);
@@ -64,8 +63,8 @@ namespace TGEP
             std::vector<GLchar> infoLog(maxLength);
             glGetShaderInfoLog(fragmentShader, maxLength, &maxLength, &infoLog[0]);
 
-            LOG_CORE_ERROR("FRAGMENT COMPILATION FAILED");
-            LOG_CORE_ERROR("{0}", infoLog.data());
+            printf("%s", "FRAGMENT COMPILATION FAILED");
+            printf("%s", infoLog.data());
             
             // We don't need the shader anymore.
             glDeleteShader(fragmentShader);
@@ -108,8 +107,8 @@ namespace TGEP
             glDeleteShader(vertexShader);
             glDeleteShader(fragmentShader);
 
-            LOG_CORE_ERROR("SHADER PROGRAM COMPILATION FAILED");
-            LOG_CORE_ERROR("{0}", infoLog.data());
+            printf("%s", "SHADER PROGRAM COMPILATION FAILED");
+            printf("%s", infoLog.data());
 
             // Use the infoLog as you see fit.
             

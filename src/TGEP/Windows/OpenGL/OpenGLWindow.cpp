@@ -6,7 +6,6 @@
 #include "../../Input.h"
 #include "../../RenderApi/OpenGl/OpenGLContext.h"
 #include "../../pch.h"
-#include "../../Log.h"
 
 namespace TGEP 
 {
@@ -16,7 +15,7 @@ namespace TGEP
 
     static void GLFWErrorCallback(int error, const char* desc)
     {
-        LOG_CORE_ERROR("GLFWERROR: {0}, DESCRIPTION: {1}", error, desc);
+        printf("%s%i\n%s%s\n", "GLFWERROR: ", error, "DESCRIPTION: ", desc);
     }
 
     Window* OpenGLWindow::Create(const WindowProperties& properties)
@@ -41,8 +40,6 @@ namespace TGEP
         m_Data.Height = properties.Height;
 
         
-
-        LOG_CORE_INFO("CREATED WINDOW '{0}' ({1}, {2})", properties.Title, properties.Width, properties.Height);
 
         if(!GLFWInitalized)
         {
