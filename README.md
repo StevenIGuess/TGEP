@@ -12,25 +12,24 @@ Clone the repo using:
 ```
 git clone --recurse-submodules https://github.com/StevenIGuess/TGEP.git
 ```
-If you have mingw64 and cmake installed you can skip this step, else install them using the setup.bat file
+Now you can run the build file using an _admin_ powershell.
 ```
-cd TGEP\scripts\
-.\setup.bat
+cd TGEP\build\
+.\build.ps1
 ```
-Now you can build the system using the build.bat file
-```
-cd ..\build\
-.\build.bat
-```
-If TGEP doesn't compile try clearing the build folder using
+This file checks for gcc and cmake, installs them if needed and compiles the whole project including depenencies.
+If TGEP doesn't compile try clearing the build folder using:
 ```
 .\clear_build_folder.bat
 ```
+If it still doens't work try deleting the folders `C:mingw64` and `C:cmake-3.23.2-windows-x86_64` and rebuilding the project.
+If you still encounter issues please open an Issue.
 
 ## Used libraries
-I'm planning on not using too many libraries, but for the sake of simplicity, I'll still be using the following libraries: 
+I'm planning on not using too many libraries, but for the sake of simplicity, I'll still be using the following libraries (all used libraries are added as submodules and dont have to be manualy installed): 
 - Glm
 - Glfw 
 - Glad v.4.6.0
 
-These Libraries will (hopefully) later be replaced or removed.
+## Using TGEP
+After building the system and making sure the `Sandboc.exe` project works fine, you can copy the files `TGEP\src\TGEP.h` and `TGEP\build\libTGEP.a` into your include and lib folders.
