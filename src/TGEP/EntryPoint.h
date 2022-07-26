@@ -4,7 +4,7 @@ extern TGEP::Application* TGEP::CreateApplication();
 
 int main(int argc, char **argv)
 {
-    printf("%s", "TGEP STARTED");
+    printf("\033[0;36m%s\033[0;30m", "TGEP STARTED\n");
 
     auto app = TGEP::CreateApplication();
     app->Run();

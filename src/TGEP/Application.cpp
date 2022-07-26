@@ -38,13 +38,13 @@ namespace TGEP {
 
 
         m_VertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
-        printf("%s", "Created vertex buffer");
+        printf("%s", "Created vertex buffer\n");
 
         glEnableVertexAttribArray(0);
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
 
         m_IndexBuffer.reset(IndexBuffer::Create(indices, (sizeof(indices) / sizeof(uint32_t))));
-        printf("%s", "Created index buffer");
+        printf("%s", "Created index buffer\n");
         
         std::string vertexSrc = R"(
         #version 460 core
