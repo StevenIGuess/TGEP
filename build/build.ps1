@@ -1,6 +1,6 @@
 cls
 
-[Environment]::SetEnvironmentVariable("PATH", $Env:PATH + ";C:\mingw64\bin\;C:\cmake-3.23.2-windows-x86_64\bin\", [EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable("PATH", $Env:PATH + ";C:\mingw64\bin\;C:\cmake-3.23.2-windows-x86_64\bin\")
 
 ECHO "CHECKING IF GCC IS INSTALLED"
 gcc --version
