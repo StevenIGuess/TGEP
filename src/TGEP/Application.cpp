@@ -74,7 +74,7 @@ namespace TGEP {
 
         )";
 
-        m_Shader.reset(new OpenGLShader(vertexSrc, fragmentSrc));
+        m_Shader.reset(Shader::Create(vertexSrc, fragmentSrc));
     }
 
     Application::~Application()
