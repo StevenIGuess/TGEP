@@ -1,7 +1,5 @@
 @echo off
-del *.o
-del imgui.ini
-del libTGEP.a
+RD /S /Q .\Libraries
 del .\tmplib\*
 RD /S /Q .\tmplib
 RD /S /Q .\src
