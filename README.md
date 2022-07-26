@@ -20,7 +20,7 @@ cd TGEP\build\
 This file checks for gcc and cmake, installs them if needed and compiles the whole project including depenencies.
 If TGEP doesn't compile try clearing the build folder using:
 ```
-.\clear_build_folder.bat
+.\clear_build_folder.bat && .\clear_libraries.bat
 ```
 If it still doens't work try deleting the folders `C:mingw64` and `C:cmake-3.23.2-windows-x86_64` and rebuilding the project.
 If you still encounter issues please open an Issue.
