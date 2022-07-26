@@ -23,7 +23,9 @@ ImGui/
 Libraries/
 tmplib/
 scripts/mingw64/
-build/libTGEP.a
-build/sandbox.exe
+
+#sandbox and TGEP
+libTGEP.a
+sandbox.exe
 
 
