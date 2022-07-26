@@ -6,6 +6,7 @@
 #include "LayerStack.h"
 #include "Layers/ImGuiLayer.h"
 #include "Shader/OpenGlShader.h"
+#include "TGEP/Renderer/Buffer.h"
 
 namespace TGEP 
 {
@@ -33,8 +34,10 @@ namespace TGEP
         bool m_Running = true;
         LayerStack m_LayerStack;
 
-        unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+        unsigned int m_VertexArray;
         std::unique_ptr<OpenGLShader> m_Shader;
+        std::unique_ptr<VertexBuffer> m_VertexBuffer;
+        std::unique_ptr<IndexBuffer> m_IndexBuffer;
 
     private:
         static Application* s_Instance;
