@@ -93,4 +93,6 @@ File Type: EXECUTABLE IMAGE (sandbox.exe) //not important for TGEP
     api-ms-win-crt-utility-l1-1-0.dll (resolved by windows)
     libwinpthread-1.dll (resolved by TGEP lib)
     TGEP.dll
->>>>>>> cc412a48fc01bcf3906ca15cb5410a1613cb1078
+
+
+BUILDSYSTEM Tested on: Hyper-V/win10/4gb/6cores;Win11(dev machine, clean path)/16gb/6cores;Win10/32gb/6cores;
