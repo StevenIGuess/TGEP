@@ -32,4 +32,4 @@ I'm planning on not using too many libraries, but for the sake of simplicity, I'
 - Glad v.4.6.0
 
 ## Using TGEP
-After building the system and making sure the `Sandboc.exe` project works fine, you can copy the files `TGEP\src\TGEP.h` and `TGEP\build\libTGEP.a` into your include and lib folders.
+After building the system and making sure the `Sandbox.exe` project works fine, you can copy the files `TGEP\src\TGEP.h` and `TGEP\build\libTGEP.a` into your include and lib folders.
