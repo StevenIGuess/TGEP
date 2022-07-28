@@ -3,11 +3,29 @@
 #include "Events/KeyCodes.h"
 #include "Windows/OpenGL/OpenGLWindow.h"
 #include "Layers/OpenGLInfoLayer.h"
+#include "pch.h"
 
 namespace TGEP {
-    
 
     Application* Application::s_Instance = nullptr;
+
+    //temporary
+
+    static GLenum TGEPTypeToGLType(ShaderDataType type)
+    {
+        switch (type)
+        {
+            case ShaderDataType::Float:     return GL_FLOAT;
+            case ShaderDataType::Float2:    return GL_FLOAT;
+            case ShaderDataType::Float3:    return GL_FLOAT;
+            case ShaderDataType::Float4:    return GL_FLOAT;
+            case ShaderDataType::Mat3:      return GL_FLOAT;
+            case ShaderDataType::Mat4:      return GL_FLOAT;
+            case ShaderDataType::Bool:      return GL_BOOL;
+        }
+        ASSERT_CORE(false, "UNKNOWN_SHADER_DATA_TYPE@Application.cpp");
+        return 0;
+    }
 
     Application::Application()
     {
@@ -35,14 +53,25 @@ namespace TGEP {
         uint32_t indices[3] = {
             0, 1, 2
         };
+        
+        BufferLayout layout = {
+            { ShaderDataType::Float3 }
+        };
 
 
         m_VertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
         printf("%s", "Created vertex buffer\n");
 
-        glEnableVertexAttribArray(0);
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
+        uint32_t i = 0;
+        for (const BufferElement element : layout.GetElements())
+        {
+            glEnableVertexAttribArray(i);
+            glVertexAttribPointer(i, element.GetComponentCount(), TGEPTypeToGLType(element.Type),
+                                     element.Normalized ? GL_TRUE : GL_FALSE, layout.GetStride(), (const void*)element.Offset);
+            i++;
+        }
 
+        
         m_IndexBuffer.reset(IndexBuffer::Create(indices, (sizeof(indices) / sizeof(uint32_t))));
         printf("%s", "Created index buffer\n");
         
