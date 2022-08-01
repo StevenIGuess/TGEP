@@ -1,4 +1,7 @@
 #pragma once
+#include <cstdint>
+#include <vector>
+#include "../Core.h"
 
 namespace TGEP 
 {
@@ -10,7 +13,7 @@ namespace TGEP
     #define TGEPMat4 ShaderDataType::Mat4 
     #define TGEPBool ShaderDataType::Bool 
 
-    enum class ShaderDataType : uint8_t
+    enum class ShaderDataType
     {
         None = 0, Float, Float2, Float3, Float4, Mat3, Mat4, Bool
     };

@@ -9,72 +9,24 @@ namespace TGEP {
 
     Application* Application::s_Instance = nullptr;
 
-    //temporary
-
-    static GLenum TGEPTypeToGLType(ShaderDataType type)
-    {
-        switch (type)
-        {
-            case ShaderDataType::Float:     return GL_FLOAT;
-            case ShaderDataType::Float2:    return GL_FLOAT;
-            case ShaderDataType::Float3:    return GL_FLOAT;
-            case ShaderDataType::Float4:    return GL_FLOAT;
-            case ShaderDataType::Mat3:      return GL_FLOAT;
-            case ShaderDataType::Mat4:      return GL_FLOAT;
-            case ShaderDataType::Bool:      return GL_BOOL;
-        }
-        ASSERT_CORE(false, "UNKNOWN_SHADER_DATA_TYPE@Application.cpp");
-        return 0;
-    }
-
     Application::Application()
     {
         ASSERT_CORE(!s_Instance, "APPLICATION ALREADY EXISTS");
         s_Instance = this;
 
+        //create windows and set callbacks
         m_Window = std::unique_ptr<Window>(OpenGLWindow::Create());
         m_Window->SetEventCallback(BIND_EVENT_FUNC(Application::OnEvent));
 
+        //create all layer and overlays
         m_ImGuiLayer = new ImGuiLayer();
         PushOverlay(m_ImGuiLayer);
 
         OpenGLInfoLayer* openGLInfoLayer = new OpenGLInfoLayer();
         PushOverlay(openGLInfoLayer);
 
-        glGenVertexArrays(1, &m_VertexArray);
-        glBindVertexArray(m_VertexArray);
+#pragma region TEMPORARY DATA TRIANGLE
 
-        float vertices[9] = {
-            -0.5f, -0.5f, 0.0f,
-             0.5f, -0.5f, 0.0f,
-             0.0f,  0.5f, 0.0f
-        };
-
-        uint32_t indices[3] = {
-            0, 1, 2
-        };
-        
-        BufferLayout layout = {
-            { ShaderDataType::Float3 }
-        };
-
-
-        m_VertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
-        printf("%s", "Created vertex buffer\n");
-
-        uint32_t i = 0;
-        for (const BufferElement element : layout.GetElements())
-        {
-            glEnableVertexAttribArray(i);
-            glVertexAttribPointer(i, element.GetComponentCount(), TGEPTypeToGLType(element.Type),
-                                     element.Normalized ? GL_TRUE : GL_FALSE, layout.GetStride(), (const void*)element.Offset);
-            i++;
-        }
-
-        
-        m_IndexBuffer.reset(IndexBuffer::Create(indices, (sizeof(indices) / sizeof(uint32_t))));
-        printf("%s", "Created index buffer\n");
-        
         std::string vertexSrc = R"(
         #version 460 core
 
@@ -103,7 +55,110 @@ namespace TGEP {
 
         )";
 
+        float vertices[9] = {
+            -0.5f, -0.5f, 0.0f,
+             0.5f, -0.5f, 0.0f,
+             0.0f,  0.5f, 0.0f
+        };
+
+
+        uint32_t indices[3] = {
+            0, 1, 2
+        };
+        
+        BufferLayout layout = {
+            { ShaderDataType::Float3 }
+        };
+
+#pragma endregion
+
+        m_VertexArray.reset(VertexArray::Create());
+        printf("%s", "Created vertex array\n");
+
+        m_VertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
+        printf("%s", "Created vertex buffer\n");
+        m_VertexBuffer->SetLayout(layout);
+        m_VertexArray->AddVertexBuffer(m_VertexBuffer);
+        printf("%s", "Added vertex buffer to vertex array\n");
+
+        
+        m_IndexBuffer.reset(IndexBuffer::Create(indices, (sizeof(indices) / sizeof(uint32_t))));
+        printf("%s", "Created index buffer\n");
+        m_VertexArray->SetIndexBuffer (m_IndexBuffer);
+        printf("%s", "Added index buffer to vertex array\n");
         m_Shader.reset(Shader::Create(vertexSrc, fragmentSrc));
+        printf("%s", "Created shader\n");
+
+
+#pragma region TEMPORARY DATA SQUARE
+
+        std::string squareVertexSrc = R"(
+        #version 460 core
+
+        layout (location = 0) in vec3 aPos;
+        layout (location = 1) in vec4 aCol;
+
+        out vec4 vCol;
+
+        void main() 
+        {
+
+            vCol = aCol;
+            gl_Position = vec4(aPos, 1.0);
+        }   
+        )";
+
+        std::string squareFragmentSrc = R"(
+        #version 460 core
+
+        out vec4 FragColor;
+        in vec4 vCol;
+
+        void main()
+        {
+            FragColor = vCol;
+        }
+
+        )";
+
+        float squareVertices[4 * 7] = {
+            -0.5f, -0.5f, 0.0f,   0.0f, 0.2f, 0.6f, 1.0f,
+             0.5f, -0.5f, 0.0f,   0.0f, 0.2f, 0.6f, 1.0f,
+             0.5f,  0.5f, 0.0f,   0.0f, 0.2f, 0.6f, 1.0f,
+            -0.5f,  0.5f, 0.0f,   0.1f, 0.2f, 0.6f, 1.0f
+        };
+
+
+        uint32_t squareIndices[6] = {
+            0, 1, 2,
+            2, 3, 0
+        };
+        
+        BufferLayout squareLayout = {
+            { ShaderDataType::Float3 },
+            { ShaderDataType::Float4 }
+        };
+
+#pragma endregion
+
+
+        m_SquareVertexArray.reset(VertexArray::Create());
+        printf("%s", "Created square vertex array\n");
+
+        m_SquareVertexBuffer.reset(VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+        printf("%s", "Created square vertex buffer\n");
+        m_SquareVertexBuffer->SetLayout(squareLayout);
+        m_SquareVertexArray->AddVertexBuffer(m_SquareVertexBuffer);
+        printf("%s", "Added sqaure vertex buffer to square vertex array\n");
+
+        
+        m_SquareIndexBuffer.reset(IndexBuffer::Create(squareIndices, (sizeof(squareIndices) / sizeof(uint32_t))));
+        printf("%s", "Created square index buffer\n");
+        m_SquareVertexArray->SetIndexBuffer (m_SquareIndexBuffer);
+        printf("%s", "Added square index buffer to suare vertex array\n");
+        m_SquareShader.reset(Shader::Create(squareVertexSrc, squareFragmentSrc));
+        printf("%s", "Created square shader\n");
+
     }
 
     Application::~Application()
@@ -146,8 +201,12 @@ namespace TGEP {
             glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT);
             
+            m_SquareShader->Bind();
+            m_SquareVertexArray->Bind();
+            glDrawElements(GL_TRIANGLES, m_SquareIndexBuffer->GetIndexCount(), GL_UNSIGNED_INT, nullptr);
+
             m_Shader->Bind();
-            glBindVertexArray(m_VertexArray);
+            m_VertexArray->Bind();
             glDrawElements(GL_TRIANGLES, m_IndexBuffer->GetIndexCount(), GL_UNSIGNED_INT, nullptr);
 
             //call OnUpdate() for each layer
