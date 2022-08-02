@@ -149,21 +149,13 @@ g++ -c ..\src\TGEP\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/
 g++ -c ..\src\TGEP\Layers\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/
 g++ -c ..\src\TGEP\Windows\OpenGL\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/
 g++ -c ..\src\TGEP\Renderer\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/
-g++ -c ..\src\TGEP\RenderApi\OpenGL\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/
+g++ -c ..\src\TGEP\RenderAPI\OpenGL\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/
 
 
 
 ar rcs libTGEP.a *.o
 
-Remove-Item Application.o
-Remove-Item Layer.o 
-Remove-Item LayerStack.o
-Remove-Item ImGuiLayer.o
-Remove-Item Input.o
-Remove-Item OpenGLWindow.o
-Remove-Item OpenGLContext.o
-Remove-Item Window.o
-Remove-Item OpenGLShader.o
+
  
 Write-Output "ENGINE COMPILATION DONE!"
 

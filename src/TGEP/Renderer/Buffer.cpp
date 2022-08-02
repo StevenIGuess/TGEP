@@ -9,11 +9,11 @@ namespace TGEP
 {
     VertexBuffer* VertexBuffer::Create(float* verticies, uint32_t size)
     {
-        switch(Renderer::GetRendererAPI())
+        switch(Renderer::GetAPI())
         {
-            case RendererAPI::None:     ASSERT_CORE(false, "No Renderer selected") return nullptr;
-            case RendererAPI::OpenGL:   return new OpenGLVertexBuffer(verticies, size);
-            case RendererAPI::DirectX:  ASSERT_CORE(false, "DirectX not implemented yet") return nullptr;
+            case RendererAPI::API::None:     ASSERT_CORE(false, "No Renderer selected") return nullptr;
+            case RendererAPI::API::OpenGL:   return new OpenGLVertexBuffer(verticies, size);
+            case RendererAPI::API::DirectX:  ASSERT_CORE(false, "DirectX not implemented yet") return nullptr;
             
         }
 
@@ -23,11 +23,11 @@ namespace TGEP
 
     IndexBuffer* IndexBuffer::Create(uint32_t *indices, uint32_t count)
     {
-        switch(Renderer::GetRendererAPI())
+        switch(Renderer::GetAPI())
         {
-            case RendererAPI::None:     ASSERT_CORE(false, "No Renderer selected") return nullptr;
-            case RendererAPI::OpenGL:   return new OpenGLIndexBuffer(indices, count);
-            case RendererAPI::DirectX:  ASSERT_CORE(false, "DirectX not implemented yet") return nullptr;
+            case RendererAPI::API::None:     ASSERT_CORE(false, "No Renderer selected") return nullptr;
+            case RendererAPI::API::OpenGL:   return new OpenGLIndexBuffer(indices, count);
+            case RendererAPI::API::DirectX:  ASSERT_CORE(false, "DirectX not implemented yet") return nullptr;
             
         }
 

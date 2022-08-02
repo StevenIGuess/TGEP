@@ -7,11 +7,11 @@ namespace TGEP {
 
     VertexArray* VertexArray::Create()
     {
-        switch(Renderer::GetRendererAPI())
+        switch(Renderer::GetAPI())
         {
-            case RendererAPI::None:     ASSERT_CORE(false, "No Renderer selected") return nullptr;
-            case RendererAPI::OpenGL:   return new OpenGLVertexArray();
-            case RendererAPI::DirectX:  ASSERT_CORE(false, "DirectX not implemented yet") return nullptr;
+            case RendererAPI::API::None:     ASSERT_CORE(false, "No Renderer selected") return nullptr;
+            case RendererAPI::API::OpenGL:   return new OpenGLVertexArray();
+            case RendererAPI::API::DirectX:  ASSERT_CORE(false, "DirectX not implemented yet") return nullptr;
             
         }
 

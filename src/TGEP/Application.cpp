@@ -1,9 +1,11 @@
+#include "pch.h"
 #include "Application.h"
 #include "Input.h"
 #include "Events/KeyCodes.h"
 #include "Windows/OpenGL/OpenGLWindow.h"
 #include "Layers/OpenGLInfoLayer.h"
-#include "pch.h"
+#include "Renderer/Renderer.h"
+
 
 namespace TGEP {
 
@@ -198,16 +200,23 @@ namespace TGEP {
     {
         while (m_Running)
         {
-            glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-            glClear(GL_COLOR_BUFFER_BIT);
-            
-            m_SquareShader->Bind();
-            m_SquareVertexArray->Bind();
-            glDrawElements(GL_TRIANGLES, m_SquareIndexBuffer->GetIndexCount(), GL_UNSIGNED_INT, nullptr);
 
-            m_Shader->Bind();
-            m_VertexArray->Bind();
-            glDrawElements(GL_TRIANGLES, m_IndexBuffer->GetIndexCount(), GL_UNSIGNED_INT, nullptr);
+            RenderCommand::SetClearColor(glm::vec4(0.1f, 0.1f, 0.1f, 1.0f));
+            RenderCommand::Clear();
+
+            
+            /****Render Code****/
+            Renderer::BeginScene();
+
+            m_SquareShader->Bind(); //Temporary 
+            Renderer::Push(m_SquareVertexArray);
+
+            m_Shader->Bind(); //Temporary 
+            Renderer::Push(m_VertexArray);
+
+            Renderer::EndScene();
+            /****Render Code****/
+            
 
             //call OnUpdate() for each layer
             for (Layer* layer : m_LayerStack)

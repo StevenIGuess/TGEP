@@ -3,5 +3,19 @@
 
 namespace TGEP 
 {
-    RendererAPI Renderer::s_RendererAPI = RendererAPI::OpenGL; //hard coded for testing later set at runtime.
+    void Renderer::BeginScene()
+    {
+
+    }
+
+    void Renderer::EndScene()
+    {
+
+    }
+
+    void Renderer::Push(const std::shared_ptr<VertexArray> &va)
+    {
+        va->Bind();
+        RenderCommand::DrawIndexed(va);
+    }
 }
