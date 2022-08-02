@@ -1,8 +1,8 @@
 #pragma once
 
 #include "../Layer.h"
-#include "../pch.h"
-#include "imgui.h"
+#include "../../ImGui/imgui.h"
+#include <glad/glad.h>
 
 namespace TGEP 
 {

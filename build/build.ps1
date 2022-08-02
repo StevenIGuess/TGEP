@@ -155,7 +155,23 @@ g++ -c ..\src\TGEP\RenderAPI\OpenGL\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGE
 
 ar rcs libTGEP.a *.o
 
-
+Remove-Item Application.o
+Remove-Item Layer.o 
+Remove-Item LayerStack.o
+Remove-Item ImGuiLayer.o
+Remove-Item Input.o
+Remove-Item OpenGLWindow.o
+Remove-Item OpenGLContext.o
+Remove-Item Window.o
+Remove-Item OpenGLShader.o
+Remove-Item Renderer.o
+Remove-Item RendererAPI.o
+Remove-Item Shader.o
+Remove-Item VertexArray.o
+Remove-Item OpenGLBuffer.o
+Remove-Item OpenGLRendererAPI.o
+Remove-Item RenderCommand.o
+Remove-Item Camera.o
  
 Write-Output "ENGINE COMPILATION DONE!"
 

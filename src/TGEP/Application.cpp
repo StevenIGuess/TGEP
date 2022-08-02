@@ -3,15 +3,15 @@
 #include "Input.h"
 #include "Events/KeyCodes.h"
 #include "Windows/OpenGL/OpenGLWindow.h"
-#include "Layers/OpenGLInfoLayer.h"
 #include "Renderer/Renderer.h"
+#include "Renderer/Camera.h"
 
 
 namespace TGEP {
 
     Application* Application::s_Instance = nullptr;
 
-    Application::Application()
+    Application::Application() : m_Camera(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f)
     {
         ASSERT_CORE(!s_Instance, "APPLICATION ALREADY EXISTS");
         s_Instance = this;
@@ -24,6 +24,9 @@ namespace TGEP {
         m_ImGuiLayer = new ImGuiLayer();
         PushOverlay(m_ImGuiLayer);
 
+        m_TestLayer = new TestLayer();
+        PushLayer(m_TestLayer);
+
         OpenGLInfoLayer* openGLInfoLayer = new OpenGLInfoLayer();
         PushOverlay(openGLInfoLayer);
 
@@ -33,6 +36,7 @@ namespace TGEP {
         #version 460 core
 
         layout (location = 0) in vec3 aPos;
+        uniform mat4 u_ViewProjection;
 
         out vec3 vColor;
 
@@ -40,7 +44,7 @@ namespace TGEP {
         {
 
             vColor = aPos;
-            gl_Position = vec4(aPos, 1.0);
+            gl_Position = u_ViewProjection * vec4(aPos, 1.0);
         }   
         )";
 
@@ -75,21 +79,15 @@ namespace TGEP {
 #pragma endregion
 
         m_VertexArray.reset(VertexArray::Create());
-        printf("%s", "Created vertex array\n");
 
         m_VertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
-        printf("%s", "Created vertex buffer\n");
         m_VertexBuffer->SetLayout(layout);
         m_VertexArray->AddVertexBuffer(m_VertexBuffer);
-        printf("%s", "Added vertex buffer to vertex array\n");
 
         
         m_IndexBuffer.reset(IndexBuffer::Create(indices, (sizeof(indices) / sizeof(uint32_t))));
-        printf("%s", "Created index buffer\n");
         m_VertexArray->SetIndexBuffer (m_IndexBuffer);
-        printf("%s", "Added index buffer to vertex array\n");
         m_Shader.reset(Shader::Create(vertexSrc, fragmentSrc));
-        printf("%s", "Created shader\n");
 
 
 #pragma region TEMPORARY DATA SQUARE
@@ -99,6 +97,7 @@ namespace TGEP {
 
         layout (location = 0) in vec3 aPos;
         layout (location = 1) in vec4 aCol;
+        uniform mat4 u_ViewProjection;
 
         out vec4 vCol;
 
@@ -106,7 +105,7 @@ namespace TGEP {
         {
 
             vCol = aCol;
-            gl_Position = vec4(aPos, 1.0);
+            gl_Position = u_ViewProjection * vec4(aPos, 1.0);
         }   
         )";
 
@@ -145,21 +144,15 @@ namespace TGEP {
 
 
         m_SquareVertexArray.reset(VertexArray::Create());
-        printf("%s", "Created square vertex array\n");
 
         m_SquareVertexBuffer.reset(VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
-        printf("%s", "Created square vertex buffer\n");
         m_SquareVertexBuffer->SetLayout(squareLayout);
         m_SquareVertexArray->AddVertexBuffer(m_SquareVertexBuffer);
-        printf("%s", "Added sqaure vertex buffer to square vertex array\n");
 
         
         m_SquareIndexBuffer.reset(IndexBuffer::Create(squareIndices, (sizeof(squareIndices) / sizeof(uint32_t))));
-        printf("%s", "Created square index buffer\n");
         m_SquareVertexArray->SetIndexBuffer (m_SquareIndexBuffer);
-        printf("%s", "Added square index buffer to suare vertex array\n");
         m_SquareShader.reset(Shader::Create(squareVertexSrc, squareFragmentSrc));
-        printf("%s", "Created square shader\n");
 
     }
 
@@ -206,13 +199,14 @@ namespace TGEP {
 
             
             /****Render Code****/
-            Renderer::BeginScene();
+            Renderer::BeginScene(m_Camera);
 
-            m_SquareShader->Bind(); //Temporary 
-            Renderer::Push(m_SquareVertexArray);
+            m_Camera.SetPosition(m_TestLayer->GetCamPosition());
+            m_Camera.SetRotation(m_TestLayer->GetCamRotation());
 
-            m_Shader->Bind(); //Temporary 
-            Renderer::Push(m_VertexArray);
+            Renderer::Push(m_SquareVertexArray, m_SquareShader);
+
+            Renderer::Push(m_VertexArray, m_Shader);
 
             Renderer::EndScene();
             /****Render Code****/

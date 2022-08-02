@@ -1,6 +1,7 @@
-#pragma once //
+#pragma once
 #include "Renderer/Shader.h"
 #include <string>
+#include <glm/glm.hpp>
 
 namespace TGEP 
 {
@@ -11,6 +12,8 @@ namespace TGEP
 
         virtual void Bind() const override;
         virtual void UnBind() const override;
+        
+        virtual void UploadUniform(const std::string &name, const glm::mat4 &value) override;
     private:
         uint32_t m_ShaderID;
     };

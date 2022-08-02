@@ -2,6 +2,7 @@
 
 #include "pch.h"
 #include <glad/glad.h>
+#include "helper.h"
 
 
 namespace TGEP 
@@ -129,5 +130,11 @@ namespace TGEP
     void OpenGLShader::UnBind() const
     {
         glUseProgram(0);
+    }
+
+    void OpenGLShader::UploadUniform(const std::string &name, const glm::mat4 &value)
+    {
+        GLint location = glGetUniformLocation(m_ShaderID, name.c_str());
+        glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(value));
     }
 }
