@@ -19,7 +19,7 @@ namespace TGEP {
 		KeyCode m_KeyCode;
 	};
 
-	class DLLEXP KeyPressedEvent : public KeyEvent
+	class KeyPressedEvent : public KeyEvent
 	{
 	public:
 		KeyPressedEvent(const KeyCode keycode, bool isRepeat = false) : KeyEvent(keycode), m_IsRepeat(isRepeat) {}

@@ -29,21 +29,31 @@
 #define _TGEP_h_
 
 
-#include "./TGEP/Application.h"
+#include "TGEP/Application.h"
 // ---ENTRY POINT---
-#include "./TGEP/EntryPoint.h"
+#include "TGEP/EntryPoint.h"
 //Event system 
-#include "./TGEP/Events/Event.h"
+#include "TGEP/Events/Event.h"
 //Layer system
-#include "./TGEP/Layer.h"
+#include "TGEP/Layer.h"
 //Imgui
-#include "./TGEP/Layers/ImGuiLayer.h"
+#include "TGEP/Layers/ImGuiLayer.h"
 //Input
-#include "./TGEP/Input.h"
+#include "TGEP/Input.h"
 //Key/Mouse codes
-#include "./TGEP/Events/KeyCodes.h"
-#include "./TGEP/Events/MouseCodes.h"
+#include "TGEP/Events/KeyCodes.h"
+#include "TGEP/Events/MouseCodes.h"
 //ImGui
-#include "./ImGui/imgui.h"
+#include "TGEP/../ImGui/imgui.h"
+//Renderer system
+#include "TGEP/Renderer/Renderer.h"
+#include "TGEP/Renderer/RenderCommand.h"
+//Buffer system
+#include "TGEP/Renderer/Buffer.h"
+#include "TGEP/Renderer/VertexArray.h"
+//Shader system
+#include "TGEP/Renderer/Shader.h"
+//Camera system
+#include "TGEP/Renderer/Camera.h"
 
 #endif // _TGEP_h_

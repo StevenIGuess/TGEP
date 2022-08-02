@@ -10,7 +10,6 @@
 #include "TGEP/Renderer/Buffer.h"
 #include "Renderer/Camera.h"
 #include "Layers/OpenGLInfoLayer.h"
-#include "Layers/TestLayer.h"
 
 namespace TGEP 
 {
@@ -35,23 +34,9 @@ namespace TGEP
 
         std::unique_ptr<Window> m_Window;
         ImGuiLayer* m_ImGuiLayer;
-        TestLayer* m_TestLayer;
         bool m_Running = true;
         LayerStack m_LayerStack;
 
-        std::shared_ptr<Shader> m_Shader;
-        std::shared_ptr<VertexArray> m_VertexArray;
-        std::shared_ptr<VertexBuffer> m_VertexBuffer;
-        std::shared_ptr<IndexBuffer> m_IndexBuffer;
-
-        std::shared_ptr<Shader> m_SquareShader;
-        std::shared_ptr<VertexArray> m_SquareVertexArray;
-        std::shared_ptr<VertexBuffer> m_SquareVertexBuffer;
-        std::shared_ptr<IndexBuffer> m_SquareIndexBuffer;
-
-        OrthoCamera m_Camera;
-
-    private:
         static Application* s_Instance;
     };
 

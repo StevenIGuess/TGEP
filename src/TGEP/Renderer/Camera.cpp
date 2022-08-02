@@ -6,6 +6,7 @@ namespace TGEP
     OrthoCamera::OrthoCamera(float left, float right, float top, float bottom, float near, float far) 
     : m_Projection(glm::ortho(left, right, top, bottom, near, far))
     {
+        UpdatedMatrices();
     }
 
     void OrthoCamera::UpdatedMatrices()
