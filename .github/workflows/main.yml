@@ -1,0 +1,13 @@
+name: Build and Run TGEP/Sandbox
+
+
+on:
+  push:
+    branches: [ master ]
+    
+jobs:
+  build_and_test:
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd build && ./build.ps1
