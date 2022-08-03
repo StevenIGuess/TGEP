@@ -12,7 +12,7 @@ jobs:
         shell: pwsh
         run: .\BuildAll.bat
       - name: Test TGEP
-        run: rm libTGEP.a
+        run: rm build/libTGEP.a
       - name: Test Sandbox
-        run: rm sandbox.exe
+        run: rm build/sandbox.exe
 
