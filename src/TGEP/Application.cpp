@@ -65,10 +65,14 @@ namespace TGEP {
     {
         while (m_Running)
         {
+            float time = (float)glfwGetTime(); // replace with independent time function
+            DeltaTime deltaTime = time - m_LastFrameTime;
+            m_LastFrameTime = time;
+
             //call OnUpdate() for each layer
             for (Layer* layer : m_LayerStack)
             {
-                layer->OnUpdate();
+                layer->OnUpdate(deltaTime);
             }
 
             m_ImGuiLayer->Begin();

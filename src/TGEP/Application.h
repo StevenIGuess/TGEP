@@ -10,6 +10,7 @@
 #include "TGEP/Renderer/Buffer.h"
 #include "Renderer/Camera.h"
 #include "Layers/OpenGLInfoLayer.h"
+#include "DeltaTime.h"
 
 namespace TGEP 
 {
@@ -35,8 +36,8 @@ namespace TGEP
         std::unique_ptr<Window> m_Window;
         ImGuiLayer* m_ImGuiLayer;
         bool m_Running = true;
+        float m_LastFrameTime = 0.0f;
         LayerStack m_LayerStack;
-
         static Application* s_Instance;
     };
 

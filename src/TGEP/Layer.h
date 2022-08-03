@@ -2,6 +2,7 @@
 
 #include "Core.h"
 #include "Events/Event.h"
+#include "DeltaTime.h"
 
 namespace TGEP 
 {
@@ -13,7 +14,7 @@ namespace TGEP
 
         virtual void OnAttach() {};
         virtual void OnDetach() {};
-        virtual void OnUpdate() {};
+        virtual void OnUpdate(DeltaTime deltaTime) {};
         virtual void OnImGuiRender() {};
         virtual void OnEvent(Event &event) {};
 

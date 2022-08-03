@@ -126,8 +126,10 @@ public:
         m_SquareShader.reset(TGEP::Shader::Create(squareVertexSrc, squareFragmentSrc));
     }
 
-    void OnUpdate() override
+    void OnUpdate(TGEP::DeltaTime deltaTime) override
     {
+        m_DeltaTime = deltaTime.GetMilliseconds();
+
         if(TGEP::Input::IsKeyPressed(TGEP::Key::W))
         {
             m_Position.y += 0.01f;
@@ -170,6 +172,20 @@ public:
         TGEP::Renderer::EndScene();
         /****Render Code****/
     }
+    virtual void OnImGuiRender() override
+    {
+        if(m_TGEP_info)
+        {
+            ImGui::Begin("TGEP Info", &m_TGEP_info);
+            std::stringstream DT;
+            DT << "Delta Time(ms): " << m_DeltaTime << "\n"; 
+            std::stringstream FPS;
+            FPS << "FPS: " << 1000 / m_DeltaTime << "\n";
+            ImGui::Text(DT.str().c_str());
+            ImGui::Text(FPS.str().c_str());
+            ImGui::End();
+        }
+    }
 
 private:
     std::shared_ptr<TGEP::Shader> m_Shader;
@@ -182,6 +198,10 @@ private:
 
     glm::vec3 m_Position = glm::vec3(0.0f);
     float m_Rotation = 0.0f;
+    float m_DeltaTime = 0.0f;
+
+    bool m_TGEP_info = true;
+
 };
 
 class Sandbox : public TGEP::Application
