@@ -15,10 +15,11 @@ namespace TGEP
 
     }
 
-    void Renderer::Push(const std::shared_ptr<VertexArray> &va, const std::shared_ptr<Shader> &shader)
+    void Renderer::Push(const std::shared_ptr<VertexArray> &va, const std::shared_ptr<Shader> &shader, const glm::mat4 &transform)
     {
         shader->Bind();
         shader->UploadUniform("u_ViewProjection", m_SceneData->PVM);
+        shader->UploadUniform("u_Transform", transform);
         va->Bind();
         RenderCommand::DrawIndexed(va);
     }

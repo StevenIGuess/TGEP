@@ -19,6 +19,7 @@ namespace TGEP {
         //create windows and set callbacks
         m_Window = std::unique_ptr<Window>(OpenGLWindow::Create());
         m_Window->SetEventCallback(BIND_EVENT_FUNC(Application::OnEvent));
+        m_Window->SetVSync(false);
 
         //create all layer and overlays
         m_ImGuiLayer = new ImGuiLayer();

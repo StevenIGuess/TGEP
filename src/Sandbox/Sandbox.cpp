@@ -9,7 +9,9 @@ public:
         #version 460 core
 
         layout (location = 0) in vec3 aPos;
+
         uniform mat4 u_ViewProjection;
+        uniform mat4 u_Transform;
 
         out vec3 vColor;
 
@@ -17,7 +19,7 @@ public:
         {
 
             vColor = aPos;
-            gl_Position = u_ViewProjection * vec4(aPos, 1.0);
+            gl_Position = u_ViewProjection * u_Transform * vec4(aPos, 1.0);
         }   
         )";
 
@@ -68,7 +70,9 @@ public:
 
         layout (location = 0) in vec3 aPos;
         layout (location = 1) in vec4 aCol;
+
         uniform mat4 u_ViewProjection;
+        uniform mat4 u_Transform;
 
         out vec4 vCol;
 
@@ -76,7 +80,7 @@ public:
         {
 
             vCol = aCol;
-            gl_Position = u_ViewProjection * vec4(aPos, 1.0);
+            gl_Position = u_ViewProjection * u_Transform * vec4(aPos, 1.0);
         }   
         )";
 
@@ -128,31 +132,31 @@ public:
 
     void OnUpdate(TGEP::DeltaTime deltaTime) override
     {
-        m_DeltaTime = deltaTime.GetMilliseconds();
+        m_DeltaTime = deltaTime;
 
         if(TGEP::Input::IsKeyPressed(TGEP::Key::W))
         {
-            m_Position.y += 0.01f;
+            m_Position.y += CameraMoveSpeed * m_DeltaTime;
         }
         if(TGEP::Input::IsKeyPressed(TGEP::Key::S))
         {
-            m_Position.y -= 0.01f;
+            m_Position.y -= CameraMoveSpeed * m_DeltaTime;
         }
         if(TGEP::Input::IsKeyPressed(TGEP::Key::A))
         {
-            m_Position.x -= 0.01f;
+            m_Position.x -= CameraMoveSpeed * m_DeltaTime;
         }
         if(TGEP::Input::IsKeyPressed(TGEP::Key::D))
         {
-            m_Position.x += 0.01f;
+            m_Position.x += CameraMoveSpeed * m_DeltaTime;
         }
         if(TGEP::Input::IsKeyPressed(TGEP::Key::Q))
         {
-            m_Rotation += 0.01f;
+            m_Rotation += CameraRotSpeed * m_DeltaTime;
         }
         if(TGEP::Input::IsKeyPressed(TGEP::Key::E))
         {
-            m_Rotation -= 0.01f;
+            m_Rotation -= CameraRotSpeed * m_DeltaTime;
         }
 
         TGEP::RenderCommand::SetClearColor(glm::vec4(0.1f, 0.1f, 0.1f, 1.0f));
@@ -162,10 +166,23 @@ public:
         /****Render Code****/
         TGEP::Renderer::BeginScene(m_Camera);
 
+        
+
         m_Camera.SetPosition(m_Position);
         m_Camera.SetRotation(m_Rotation);
 
-        TGEP::Renderer::Push(m_SquareVertexArray, m_SquareShader);
+        
+        for(int j = 0; j < 20; j++)
+        {
+            for(int i = 0; i < 20; i++)
+            {
+                float squareOffsetX = m_SquareScale.x + (m_SquareScale.x / 10);
+                float squareOffsetY = m_SquareScale.y + (m_SquareScale.y / 10);
+                glm::vec3 pos(i * squareOffsetX + m_SquarePosition.x, j * squareOffsetY + m_SquarePosition.y, 0.0f);
+                glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * glm::scale(glm::mat4(1.0f), m_SquareScale);
+                TGEP::Renderer::Push(m_SquareVertexArray, m_SquareShader, transform);
+            }
+        }
 
         TGEP::Renderer::Push(m_VertexArray, m_Shader);
 
@@ -176,13 +193,26 @@ public:
     {
         if(m_TGEP_info)
         {
-            ImGui::Begin("TGEP Info", &m_TGEP_info);
+            ImGui::Begin("Debug window", &m_TGEP_info);
             std::stringstream DT;
             DT << "Delta Time(ms): " << m_DeltaTime << "\n"; 
             std::stringstream FPS;
-            FPS << "FPS: " << 1000 / m_DeltaTime << "\n";
+            FPS << "FPS: " << 1 / m_DeltaTime << "\n";
             ImGui::Text(DT.str().c_str());
             ImGui::Text(FPS.str().c_str());
+            ImGui::SliderFloat("CameraMoveSpeed", &CameraMoveSpeed, 0.0f, 5.0f);
+            ImGui::SliderFloat("CameraRotSpeed", &CameraRotSpeed, 0.0f, 5.0f);
+
+            ImGui::TextColored(ImVec4(1,1,0,1), "Game Data");
+            ImGui::BeginChild("Scrolling");
+
+            ImGui::SliderFloat3("Camera position", (float*)&m_Position, -10.0f, 10.0f);
+            ImGui::SliderFloat("Camera roation", &m_Rotation, -1000.0f, 1000.0f);
+
+            ImGui::SliderFloat3("Square position", (float*)&m_SquarePosition, -10.0f, 10.0f);
+            ImGui::SliderFloat3("Square scale", (float*)&m_SquareScale, 0.0f, 1.0f);
+
+            ImGui::EndChild();
             ImGui::End();
         }
     }
@@ -200,7 +230,13 @@ private:
     float m_Rotation = 0.0f;
     float m_DeltaTime = 0.0f;
 
+    float CameraRotSpeed = 2.0f;
+    float CameraMoveSpeed = 2.0f;
+
     bool m_TGEP_info = true;
+
+    glm::vec3 m_SquarePosition = glm::vec3(0.0f);
+    glm::vec3 m_SquareScale = glm::vec3(0.1f);
 
 };
 
