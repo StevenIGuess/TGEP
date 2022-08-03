@@ -9,5 +9,4 @@ jobs:
       - name: CD
         shell: pwsh
         run: |
-            cd build
-            .\build.ps1
+            .\build\build.ps1
