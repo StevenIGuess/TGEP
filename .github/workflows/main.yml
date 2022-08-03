@@ -6,6 +6,8 @@ jobs:
     runs-on: windows-2019
     steps:
       - uses: actions/checkout@v1
-      - name: Script
-        run: cd build && ./build.ps1
+      - name: CD
         shell: pwsh
+        run: |
+            cd build
+            .\build.ps1
