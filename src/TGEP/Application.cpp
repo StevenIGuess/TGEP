@@ -17,7 +17,8 @@ namespace TGEP {
         s_Instance = this;
 
         //create windows and set callbacks
-        m_Window = std::unique_ptr<Window>(OpenGLWindow::Create());
+        WindowProperties windowProperties;
+        m_Window = std::unique_ptr<Window>(OpenGLWindow::Create(windowProperties));
         m_Window->SetEventCallback(BIND_EVENT_FUNC(Application::OnEvent));
         m_Window->SetVSync(false);
 

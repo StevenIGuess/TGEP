@@ -69,17 +69,13 @@ public:
         #version 460 core
 
         layout (location = 0) in vec3 aPos;
-        layout (location = 1) in vec4 aCol;
 
         uniform mat4 u_ViewProjection;
         uniform mat4 u_Transform;
 
-        out vec4 vCol;
 
         void main() 
         {
-
-            vCol = aCol;
             gl_Position = u_ViewProjection * u_Transform * vec4(aPos, 1.0);
         }   
         )";
@@ -88,20 +84,20 @@ public:
         #version 460 core
 
         out vec4 FragColor;
-        in vec4 vCol;
+        uniform vec4 u_Color;
 
         void main()
         {
-            FragColor = vCol;
+            FragColor = u_Color;
         }
 
         )";
 
         float squareVertices[4 * 7] = {
-            -0.5f, -0.5f, 0.0f,   0.0f, 0.7f, 0.6f, 1.0f,
-             0.5f, -0.5f, 0.0f,   0.0f, 0.7f, 0.6f, 1.0f,
-             0.5f,  0.5f, 0.0f,   0.0f, 0.7f, 0.6f, 1.0f,
-            -0.5f,  0.5f, 0.0f,   0.1f, 0.7f, 0.6f, 1.0f
+            -0.5f, -0.5f, 0.0f, 
+             0.5f, -0.5f, 0.0f, 
+             0.5f,  0.5f, 0.0f, 
+            -0.5f,  0.5f, 0.0f
         };
 
 
@@ -111,8 +107,7 @@ public:
         };
         
         TGEP::BufferLayout squareLayout = {
-            { TGEP::ShaderDataType::Float3 },
-            { TGEP::ShaderDataType::Float4 }
+            { TGEP::ShaderDataType::Float3 }
         };
 
 
@@ -172,19 +167,27 @@ public:
         m_Camera.SetRotation(m_Rotation);
 
         
-        for(int j = 0; j < 20; j++)
+        for(int j = 0; j < 8; j++)
         {
-            for(int i = 0; i < 20; i++)
+            for(int i = 0; i < 8; i++)
             {
-                float squareOffsetX = m_SquareScale.x + (m_SquareScale.x / 10);
-                float squareOffsetY = m_SquareScale.y + (m_SquareScale.y / 10);
-                glm::vec3 pos(i * squareOffsetX + m_SquarePosition.x, j * squareOffsetY + m_SquarePosition.y, 0.0f);
-                glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * glm::scale(glm::mat4(1.0f), m_SquareScale);
+                glm::vec3 calculatedScale = glm::vec3((m_SquareScale.x * 9) / 10, (m_SquareScale.y * 16) / 10, 0.0f);
+                float squareOffsetX = OffsetMulitplier * calculatedScale.x;
+                float squareOffsetY = OffsetMulitplier * calculatedScale.y;
+                glm::vec3 pos(i * squareOffsetX  + m_SquarePosition.x, j * squareOffsetY + m_SquarePosition.y, 0.0f);
+                glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * glm::scale(glm::mat4(1.0f), calculatedScale);
+                if((i+j) % 2 == 0)
+                {
+                    m_SquareShader->UploadUniform("u_Color", m_FirstColor);
+                }else
+                {
+                    m_SquareShader->UploadUniform("u_Color", m_SecondColor);
+                }
                 TGEP::Renderer::Push(m_SquareVertexArray, m_SquareShader, transform);
             }
         }
 
-        TGEP::Renderer::Push(m_VertexArray, m_Shader);
+        //TGEP::Renderer::Push(m_VertexArray, m_Shader);
 
         TGEP::Renderer::EndScene();
         /****Render Code****/
@@ -210,7 +213,11 @@ public:
             ImGui::SliderFloat("Camera roation", &m_Rotation, -1000.0f, 1000.0f);
 
             ImGui::SliderFloat3("Square position", (float*)&m_SquarePosition, -10.0f, 10.0f);
-            ImGui::SliderFloat3("Square scale", (float*)&m_SquareScale, 0.0f, 1.0f);
+            ImGui::SliderFloat3("Square scale", (float*)&m_SquareScale, 0.1f, 1.0f);
+            ImGui::SliderFloat("Offset", &OffsetMulitplier, 1.0f, 2.0f);
+
+            ImGui::ColorEdit4("FirstColor", (float*)&m_FirstColor);
+            ImGui::ColorEdit4("SecondColor", (float*)&m_SecondColor);
 
             ImGui::EndChild();
             ImGui::End();
@@ -237,6 +244,11 @@ private:
 
     glm::vec3 m_SquarePosition = glm::vec3(0.0f);
     glm::vec3 m_SquareScale = glm::vec3(0.1f);
+
+    glm::vec4 m_FirstColor = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+    glm::vec4 m_SecondColor = glm::vec4(1.0f);
+
+    float OffsetMulitplier = 1.0f;
 
 };
 

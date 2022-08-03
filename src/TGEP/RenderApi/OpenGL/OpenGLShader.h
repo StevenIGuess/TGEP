@@ -14,6 +14,7 @@ namespace TGEP
         virtual void UnBind() const override;
         
         virtual void UploadUniform(const std::string &name, const glm::mat4 &value) override;
+        virtual void UploadUniform(const std::string &name, const glm::vec4 &value) override;
     private:
         uint32_t m_ShaderID;
     };

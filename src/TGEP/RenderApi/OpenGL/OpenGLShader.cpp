@@ -137,4 +137,9 @@ namespace TGEP
         GLint location = glGetUniformLocation(m_ShaderID, name.c_str());
         glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(value));
     }
+    void OpenGLShader::UploadUniform(const std::string &name, const glm::vec4 &value)
+    {
+        GLint location = glGetUniformLocation(m_ShaderID, name.c_str());
+        glUniform4f(location, value.x, value.y, value.z, value.w);
+    }
 }

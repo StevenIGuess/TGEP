@@ -14,6 +14,7 @@ namespace TGEP
         virtual void UnBind() const = 0;
 
         virtual void UploadUniform(const std::string &name, const glm::mat4 &value) = 0;
+        virtual void UploadUniform(const std::string &name, const glm::vec4 &value) = 0;
 
         static Shader* Create(const std::string &vertexSrc, const std::string &fragmentSrc);
     };
