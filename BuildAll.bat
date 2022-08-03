@@ -1,2 +1,2 @@
 cd build
-echo It Works
+Powershell.exe -executionpolicy remotesigned -File  .\build.ps1
