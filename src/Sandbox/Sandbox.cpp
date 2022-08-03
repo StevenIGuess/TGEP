@@ -5,65 +5,6 @@ class TestLayer : public TGEP::Layer
 public:
     TestLayer() : TGEP::Layer("TestLayer"), m_Camera(-1.6, 1.6f, -0.9f, 0.9f, -1.0f, 1.0f) 
     {
-        std::string vertexSrc = R"(
-        #version 460 core
-
-        layout (location = 0) in vec3 aPos;
-
-        uniform mat4 u_ViewProjection;
-        uniform mat4 u_Transform;
-
-        out vec3 vColor;
-
-        void main() 
-        {
-
-            vColor = aPos;
-            gl_Position = u_ViewProjection * u_Transform * vec4(aPos, 1.0);
-        }   
-        )";
-
-        std::string fragmentSrc = R"(
-        #version 460 core
-
-        out vec4 FragColor;
-        in vec3 vColor;
-
-        void main()
-        {
-            FragColor = vec4(vColor * 0.5 + 0.5, 1.0);
-        }
-
-        )";
-
-        float vertices[9] = {
-            -0.5f, -0.5f, 0.0f,
-             0.5f, -0.5f, 0.0f,
-             0.0f,  0.5f, 0.0f
-        };
-
-
-        uint32_t indices[3] = {
-            0, 1, 2
-        };
-        
-        TGEP::BufferLayout layout = {
-            { TGEP::ShaderDataType::Float3 }
-        };
-
-        m_VertexArray.reset(TGEP::VertexArray::Create());
-
-        TGEP::Ref<TGEP::VertexBuffer> VB;
-        VB.reset(TGEP::VertexBuffer::Create(vertices, sizeof(vertices)));
-        VB->SetLayout(layout);
-        m_VertexArray->AddVertexBuffer(VB);
-
-        TGEP::Ref<TGEP::IndexBuffer> IB;
-        IB.reset(TGEP::IndexBuffer::Create(indices, (sizeof(indices) / sizeof(uint32_t))));
-        m_VertexArray->SetIndexBuffer (IB);
-
-        m_Shader.reset(TGEP::Shader::Create(vertexSrc, fragmentSrc));
-
 
         std::string squareVertexSrc = R"(
         #version 460 core
@@ -93,11 +34,42 @@ public:
 
         )";
 
-        float squareVertices[4 * 7] = {
-            -0.5f, -0.5f, 0.0f, 
-             0.5f, -0.5f, 0.0f, 
-             0.5f,  0.5f, 0.0f, 
-            -0.5f,  0.5f, 0.0f
+        std::string texVertexSrc = R"(
+        #version 460 core
+
+        layout (location = 0) in vec3 aPos;
+        layout (location = 1) in vec2 aTexCoord;
+
+        uniform mat4 u_ViewProjection;
+        uniform mat4 u_Transform;
+
+        out vec2 v_TexCoord;
+
+        void main() 
+        {
+            v_TexCoord = aTexCoord;
+            gl_Position = u_ViewProjection * u_Transform * vec4(aPos, 1.0);
+        }   
+        )";
+
+        std::string texFragmentSrc = R"(
+        #version 460 core
+
+        out vec4 FragColor;
+        in vec2 v_TexCoord;
+
+        void main()
+        {
+            FragColor = vec4(v_TexCoord, 0.0, 1.0);
+        }
+
+        )";
+
+        float squareVertices[4 * 5] = {
+            -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+             0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+             0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+            -0.5f,  0.5f, 0.0f, 0.0f, 1.0f
         };
 
 
@@ -107,7 +79,8 @@ public:
         };
         
         TGEP::BufferLayout squareLayout = {
-            { TGEP::ShaderDataType::Float3 }
+            { TGEP::ShaderDataType::Float3 },
+            { TGEP::ShaderDataType::Float2 }
         };
 
 
@@ -123,6 +96,7 @@ public:
         m_SquareVertexArray->SetIndexBuffer (SIB);
 
         m_SquareShader.reset(TGEP::Shader::Create(squareVertexSrc, squareFragmentSrc));
+        m_TextureShader.reset(TGEP::Shader::Create(texVertexSrc, texFragmentSrc));
     }
 
     void OnUpdate(TGEP::DeltaTime deltaTime) override
@@ -185,11 +159,14 @@ public:
                 {
                     GLShaderCast(m_SquareShader)->UploadUniform("u_Color", m_SecondColor);
                 }
+
                 TGEP::Renderer::Push(m_SquareVertexArray, m_SquareShader, transform);
             }
         }
 
         //TGEP::Renderer::Push(m_VertexArray, m_Shader);
+
+        TGEP::Renderer::Push(m_SquareVertexArray, m_TextureShader);
 
         TGEP::Renderer::EndScene();
         /****Render Code****/
@@ -230,9 +207,7 @@ public:
     }
 
 private:
-    TGEP::Ref<TGEP::Shader> m_Shader;
-    TGEP::Ref<TGEP::VertexArray> m_VertexArray;
-    TGEP::Ref<TGEP::Shader> m_SquareShader;
+    TGEP::Ref<TGEP::Shader> m_SquareShader, m_TextureShader;
     TGEP::Ref<TGEP::VertexArray> m_SquareVertexArray;
 
     TGEP::OrthoCamera m_Camera;
