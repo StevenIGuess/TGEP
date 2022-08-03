@@ -6,6 +6,6 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v1
-      - name: CD
+      - name: BuildAll
         shell: pwsh
         run: .\BuildAll.bat

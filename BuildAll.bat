@@ -1,2 +1,2 @@
 cd build
-.\build.ps1
+echo It Works
