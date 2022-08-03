@@ -5,7 +5,6 @@ class TestLayer : public TGEP::Layer
 public:
     TestLayer() : TGEP::Layer("TestLayer"), m_Camera(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f) 
     {
-        printf("Constructor@TestLayer\n");
         std::string vertexSrc = R"(
         #version 460 core
 
@@ -129,7 +128,31 @@ public:
 
     void OnUpdate() override
     {
-        printf("OnUpdate@TestLayer\n");
+        if(TGEP::Input::IsKeyPressed(TGEP::Key::W))
+        {
+            m_Position.y += 0.01f;
+        }
+        if(TGEP::Input::IsKeyPressed(TGEP::Key::S))
+        {
+            m_Position.y -= 0.01f;
+        }
+        if(TGEP::Input::IsKeyPressed(TGEP::Key::A))
+        {
+            m_Position.x -= 0.01f;
+        }
+        if(TGEP::Input::IsKeyPressed(TGEP::Key::D))
+        {
+            m_Position.x += 0.01f;
+        }
+        if(TGEP::Input::IsKeyPressed(TGEP::Key::Q))
+        {
+            m_Rotation += 0.01f;
+        }
+        if(TGEP::Input::IsKeyPressed(TGEP::Key::E))
+        {
+            m_Rotation -= 0.01f;
+        }
+
         TGEP::RenderCommand::SetClearColor(glm::vec4(0.1f, 0.1f, 0.1f, 1.0f));
         TGEP::RenderCommand::Clear();
 
@@ -137,8 +160,8 @@ public:
         /****Render Code****/
         TGEP::Renderer::BeginScene(m_Camera);
 
-        //m_Camera.SetPosition(glm::vec3(0.0f, 0.0f, 0.0f));
-        //m_Camera.SetRotation(m_TestLayer->GetCamRotation());
+        m_Camera.SetPosition(m_Position);
+        m_Camera.SetRotation(m_Rotation);
 
         TGEP::Renderer::Push(m_SquareVertexArray, m_SquareShader);
 
@@ -147,8 +170,8 @@ public:
         TGEP::Renderer::EndScene();
         /****Render Code****/
     }
-private:
 
+private:
     std::shared_ptr<TGEP::Shader> m_Shader;
     std::shared_ptr<TGEP::VertexArray> m_VertexArray;
 
@@ -156,6 +179,9 @@ private:
     std::shared_ptr<TGEP::VertexArray> m_SquareVertexArray;
 
     TGEP::OrthoCamera m_Camera;
+
+    glm::vec3 m_Position = glm::vec3(0.0f);
+    float m_Rotation = 0.0f;
 };
 
 class Sandbox : public TGEP::Application

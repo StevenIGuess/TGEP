@@ -35,7 +35,6 @@ namespace TGEP {
 
     void Application::PushLayer(Layer *layer)
     {
-        printf("Pushed layer\n");
         m_LayerStack.PushLayer(layer);
         layer->OnAttach();
     }
