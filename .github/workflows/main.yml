@@ -8,5 +8,4 @@ jobs:
       - uses: actions/checkout@v1
       - name: CD
         shell: pwsh
-        run: |
-            .\build\build.ps1
+        run: cd TGEP/build
