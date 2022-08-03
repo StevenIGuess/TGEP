@@ -11,6 +11,8 @@ jobs:
       - name: Build
         shell: pwsh
         run: .\BuildAll.bat
-      - name: Test
+      - name: Test TGEP
         run: rm libTGEP.a
+      - name: Test Sandbox
+        run: rm sandbox.exe
 
