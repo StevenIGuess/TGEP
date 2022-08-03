@@ -13,5 +13,5 @@ jobs:
         run: .\BuildAll.bat
       - name: Test
         shell: pswh
-        run: rm libTGEP.a
+        run: Remove-Item libTGEP.a
 
