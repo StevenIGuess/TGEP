@@ -3,7 +3,7 @@ on: [push]
     
 jobs:
   build_and_test:
-    runs-on: windows-2019
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v1
       - name: CD
