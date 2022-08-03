@@ -6,7 +6,7 @@ namespace TGEP
     class OrthoCamera
     {
     public:
-        OrthoCamera(float left, float right, float top, float bottom, float near, float far);
+        OrthoCamera(float left, float right, float bottom, float top, float near, float far);
 
         void SetPosition(const glm::vec3 &pos) { m_Position = pos; UpdatedMatrices(); }
         glm::vec3 GetPosition() { return m_Position; }
@@ -30,4 +30,5 @@ namespace TGEP
         glm::mat4 m_View;
         glm::mat4 m_PVM;//Buffer the projection view matrix to save performance.
     };
+
 }

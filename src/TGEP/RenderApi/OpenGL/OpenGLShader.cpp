@@ -127,6 +127,11 @@ namespace TGEP
         glUseProgram(m_ShaderID);
     }
 
+    OpenGLShader::~OpenGLShader() 
+    {
+        glDeleteProgram(m_ShaderID);
+    }
+
     void OpenGLShader::UnBind() const
     {
         glUseProgram(0);

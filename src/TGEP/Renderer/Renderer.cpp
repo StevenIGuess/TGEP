@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Renderer.h"
 
+#include "RenderAPI/OpenGL/OpenGLShader.h"
+
 namespace TGEP 
 {
     Renderer::SceneData* Renderer::m_SceneData = new Renderer::SceneData;
@@ -15,11 +17,11 @@ namespace TGEP
 
     }
 
-    void Renderer::Push(const std::shared_ptr<VertexArray> &va, const std::shared_ptr<Shader> &shader, const glm::mat4 &transform)
+    void Renderer::Push(const Ref<VertexArray> &va, const Ref<Shader> &shader, const glm::mat4 &transform)
     {
-        shader->Bind();
-        shader->UploadUniform("u_ViewProjection", m_SceneData->PVM);
-        shader->UploadUniform("u_Transform", transform);
+        GLShaderCast(shader)->Bind();
+        GLShaderCast(shader)->UploadUniform("u_ViewProjection", m_SceneData->PVM);
+        GLShaderCast(shader)->UploadUniform("u_Transform", transform);
         va->Bind();
         RenderCommand::DrawIndexed(va);
     }

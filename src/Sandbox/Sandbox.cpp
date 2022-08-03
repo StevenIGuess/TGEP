@@ -3,7 +3,7 @@
 class TestLayer : public TGEP::Layer
 {
 public:
-    TestLayer() : TGEP::Layer("TestLayer"), m_Camera(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f) 
+    TestLayer() : TGEP::Layer("TestLayer"), m_Camera(-1.6, 1.6f, -0.9f, 0.9f, -1.0f, 1.0f) 
     {
         std::string vertexSrc = R"(
         #version 460 core
@@ -53,12 +53,12 @@ public:
 
         m_VertexArray.reset(TGEP::VertexArray::Create());
 
-        std::shared_ptr<TGEP::VertexBuffer> VB;
+        TGEP::Ref<TGEP::VertexBuffer> VB;
         VB.reset(TGEP::VertexBuffer::Create(vertices, sizeof(vertices)));
         VB->SetLayout(layout);
         m_VertexArray->AddVertexBuffer(VB);
 
-        std::shared_ptr<TGEP::IndexBuffer> IB;
+        TGEP::Ref<TGEP::IndexBuffer> IB;
         IB.reset(TGEP::IndexBuffer::Create(indices, (sizeof(indices) / sizeof(uint32_t))));
         m_VertexArray->SetIndexBuffer (IB);
 
@@ -113,12 +113,12 @@ public:
 
         m_SquareVertexArray.reset(TGEP::VertexArray::Create());
 
-        std::shared_ptr<TGEP::VertexBuffer> SVB;
+        TGEP::Ref<TGEP::VertexBuffer> SVB;
         SVB.reset(TGEP::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
         SVB->SetLayout(squareLayout);
         m_SquareVertexArray->AddVertexBuffer(SVB);
 
-        std::shared_ptr<TGEP::IndexBuffer> SIB;
+        TGEP::Ref<TGEP::IndexBuffer> SIB;
         SIB.reset(TGEP::IndexBuffer::Create(squareIndices, (sizeof(squareIndices) / sizeof(uint32_t))));
         m_SquareVertexArray->SetIndexBuffer (SIB);
 
@@ -166,22 +166,24 @@ public:
         m_Camera.SetPosition(m_Position);
         m_Camera.SetRotation(m_Rotation);
 
+        GLShaderCast(m_SquareShader)->Bind();
+
         
-        for(int j = 0; j < 8; j++)
+        for(int j = 0; j < num_squares_y; j++)
         {
-            for(int i = 0; i < 8; i++)
+            for(int i = 0; i < num_squares_x; i++)
             {
-                glm::vec3 calculatedScale = glm::vec3((m_SquareScale.x * 9) / 10, (m_SquareScale.y * 16) / 10, 0.0f);
-                float squareOffsetX = OffsetMulitplier * calculatedScale.x;
-                float squareOffsetY = OffsetMulitplier * calculatedScale.y;
+
+                float squareOffsetX = OffsetMulitplier * m_SquareScale.x;
+                float squareOffsetY = OffsetMulitplier * m_SquareScale.y;
                 glm::vec3 pos(i * squareOffsetX  + m_SquarePosition.x, j * squareOffsetY + m_SquarePosition.y, 0.0f);
-                glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * glm::scale(glm::mat4(1.0f), calculatedScale);
+                glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * glm::scale(glm::mat4(1.0f), m_SquareScale);
                 if((i+j) % 2 == 0)
                 {
-                    m_SquareShader->UploadUniform("u_Color", m_FirstColor);
+                    GLShaderCast(m_SquareShader)->UploadUniform("u_Color", m_FirstColor);
                 }else
                 {
-                    m_SquareShader->UploadUniform("u_Color", m_SecondColor);
+                    GLShaderCast(m_SquareShader)->UploadUniform("u_Color", m_SecondColor);
                 }
                 TGEP::Renderer::Push(m_SquareVertexArray, m_SquareShader, transform);
             }
@@ -216,6 +218,9 @@ public:
             ImGui::SliderFloat3("Square scale", (float*)&m_SquareScale, 0.1f, 1.0f);
             ImGui::SliderFloat("Offset", &OffsetMulitplier, 1.0f, 2.0f);
 
+            ImGui::SliderInt("Number of squares X", &num_squares_x, 0, 500);
+            ImGui::SliderInt("Number of squares Y", &num_squares_y, 0, 500);
+
             ImGui::ColorEdit4("FirstColor", (float*)&m_FirstColor);
             ImGui::ColorEdit4("SecondColor", (float*)&m_SecondColor);
 
@@ -225,11 +230,10 @@ public:
     }
 
 private:
-    std::shared_ptr<TGEP::Shader> m_Shader;
-    std::shared_ptr<TGEP::VertexArray> m_VertexArray;
-
-    std::shared_ptr<TGEP::Shader> m_SquareShader;
-    std::shared_ptr<TGEP::VertexArray> m_SquareVertexArray;
+    TGEP::Ref<TGEP::Shader> m_Shader;
+    TGEP::Ref<TGEP::VertexArray> m_VertexArray;
+    TGEP::Ref<TGEP::Shader> m_SquareShader;
+    TGEP::Ref<TGEP::VertexArray> m_SquareVertexArray;
 
     TGEP::OrthoCamera m_Camera;
 
@@ -249,6 +253,9 @@ private:
     glm::vec4 m_SecondColor = glm::vec4(1.0f);
 
     float OffsetMulitplier = 1.0f;
+
+    int num_squares_x = 8;
+    int num_squares_y = 8;
 
 };
 

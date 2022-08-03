@@ -28,7 +28,6 @@
 #ifndef _TGEP_h_
 #define _TGEP_h_
 
-
 #include "TGEP/Application.h"
 // ---ENTRY POINT---
 #include "TGEP/EntryPoint.h"
@@ -53,6 +52,7 @@
 #include "TGEP/Renderer/VertexArray.h"
 //Shader system
 #include "TGEP/Renderer/Shader.h"
+#include "TGEP/RenderAPI/OpenGL/OpenGLShader.h"
 //Camera system
 #include "TGEP/Renderer/Camera.h"
 //Time system

@@ -10,13 +10,13 @@ namespace TGEP
     {
         switch(Renderer::GetAPI())
         {
-            case RendererAPI::API::None:     ASSERT_CORE(false, "No Renderer selected") return nullptr;
+            case RendererAPI::API::None:     ASSERT_CORE(false, "No Renderer selected"); return nullptr;
             case RendererAPI::API::OpenGL:   return new OpenGLShader(vertexSrc, fragmentSrc);
-            case RendererAPI::API::DirectX:  ASSERT_CORE(false, "DirectX not implemented yet") return nullptr;
+            case RendererAPI::API::DirectX:  ASSERT_CORE(false, "DirectX not implemented yet"); return nullptr;
             
         }
 
-        ASSERT_CORE(false, "Unknown RendererAPI!")
+        ASSERT_CORE(false, "Unknown RendererAPI!");
         return nullptr;
     }
 }

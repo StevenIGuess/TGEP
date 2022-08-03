@@ -40,7 +40,7 @@ namespace TGEP {
         glBindVertexArray(0);
     }
 
-    void OpenGLVertexArray::AddVertexBuffer(const std::shared_ptr<VertexBuffer> &vertex)
+    void OpenGLVertexArray::AddVertexBuffer(const Ref<VertexBuffer> &vertex)
     {
         ASSERT_CORE(vertex->GetLayout().GetElements().size(), "VERTEX_BUFFER_LAYOUT_MISSING");
 
@@ -59,7 +59,7 @@ namespace TGEP {
         m_VertexBuffers.push_back(vertex);
     }
 
-    void OpenGLVertexArray::SetIndexBuffer(const std::shared_ptr<IndexBuffer> &index)
+    void OpenGLVertexArray::SetIndexBuffer(const Ref<IndexBuffer> &index)
     {
         glBindVertexArray(m_RendererID);
         index->Bind();
