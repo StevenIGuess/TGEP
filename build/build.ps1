@@ -145,11 +145,11 @@ if (!(Test-Path "imgui.o"))
 
 Write-Output "STARTING ENGINE COMPILATION"
 
-g++ -c ..\src\TGEP\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/
-g++ -c ..\src\TGEP\Layers\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/
-g++ -c ..\src\TGEP\Windows\OpenGL\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/
-g++ -c ..\src\TGEP\Renderer\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/
-g++ -c ..\src\TGEP\RenderAPI\OpenGL\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/
+g++ -c ..\src\TGEP\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/ 
+g++ -c ..\src\TGEP\Layers\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/ 
+g++ -c ..\src\TGEP\Windows\OpenGL\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/ 
+g++ -c ..\src\TGEP\Renderer\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/ 
+g++ -c ..\src\TGEP\RenderAPI\OpenGL\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/ 
 
 
 
@@ -172,6 +172,7 @@ Remove-Item OpenGLBuffer.o
 Remove-Item OpenGLRendererAPI.o
 Remove-Item RenderCommand.o
 Remove-Item Camera.o
+
  
 Write-Output "ENGINE COMPILATION DONE!"
 

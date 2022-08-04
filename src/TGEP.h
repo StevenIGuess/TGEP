@@ -57,4 +57,6 @@
 #include "TGEP/Renderer/Camera.h"
 //Time system
 #include "TGEP/DeltaTime.h"
+//Textures
+#include "TGEP/Renderer/Texture.h"
 #endif // _TGEP_h_

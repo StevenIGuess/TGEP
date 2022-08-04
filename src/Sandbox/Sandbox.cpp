@@ -58,9 +58,11 @@ public:
         out vec4 FragColor;
         in vec2 v_TexCoord;
 
+        uniform sampler2D u_Texture;
+
         void main()
         {
-            FragColor = vec4(v_TexCoord, 0.0, 1.0);
+            FragColor = texture(u_Texture, v_TexCoord);
         }
 
         )";
@@ -97,6 +99,10 @@ public:
 
         m_SquareShader.reset(TGEP::Shader::Create(squareVertexSrc, squareFragmentSrc));
         m_TextureShader.reset(TGEP::Shader::Create(texVertexSrc, texFragmentSrc));
+
+        m_Texture = TGEP::Texture2D::Create("C:/TGEP/src/Sandbox/Assets/Textures/Checkerboard.png");
+        GLShaderCast(m_TextureShader)->Bind();
+        GLShaderCast(m_TextureShader)->UploadUniform("u_Texture", 0);
     }
 
     void OnUpdate(TGEP::DeltaTime deltaTime) override
@@ -166,6 +172,7 @@ public:
 
         //TGEP::Renderer::Push(m_VertexArray, m_Shader);
 
+        m_Texture->Bind();
         TGEP::Renderer::Push(m_SquareVertexArray, m_TextureShader);
 
         TGEP::Renderer::EndScene();
@@ -231,6 +238,8 @@ private:
 
     int num_squares_x = 8;
     int num_squares_y = 8;
+
+    TGEP::Ref<TGEP::Texture2D> m_Texture;
 
 };
 
