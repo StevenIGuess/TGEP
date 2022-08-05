@@ -35,38 +35,6 @@ public:
 
         )";
 
-        std::string texVertexSrc = R"(
-        #version 460 core
-
-        layout (location = 0) in vec3 aPos;
-        layout (location = 1) in vec2 aTexCoord;
-
-        uniform mat4 u_ViewProjection;
-        uniform mat4 u_Transform;
-
-        out vec2 v_TexCoord;
-
-        void main() 
-        {
-            v_TexCoord = aTexCoord;
-            gl_Position = u_ViewProjection * u_Transform * vec4(aPos, 1.0);
-        }   
-        )";
-
-        std::string texFragmentSrc = R"(
-        #version 460 core
-
-        out vec4 FragColor;
-        in vec2 v_TexCoord;
-
-        uniform sampler2D u_Texture;
-
-        void main()
-        {
-            FragColor = texture(u_Texture, v_TexCoord);
-        }
-
-        )";
 
         float squareVertices[4 * 5] = {
             -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
@@ -99,7 +67,7 @@ public:
         m_SquareVertexArray->SetIndexBuffer (SIB);
 
         m_SquareShader.reset(TGEP::Shader::Create(squareVertexSrc, squareFragmentSrc));
-        m_TextureShader.reset(TGEP::Shader::Create(texVertexSrc, texFragmentSrc));
+        m_TextureShader.reset(TGEP::Shader::Create("assets/Shader/Texture.glsl"));
 
         m_Texture = TGEP::Texture2D::Create("assets/textures/Checkerboard.png");
         m_QueenTexture = TGEP::Texture2D::Create("assets/textures/queen.png");
@@ -209,7 +177,8 @@ public:
             ImGui::SliderFloat3("Square scale", (float*)&m_SquareScale, 0.1f, 1.0f);
             ImGui::SliderFloat("Offset", &OffsetMulitplier, 1.0f, 2.0f);
 
-            ImGui::SliderInt2("Queen Position", (int*)&m_QueenPosition, 0, 8);
+            ImGui::SliderInt("Queen Position X", (int*)&m_QueenPosition.x, 0, num_squares_x - 1);
+            ImGui::SliderInt("Queen Position Y", (int*)&m_QueenPosition.y, 0, num_squares_y - 1);
 
             ImGui::SliderInt("Number of squares X", &num_squares_x, 0, 500);
             ImGui::SliderInt("Number of squares Y", &num_squares_y, 0, 500);

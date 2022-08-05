@@ -2,14 +2,19 @@
 #include "TGEP/Renderer/Shader.h"
 #include <string>
 #include <glm/glm.hpp>
+#include <unordered_map>
 
 #define GLShaderCast(...) std::dynamic_pointer_cast<TGEP::OpenGLShader>(__VA_ARGS__)
+
+//TEMPORARY
+typedef unsigned int GLenum;
 
 namespace TGEP 
 {
     class OpenGLShader : public Shader
     {
     public:
+        OpenGLShader(const std::string &path);
         OpenGLShader(const std::string &vertexSrc, const std::string &fragmentSrc);
         virtual ~OpenGLShader();
 
@@ -20,6 +25,11 @@ namespace TGEP
         virtual void UploadUniform(const std::string &name, const glm::vec4 &value);
         virtual void UploadUniform(const std::string &name, const int &value);
     private:
-        uint32_t m_ShaderID;
+        std::string ReadFile(const std::string &path);
+        std::unordered_map<GLenum, std::string> PreProcess(const std::string &src);
+        void Compile(const std::unordered_map<GLenum, std::string> &shaderSources);
+        
+
+        uint32_t m_RendererID;
     };
 }
