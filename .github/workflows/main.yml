@@ -14,5 +14,5 @@ jobs:
       - name: Test TGEP
         run: rm build/libTGEP.a
       - name: Test Sandbox
-        run: rm build/sandbox.exe
+        run: rm build/sandbox/sandbox.exe
 
