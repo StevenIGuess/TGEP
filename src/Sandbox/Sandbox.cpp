@@ -1,4 +1,5 @@
 #include <TGEP.h>
+#include <direct.h>
 
 class TestLayer : public TGEP::Layer
 {
@@ -100,7 +101,8 @@ public:
         m_SquareShader.reset(TGEP::Shader::Create(squareVertexSrc, squareFragmentSrc));
         m_TextureShader.reset(TGEP::Shader::Create(texVertexSrc, texFragmentSrc));
 
-        m_Texture = TGEP::Texture2D::Create("C:/TGEP/src/Sandbox/Assets/Textures/Checkerboard.png");
+        m_Texture = TGEP::Texture2D::Create("assets/textures/Checkerboard.png");
+        m_QueenTexture = TGEP::Texture2D::Create("assets/textures/queen.png");
         GLShaderCast(m_TextureShader)->Bind();
         GLShaderCast(m_TextureShader)->UploadUniform("u_Texture", 0);
     }
@@ -172,8 +174,13 @@ public:
 
         //TGEP::Renderer::Push(m_VertexArray, m_Shader);
 
-        m_Texture->Bind();
-        TGEP::Renderer::Push(m_SquareVertexArray, m_TextureShader);
+        glm::mat4 transformQueen = glm::translate(glm::mat4(1.0f),
+                                   glm::vec3(m_SquarePosition.x + (m_SquareScale.x * m_QueenPosition.x),
+                                             m_SquarePosition.y + (m_SquareScale.y  * m_QueenPosition.y),
+                                             0.0f)) *
+                                   glm::scale(glm::mat4(1.0f), m_SquareScale);
+        m_QueenTexture->Bind();
+        TGEP::Renderer::Push(m_SquareVertexArray, m_TextureShader, transformQueen);
 
         TGEP::Renderer::EndScene();
         /****Render Code****/
@@ -201,6 +208,8 @@ public:
             ImGui::SliderFloat3("Square position", (float*)&m_SquarePosition, -10.0f, 10.0f);
             ImGui::SliderFloat3("Square scale", (float*)&m_SquareScale, 0.1f, 1.0f);
             ImGui::SliderFloat("Offset", &OffsetMulitplier, 1.0f, 2.0f);
+
+            ImGui::SliderInt2("Queen Position", (int*)&m_QueenPosition, 0, 8);
 
             ImGui::SliderInt("Number of squares X", &num_squares_x, 0, 500);
             ImGui::SliderInt("Number of squares Y", &num_squares_y, 0, 500);
@@ -234,12 +243,14 @@ private:
     glm::vec4 m_FirstColor = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
     glm::vec4 m_SecondColor = glm::vec4(1.0f);
 
+    glm::ivec2 m_QueenPosition = glm::ivec2(0);
+
     float OffsetMulitplier = 1.0f;
 
     int num_squares_x = 8;
     int num_squares_y = 8;
 
-    TGEP::Ref<TGEP::Texture2D> m_Texture;
+    TGEP::Ref<TGEP::Texture2D> m_Texture, m_QueenTexture;
 
 };
 

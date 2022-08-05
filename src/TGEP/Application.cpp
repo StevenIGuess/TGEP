@@ -22,6 +22,8 @@ namespace TGEP {
         m_Window->SetEventCallback(BIND_EVENT_FUNC(Application::OnEvent));
         m_Window->SetVSync(false);
 
+        Renderer::Init();
+
         //create all layer and overlays
         m_ImGuiLayer = new ImGuiLayer();
         PushOverlay(m_ImGuiLayer);

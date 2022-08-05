@@ -4,4 +4,4 @@ del imgui.ini
 del libTGEP.a
 del .\tmplib\*
 RD /S /Q .\tmplib
-RD /S /Q .\src
+RD /S /Q .\Sandbox

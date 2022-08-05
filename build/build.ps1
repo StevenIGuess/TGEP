@@ -121,6 +121,12 @@ if (!(Test-Path "glad.o"))
     g++ -c ..\src\glad\glad.c -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/
 }
 
+if (!(Test-Path "stb_image.o"))
+{
+    Write-Output "COMPILING STB_IMAGE"
+    g++ -c ..\src\stb_image\stb_image.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/
+}
+
 if (!(Test-Path "imgui.o"))
 {
     Write-Output "COPYING IMGUI FILES"
@@ -182,8 +188,19 @@ g++ -o sandbox.exe ..\src\Sandbox\sandbox.cpp -L./Libraries/lib/ -L./ -lTGEP -lg
 
 Write-Output "COMPILATION DONE!"
 
+Write-Output "COPYING ASSETS"
+if (!(Test-Path "Sandbox/"))
+{
+    mkdir Sandbox/
+}else 
+{
+    Remove-Item Sandbox/ -Force -Recurse
+    mkdir Sandbox/
+}
+Copy-Item .\sandbox.exe .\Sandbox\
+Remove-Item .\sandbox.exe
+Copy-Item ..\src\Sandbox\assets\ .\Sandbox\ -Recurse
 
+Set-Location .\Sandbox\
 .\sandbox.exe
-
-
-
+Set-Location ..\

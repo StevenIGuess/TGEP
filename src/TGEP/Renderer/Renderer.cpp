@@ -7,6 +7,11 @@ namespace TGEP
 {
     Renderer::SceneData* Renderer::m_SceneData = new Renderer::SceneData;
 
+    void Renderer::Init()
+    {
+        RenderCommand::Init();
+    }
+
     void Renderer::BeginScene(OrthoCamera &camera)
     {
         m_SceneData->PVM = camera.GetPVM();

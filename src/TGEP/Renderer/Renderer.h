@@ -10,6 +10,7 @@ namespace TGEP
     class Renderer
     {
     public:
+        static void Init();
         static void BeginScene(OrthoCamera &camera);
         static void EndScene();
 
