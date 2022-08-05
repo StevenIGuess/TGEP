@@ -26,6 +26,7 @@ scripts/mingw64/
 
 #sandbox and TGEP
 libTGEP.a
+build/Sandbox/
 sandbox.exe
 
 
