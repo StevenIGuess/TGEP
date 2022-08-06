@@ -141,7 +141,7 @@ public:
             }
             case TGEP::Key::D :
             {
-                if(m_QueenPosition.x < num_squares_y - 1)
+                if(m_QueenPosition.x < num_squares_x - 1)
                 {
                     m_QueenPosition.x += 1;
                 }
