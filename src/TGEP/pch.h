@@ -17,6 +17,7 @@
 #include <functional>
 #include <stdint.h>
 #include <vector>
+#include <array>
 #include <memory>
 #include <unordered_map>
 #include <fstream>

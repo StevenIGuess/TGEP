@@ -13,7 +13,7 @@
 #define SET_LOG_COLOR_RED { printf("\033[0;31m"); }
 #define SET_LOG_COLOR_BLUE { printf("\033[0;34m"); }
 #define SET_LOG_COLOR_GREEN { printf("\033[0;32m"); }
-#define RESET_LOG_COLOR { printf("\033[0m]"); }
+#define RESET_LOG_COLOR { printf("\033[0m"); }
 
 #define LOG(x, ...)   { SET_LOG_COLOR_GREEN printf(x, __VA_ARGS__); RESET_LOG_COLOR}
 #define ERROR(x, ...) { SET_LOG_COLOR_RED printf(x, __VA_ARGS__); RESET_LOG_COLOR}

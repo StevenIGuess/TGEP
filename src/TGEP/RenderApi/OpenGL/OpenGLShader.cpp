@@ -24,15 +24,21 @@ namespace TGEP
         std::string src = ReadFile(path);
         auto shaderSources = OpenGLShader::PreProcess(src);
         Compile(shaderSources);
-
+        
+        size_t lastSlash = path.find_last_of("/\\");
+        lastSlash = lastSlash == std::string::npos ? 0 : lastSlash + 1;
+        size_t lastDot = path.rfind('.');
+        lastDot = lastDot == std::string::npos ? path.size() - lastSlash : lastDot - lastSlash;
+        m_Name = path.substr(lastSlash, lastDot);
     }
 
-    OpenGLShader::OpenGLShader(const std::string &vertexSrc, const std::string &fragmentSrc)
+    OpenGLShader::OpenGLShader(const std::string &name, const std::string &vertexSrc, const std::string &fragmentSrc)
     {
         std::unordered_map<GLenum, std::string> sources;
         sources[GL_VERTEX_SHADER] = vertexSrc;
         sources[GL_FRAGMENT_SHADER] = fragmentSrc;
         Compile(sources);
+        m_Name = name;
     }
 
     OpenGLShader::~OpenGLShader() 
@@ -43,7 +49,7 @@ namespace TGEP
     std::string OpenGLShader::ReadFile(const std::string &path)
     {
         std::string result;
-        std::ifstream in(path.c_str(), std::ios::binary);
+        std::ifstream in(path.c_str(), std::ios::in | std::ios::binary);
         if (in)
         {
             in.seekg(0, std::ios::end);
@@ -63,7 +69,6 @@ namespace TGEP
     std::unordered_map<GLenum, std::string> OpenGLShader::PreProcess(const std::string &src)
     {
         std::unordered_map<GLenum, std::string> shaderSources;
-
         const char* typeToken = "#type";
         size_t typeTokenLength = strlen(typeToken);
         size_t pos = src.find(typeToken, 0);
@@ -86,7 +91,9 @@ namespace TGEP
     void OpenGLShader::Compile(const std::unordered_map<GLenum, std::string> &shaderSources)
     {
         GLuint program = glCreateProgram();
-        std::vector<GLenum> glShaderIDs(shaderSources.size());
+        ASSERT_CORE(shaderSources.size() <= 2, "TOO MANY SHADERS IN ONE FILE!");
+        std::array<GLenum, 2> glShaderIDs;
+        int glShaderIDIndex = 0;
         for (auto &kv : shaderSources)
         {
             GLenum type = kv.first;
@@ -114,7 +121,7 @@ namespace TGEP
                 break;
             }
             glAttachShader(program, shader);
-            glShaderIDs.push_back(shader);
+            glShaderIDs[glShaderIDIndex++] = shader;
         }
 
         glLinkProgram(program);

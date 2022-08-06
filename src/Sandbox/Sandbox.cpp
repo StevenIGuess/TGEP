@@ -1,5 +1,4 @@
 #include <TGEP.h>
-#include <direct.h>
 
 class TestLayer : public TGEP::Layer
 {
@@ -7,42 +6,12 @@ public:
     TestLayer() : TGEP::Layer("TestLayer"), m_Camera(-1.6, 1.6f, -0.9f, 0.9f, -1.0f, 1.0f) 
     {
 
-        std::string squareVertexSrc = R"(
-        #version 460 core
-
-        layout (location = 0) in vec3 aPos;
-
-        uniform mat4 u_ViewProjection;
-        uniform mat4 u_Transform;
-
-
-        void main() 
-        {
-            gl_Position = u_ViewProjection * u_Transform * vec4(aPos, 1.0);
-        }   
-        )";
-
-        std::string squareFragmentSrc = R"(
-        #version 460 core
-
-        out vec4 FragColor;
-        uniform vec4 u_Color;
-
-        void main()
-        {
-            FragColor = u_Color;
-        }
-
-        )";
-
-
         float squareVertices[4 * 5] = {
             -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
              0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
              0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
             -0.5f,  0.5f, 0.0f, 0.0f, 1.0f
         };
-
 
         uint32_t squareIndices[6] = {
             0, 1, 2,
@@ -53,7 +22,6 @@ public:
             { TGEP::ShaderDataType::Float3 },
             { TGEP::ShaderDataType::Float2 }
         };
-
 
         m_SquareVertexArray.reset(TGEP::VertexArray::Create());
 
@@ -66,43 +34,26 @@ public:
         SIB.reset(TGEP::IndexBuffer::Create(squareIndices, (sizeof(squareIndices) / sizeof(uint32_t))));
         m_SquareVertexArray->SetIndexBuffer (SIB);
 
-        m_SquareShader.reset(TGEP::Shader::Create(squareVertexSrc, squareFragmentSrc));
-        m_TextureShader.reset(TGEP::Shader::Create("assets/Shader/Texture.glsl"));
+        auto SquareShader = m_ShaderLibary.Load("assets/Shader/Square.glsl");
+        auto TextureShader = m_ShaderLibary.Load("assets/Shader/Texture.glsl");
 
         m_Texture = TGEP::Texture2D::Create("assets/textures/Checkerboard.png");
         m_QueenTexture = TGEP::Texture2D::Create("assets/textures/queen.png");
-        GLShaderCast(m_TextureShader)->Bind();
-        GLShaderCast(m_TextureShader)->UploadUniform("u_Texture", 0);
+        GLShaderCast(TextureShader)->Bind();
+        GLShaderCast(TextureShader)->UploadUniform("u_Texture", 0);
     }
 
     void OnUpdate(TGEP::DeltaTime deltaTime) override
     {
         m_DeltaTime = deltaTime;
 
-        if(TGEP::Input::IsKeyPressed(TGEP::Key::W))
-        {
-            m_Position.y += CameraMoveSpeed * m_DeltaTime;
-        }
-        if(TGEP::Input::IsKeyPressed(TGEP::Key::S))
-        {
-            m_Position.y -= CameraMoveSpeed * m_DeltaTime;
-        }
-        if(TGEP::Input::IsKeyPressed(TGEP::Key::A))
-        {
-            m_Position.x -= CameraMoveSpeed * m_DeltaTime;
-        }
-        if(TGEP::Input::IsKeyPressed(TGEP::Key::D))
-        {
-            m_Position.x += CameraMoveSpeed * m_DeltaTime;
-        }
-        if(TGEP::Input::IsKeyPressed(TGEP::Key::Q))
-        {
-            m_Rotation += CameraRotSpeed * m_DeltaTime;
-        }
-        if(TGEP::Input::IsKeyPressed(TGEP::Key::E))
-        {
-            m_Rotation -= CameraRotSpeed * m_DeltaTime;
-        }
+        if(TGEP::Input::IsKeyPressed(TGEP::Key::W) && TGEP::Input::IsKeyPressed(TGEP::Key::Enter)) m_Position.y += CameraMoveSpeed * m_DeltaTime;
+        if(TGEP::Input::IsKeyPressed(TGEP::Key::S) && TGEP::Input::IsKeyPressed(TGEP::Key::Enter)) m_Position.y -= CameraMoveSpeed * m_DeltaTime;
+        if(TGEP::Input::IsKeyPressed(TGEP::Key::A) && TGEP::Input::IsKeyPressed(TGEP::Key::Enter)) m_Position.x -= CameraMoveSpeed * m_DeltaTime;
+        if(TGEP::Input::IsKeyPressed(TGEP::Key::D) && TGEP::Input::IsKeyPressed(TGEP::Key::Enter)) m_Position.x += CameraMoveSpeed * m_DeltaTime;
+        if(TGEP::Input::IsKeyPressed(TGEP::Key::Q)) m_Rotation += CameraRotSpeed * m_DeltaTime;
+        if(TGEP::Input::IsKeyPressed(TGEP::Key::E)) m_Rotation -= CameraRotSpeed * m_DeltaTime;
+
 
         TGEP::RenderCommand::SetClearColor(glm::vec4(0.1f, 0.1f, 0.1f, 1.0f));
         TGEP::RenderCommand::Clear();
@@ -116,9 +67,10 @@ public:
         m_Camera.SetPosition(m_Position);
         m_Camera.SetRotation(m_Rotation);
 
-        GLShaderCast(m_SquareShader)->Bind();
+        auto SquareShader = m_ShaderLibary.Get("Square");
+        auto TextureShader = m_ShaderLibary.Get("Texture");
 
-        
+        GLShaderCast(SquareShader)->Bind();
         for(int j = 0; j < num_squares_y; j++)
         {
             for(int i = 0; i < num_squares_x; i++)
@@ -130,17 +82,15 @@ public:
                 glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * glm::scale(glm::mat4(1.0f), m_SquareScale);
                 if((i+j) % 2 == 0)
                 {
-                    GLShaderCast(m_SquareShader)->UploadUniform("u_Color", m_FirstColor);
+                    GLShaderCast(SquareShader)->UploadUniform("u_Color", m_FirstColor);
                 }else
                 {
-                    GLShaderCast(m_SquareShader)->UploadUniform("u_Color", m_SecondColor);
+                    GLShaderCast(SquareShader)->UploadUniform("u_Color", m_SecondColor);
                 }
 
-                TGEP::Renderer::Push(m_SquareVertexArray, m_SquareShader, transform);
+                TGEP::Renderer::Push(m_SquareVertexArray, SquareShader, transform);
             }
         }
-
-        //TGEP::Renderer::Push(m_VertexArray, m_Shader);
 
         glm::mat4 transformQueen = glm::translate(glm::mat4(1.0f),
                                    glm::vec3(m_SquarePosition.x + (m_SquareScale.x * m_QueenPosition.x),
@@ -148,11 +98,59 @@ public:
                                              0.0f)) *
                                    glm::scale(glm::mat4(1.0f), m_SquareScale);
         m_QueenTexture->Bind();
-        TGEP::Renderer::Push(m_SquareVertexArray, m_TextureShader, transformQueen);
+        TGEP::Renderer::Push(m_SquareVertexArray, TextureShader, transformQueen);
 
         TGEP::Renderer::EndScene();
         /****Render Code****/
     }
+    
+    virtual void OnEvent(TGEP::Event &e)
+    {
+        TGEP::EventDispatcher dispatcher(e);
+
+        dispatcher.Dispatch<TGEP::KeyPressedEvent>(BIND_EVENT_FUNC(TestLayer::OnKeyPressed));
+    }
+
+    bool OnKeyPressed(TGEP::KeyPressedEvent &e)
+    {
+        switch (e.GetKeyCode())
+        {
+            case TGEP::Key::W : 
+            {
+                if(m_QueenPosition.y < num_squares_y - 1)
+                {
+                    m_QueenPosition.y += 1;
+                }
+                return true;
+            }
+            case TGEP::Key::A :
+            {
+                if(m_QueenPosition.x > 0)
+                {
+                    m_QueenPosition.x -= 1;
+                }
+                return true;
+            }
+            case TGEP::Key::S :
+            {
+                if(m_QueenPosition.y > 0)
+                {
+                    m_QueenPosition.y -= 1;
+                }
+                return true;
+            }
+            case TGEP::Key::D :
+            {
+                if(m_QueenPosition.x < num_squares_y - 1)
+                {
+                    m_QueenPosition.x += 1;
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
     virtual void OnImGuiRender() override
     {
         if(m_TGEP_info)
@@ -192,7 +190,7 @@ public:
     }
 
 private:
-    TGEP::Ref<TGEP::Shader> m_SquareShader, m_TextureShader;
+    TGEP::ShaderLibary m_ShaderLibary;
     TGEP::Ref<TGEP::VertexArray> m_SquareVertexArray;
 
     TGEP::OrthoCamera m_Camera;
