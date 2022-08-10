@@ -184,7 +184,7 @@ Write-Output "ENGINE COMPILATION DONE!"
 
 Write-Output "STARTING COMPILATION OF TEST PROJECT"
 
-g++ -o sandbox.exe ..\src\Sandbox\sandbox.cpp -L./Libraries/lib/ -L./ -lTGEP -lglfw3 -lgdi32 -lopengl32 -I../src/ -I./Libraries/include/ -I../src/glad/ -static-libgcc -static-libstdc++
+g++ -o sandbox.exe ..\src\Sandbox\sandbox.cpp -L./Libraries/lib/ -L./ -lTGEP -lglfw3 -lgdi32 -lopengl32 -lwsock32 -I../src/ -I./Libraries/include/ -I../src/glad/ -static-libgcc -static-libstdc++
 
 Write-Output "COMPILATION DONE!"
 
