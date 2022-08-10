@@ -184,6 +184,7 @@ Write-Output "ENGINE COMPILATION DONE!"
 
 Write-Output "STARTING COMPILATION OF TEST PROJECT"
 
+g++ -o server.exe ..\src\Sandbox\Server.cpp -lwsock32 -static-libgcc -static-libstdc++
 g++ -o sandbox.exe ..\src\Sandbox\sandbox.cpp -L./Libraries/lib/ -L./ -lTGEP -lglfw3 -lgdi32 -lopengl32 -lwsock32 -I../src/ -I./Libraries/include/ -I../src/glad/ -static-libgcc -static-libstdc++
 
 Write-Output "COMPILATION DONE!"
@@ -198,7 +199,9 @@ if (!(Test-Path "Sandbox/"))
     mkdir Sandbox/
 }
 Copy-Item .\sandbox.exe .\Sandbox\
+Copy-Item .\server.exe .\Sandbox\
 Remove-Item .\sandbox.exe
+Remove-Item .\server.exe
 Copy-Item ..\src\Sandbox\assets\ .\Sandbox\ -Recurse
 
 Set-Location .\Sandbox\
