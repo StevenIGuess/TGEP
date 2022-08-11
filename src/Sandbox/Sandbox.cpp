@@ -1,5 +1,8 @@
 #include <TGEP.h>
 #include <winsock2.h>
+#include <windows.h>
+#include <asio.hpp>
+#include <asio/ts/buffer.hpp>
 
 class TestLayer : public TGEP::Layer
 {
@@ -8,8 +11,6 @@ public:
     {
 
         WSADATA wsa;
-
-        SOCKET s;
 	
         printf("\n%s\n", "Initialising Winsock...");
         if (WSAStartup(MAKEWORD(2,2),&wsa) != 0)
@@ -19,12 +20,7 @@ public:
         
         printf("%s\n", "Initialised Winsock.");
 
-        if((s = socket(AF_INET , SOCK_STREAM , 0 )) == INVALID_SOCKET)
-        {
-            printf("%s%d\n", "Could not create socket : " , WSAGetLastError());
-        }
-
-        printf("%s\n", "Created Socket.");
+        m_ConParam.sin_family = AF_INET;
 
         #pragma region VA data
         float squareVertices[4 * 5] = {
@@ -72,6 +68,24 @@ public:
         TGEP::RenderCommand::SetClearColor(glm::vec4(0.1f, 0.1f, 0.1f, 1.0f));
         TGEP::RenderCommand::Clear();
 
+        if(!m_Connected)
+        {
+            m_ConParam.sin_addr.s_addr = inet_addr(m_ServerAddress);
+            m_ConParam.sin_port = htons(m_ServerPort);
+
+            return;
+        }
+
+        memset(&m_SendBuffer, 0, sizeof(m_SendBuffer));
+        memset(&m_RecvBuffer, 0, sizeof(m_RecvBuffer));
+
+        if(recv(m_Socket, m_RecvBuffer, 512, 0) == SOCKET_ERROR)
+        {
+            LOG_ERROR("%s%d", "ERROR::SOCKET_RECV_FAILED::", WSAGetLastError());
+            return;
+        }
+
+        printf("%s%s%s\n", "Server send :: '", m_RecvBuffer, "'");
 
         /****Render Code****/
         TGEP::Renderer::BeginScene(m_Camera);
@@ -133,7 +147,19 @@ public:
     bool OnKeyPressed(TGEP::KeyPressedEvent &e)
     {
         switch (e.GetKeyCode())
-        {
+        {   
+            case TGEP::Key::Escape :
+            {
+                if(m_Settings)
+                {
+                    m_Settings = false;
+                    return true;
+                } else 
+                {
+                    m_Settings = true;
+                    return true;
+                }
+            }
             case TGEP::Key::W : 
             {
                 if(m_QueenPosition.y == m_EnemyQueenPosition.y - 1 && m_QueenPosition.x == m_EnemyQueenPosition.x) { return true; }
@@ -176,9 +202,17 @@ public:
 
     virtual void OnImGuiRender() override
     {
-        if(m_TGEP_info)
+        if(!m_Connected)
         {
-            ImGui::Begin("Debug window", &m_TGEP_info);
+            if(!m_ConWarning) { return; }
+            ImGui::Begin("Not m_Connected to server!", &m_ConWarning);
+            ImGui::Text("Go to Settings(esc) and connect to a server!");
+            ImGui::End();
+        }
+
+        if(m_Settings)
+        {
+            ImGui::Begin("Settings", &m_Settings);
             std::stringstream DT;
             DT << "Delta Time(ms): " << m_DeltaTime << "\n"; 
             std::stringstream FPS;
@@ -186,18 +220,74 @@ public:
             ImGui::Text(DT.str().c_str());
             ImGui::Text(FPS.str().c_str());
 
-            ImGui::TextColored(ImVec4(1,1,0,1), "Game Data");
-            ImGui::BeginChild("Scrolling");
+            if(m_Connected) 
+            {
+                ImGui::Text("Server status: Connected!");
+            }
+            if(!m_Connected) 
+            {
+                ImGui::Text("Server status: Disconnected!");
+            }
+
+            ImGui::InputText("Server Ip", m_ServerAddress, 17);
+            ImGui::InputInt("Server port", &m_ServerPort);
+
+            if(ImGui::Button("Connect to server"))
+            {
+                if(m_Connected) 
+                {
+                    ImGui::End();
+                    return;
+                }
+
+                if(ConnectToServer())
+                {
+                    m_Connected = true;
+                    ImGui::End();
+                    return;
+                } else
+                {
+                    ImGui::End();
+                    return;
+                }
+            }
 
             ImGui::ColorEdit4("FirstColor", (float*)&m_FirstColor);
             ImGui::ColorEdit4("SecondColor", (float*)&m_SecondColor);
 
-            ImGui::EndChild();
             ImGui::End();
         }
     }
 
+    bool ConnectToServer()
+    {
+        
+        if((m_Socket = socket(AF_INET , SOCK_STREAM , 0 )) == INVALID_SOCKET)
+        {
+            printf("%s%d\n", "Could not create socket : " , WSAGetLastError());
+        }
+
+        printf("%s\n", "Created Socket.");
+        if(connect(m_Socket, (struct sockaddr*)&m_ConParam, sizeof(m_ConParam)) != SOCKET_ERROR)
+        {
+            return true;
+        }
+        return false;
+    }
+
 private:
+
+    SOCKET m_Socket;
+    sockaddr_in m_ConParam;
+
+    char m_ServerAddress[17];
+    int m_ServerPort = 2556;
+
+    bool m_Connected = false;
+
+    char m_SendBuffer[512];
+    char m_RecvBuffer[512];
+
     TGEP::ShaderLibary m_ShaderLibary;
     TGEP::Ref<TGEP::VertexArray> m_SquareVertexArray;
 
@@ -206,7 +296,8 @@ private:
     glm::vec3 m_Position = glm::vec3(0.0f);
     float m_DeltaTime = 0.0f;
 
-    bool m_TGEP_info = true;
+    bool m_Settings = false;
+    bool m_ConWarning = true;
 
     glm::vec3 m_SquarePosition = glm::vec3(0.0f);
     glm::vec3 m_SquareScale = glm::vec3(0.1f);

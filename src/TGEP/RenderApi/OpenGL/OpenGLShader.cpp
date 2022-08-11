@@ -60,7 +60,7 @@ namespace TGEP
         }
         else
         {
-            ERROR("%s%s%s\n", "ERROR::COULD_NOT_LOAD_FILE@'", path, "' THROWN@FN_OPENGLSHADER::READFILE");
+            LOG_ERROR("%s%s%s\n", "ERROR::COULD_NOT_LOAD_FILE@'", path, "' THROWN@FN_OPENGLSHADER::READFILE");
         }
 
         return result;
@@ -115,8 +115,8 @@ namespace TGEP
 
                 std::vector<GLchar> infoLog(maxLength);
                 glGetShaderInfoLog(shader, maxLength, &maxLength, &infoLog[0]);
-                ERROR("%s\n", "SHADER_COMPILATION_FAILED");
-                ERROR("%s", infoLog.data());
+                LOG_ERROR("%s\n", "SHADER_COMPILATION_FAILED");
+                LOG_ERROR("%s", infoLog.data());
                 glDeleteShader(shader);
                 break;
             }

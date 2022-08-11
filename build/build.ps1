@@ -109,6 +109,12 @@ if (!(Test-Path "Libraries\include\GLFW"))
 
 }
 
+if (!(Test-Path "Libraries\include\asio\"))
+{
+    Write-Output "COPYING ASIO FILES"
+    Copy-Item -Path "../submodules/asio/asio/include/*" -Destination "./Libraries/include/" -Recurse
+}
+
 if (!(Test-Path "Libraries\include\glm"))
 {
     Write-Output "COPYING GLM FILES"
