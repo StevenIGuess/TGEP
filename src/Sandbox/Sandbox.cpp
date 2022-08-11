@@ -1,4 +1,5 @@
 #include <TGEP.h>
+#include <winsock2.h>
 
 class TestLayer : public TGEP::Layer
 {
@@ -6,6 +7,26 @@ public:
     TestLayer() : TGEP::Layer("TestLayer"), m_Camera(-1.6, 1.6f, -0.9f, 0.9f, -1.0f, 1.0f) 
     {
 
+        WSADATA wsa;
+
+        SOCKET s;
+	
+        printf("\n%s\n", "Initialising Winsock...");
+        if (WSAStartup(MAKEWORD(2,2),&wsa) != 0)
+        {
+            printf("%s%d\n", "Failed. Winsock Error Code : ",WSAGetLastError());
+        }
+        
+        printf("%s\n", "Initialised Winsock.");
+
+        if((s = socket(AF_INET , SOCK_STREAM , 0 )) == INVALID_SOCKET)
+        {
+            printf("%s%d\n", "Could not create socket : " , WSAGetLastError());
+        }
+
+        printf("%s\n", "Created Socket.");
+
+        #pragma region VA data
         float squareVertices[4 * 5] = {
             -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
              0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
@@ -22,6 +43,8 @@ public:
             { TGEP::ShaderDataType::Float3 },
             { TGEP::ShaderDataType::Float2 }
         };
+        
+        #pragma endregion
 
         m_SquareVertexArray.reset(TGEP::VertexArray::Create());
 
@@ -37,7 +60,7 @@ public:
         auto SquareShader = m_ShaderLibary.Load("assets/Shader/Square.glsl");
         auto TextureShader = m_ShaderLibary.Load("assets/Shader/Texture.glsl");
 
-        m_Texture = TGEP::Texture2D::Create("assets/textures/Checkerboard.png");
+        m_EnemyQueenTexture = TGEP::Texture2D::Create("assets/textures/queen.png");
         m_QueenTexture = TGEP::Texture2D::Create("assets/textures/queen.png");
         GLShaderCast(TextureShader)->Bind();
         GLShaderCast(TextureShader)->UploadUniform("u_Texture", 0);
@@ -46,26 +69,14 @@ public:
     void OnUpdate(TGEP::DeltaTime deltaTime) override
     {
         m_DeltaTime = deltaTime;
-
-        if(TGEP::Input::IsKeyPressed(TGEP::Key::W) && TGEP::Input::IsKeyPressed(TGEP::Key::Enter)) m_Position.y += CameraMoveSpeed * m_DeltaTime;
-        if(TGEP::Input::IsKeyPressed(TGEP::Key::S) && TGEP::Input::IsKeyPressed(TGEP::Key::Enter)) m_Position.y -= CameraMoveSpeed * m_DeltaTime;
-        if(TGEP::Input::IsKeyPressed(TGEP::Key::A) && TGEP::Input::IsKeyPressed(TGEP::Key::Enter)) m_Position.x -= CameraMoveSpeed * m_DeltaTime;
-        if(TGEP::Input::IsKeyPressed(TGEP::Key::D) && TGEP::Input::IsKeyPressed(TGEP::Key::Enter)) m_Position.x += CameraMoveSpeed * m_DeltaTime;
-        if(TGEP::Input::IsKeyPressed(TGEP::Key::Q)) m_Rotation += CameraRotSpeed * m_DeltaTime;
-        if(TGEP::Input::IsKeyPressed(TGEP::Key::E)) m_Rotation -= CameraRotSpeed * m_DeltaTime;
-
-
         TGEP::RenderCommand::SetClearColor(glm::vec4(0.1f, 0.1f, 0.1f, 1.0f));
         TGEP::RenderCommand::Clear();
 
-        
+
         /****Render Code****/
         TGEP::Renderer::BeginScene(m_Camera);
 
-        
-
         m_Camera.SetPosition(m_Position);
-        m_Camera.SetRotation(m_Rotation);
 
         auto SquareShader = m_ShaderLibary.Get("Square");
         auto TextureShader = m_ShaderLibary.Get("Texture");
@@ -97,8 +108,16 @@ public:
                                              m_SquarePosition.y + (m_SquareScale.y  * m_QueenPosition.y),
                                              0.0f)) *
                                    glm::scale(glm::mat4(1.0f), m_SquareScale);
+        glm::mat4 transformEnemyQueen = glm::translate(glm::mat4(1.0f),
+                                   glm::vec3(m_SquarePosition.x + (m_SquareScale.x * m_EnemyQueenPosition.x),
+                                             m_SquarePosition.y + (m_SquareScale.y  * m_EnemyQueenPosition.y),
+                                             0.0f)) *
+                                   glm::scale(glm::mat4(1.0f), m_SquareScale);
+
         m_QueenTexture->Bind();
         TGEP::Renderer::Push(m_SquareVertexArray, TextureShader, transformQueen);
+        m_EnemyQueenTexture->Bind();
+        TGEP::Renderer::Push(m_SquareVertexArray, TextureShader, transformEnemyQueen);
 
         TGEP::Renderer::EndScene();
         /****Render Code****/
@@ -117,6 +136,7 @@ public:
         {
             case TGEP::Key::W : 
             {
+                if(m_QueenPosition.y == m_EnemyQueenPosition.y - 1 && m_QueenPosition.x == m_EnemyQueenPosition.x) { return true; }
                 if(m_QueenPosition.y < num_squares_y - 1)
                 {
                     m_QueenPosition.y += 1;
@@ -125,6 +145,7 @@ public:
             }
             case TGEP::Key::A :
             {
+                if(m_QueenPosition.x == m_EnemyQueenPosition.x + 1 && m_QueenPosition.y == m_EnemyQueenPosition.y) { return true; }
                 if(m_QueenPosition.x > 0)
                 {
                     m_QueenPosition.x -= 1;
@@ -133,6 +154,7 @@ public:
             }
             case TGEP::Key::S :
             {
+                if(m_QueenPosition.y == m_EnemyQueenPosition.y + 1 && m_QueenPosition.x == m_EnemyQueenPosition.x) { return true; }
                 if(m_QueenPosition.y > 0)
                 {
                     m_QueenPosition.y -= 1;
@@ -141,6 +163,7 @@ public:
             }
             case TGEP::Key::D :
             {
+                if(m_QueenPosition.x == m_EnemyQueenPosition.x - 1 && m_QueenPosition.y == m_EnemyQueenPosition.y) { return true; }
                 if(m_QueenPosition.x < num_squares_x - 1)
                 {
                     m_QueenPosition.x += 1;
@@ -162,24 +185,9 @@ public:
             FPS << "FPS: " << 1 / m_DeltaTime << "\n";
             ImGui::Text(DT.str().c_str());
             ImGui::Text(FPS.str().c_str());
-            ImGui::SliderFloat("CameraMoveSpeed", &CameraMoveSpeed, 0.0f, 5.0f);
-            ImGui::SliderFloat("CameraRotSpeed", &CameraRotSpeed, 0.0f, 5.0f);
 
             ImGui::TextColored(ImVec4(1,1,0,1), "Game Data");
             ImGui::BeginChild("Scrolling");
-
-            ImGui::SliderFloat3("Camera position", (float*)&m_Position, -10.0f, 10.0f);
-            ImGui::SliderFloat("Camera roation", &m_Rotation, -1000.0f, 1000.0f);
-
-            ImGui::SliderFloat3("Square position", (float*)&m_SquarePosition, -10.0f, 10.0f);
-            ImGui::SliderFloat3("Square scale", (float*)&m_SquareScale, 0.1f, 1.0f);
-            ImGui::SliderFloat("Offset", &OffsetMulitplier, 1.0f, 2.0f);
-
-            ImGui::SliderInt("Queen Position X", (int*)&m_QueenPosition.x, 0, num_squares_x - 1);
-            ImGui::SliderInt("Queen Position Y", (int*)&m_QueenPosition.y, 0, num_squares_y - 1);
-
-            ImGui::SliderInt("Number of squares X", &num_squares_x, 0, 500);
-            ImGui::SliderInt("Number of squares Y", &num_squares_y, 0, 500);
 
             ImGui::ColorEdit4("FirstColor", (float*)&m_FirstColor);
             ImGui::ColorEdit4("SecondColor", (float*)&m_SecondColor);
@@ -196,11 +204,7 @@ private:
     TGEP::OrthoCamera m_Camera;
 
     glm::vec3 m_Position = glm::vec3(0.0f);
-    float m_Rotation = 0.0f;
     float m_DeltaTime = 0.0f;
-
-    float CameraRotSpeed = 2.0f;
-    float CameraMoveSpeed = 2.0f;
 
     bool m_TGEP_info = true;
 
@@ -211,13 +215,14 @@ private:
     glm::vec4 m_SecondColor = glm::vec4(1.0f);
 
     glm::ivec2 m_QueenPosition = glm::ivec2(0);
+    glm::ivec2 m_EnemyQueenPosition = glm::ivec2(5);
 
     float OffsetMulitplier = 1.0f;
 
     int num_squares_x = 8;
     int num_squares_y = 8;
 
-    TGEP::Ref<TGEP::Texture2D> m_Texture, m_QueenTexture;
+    TGEP::Ref<TGEP::Texture2D> m_QueenTexture, m_EnemyQueenTexture;
 
 };
 
