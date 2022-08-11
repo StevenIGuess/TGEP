@@ -59,7 +59,13 @@ int main(int argc , char *argv[])
             printf("%s%s:%hu\n", "Client accepted:: ", inet_ntoa(clientinfo.sin_addr), ntohs(clientinfo.sin_port));
         }
 
-        send(client, "test", strlen("test"), 0);
+        while(1)
+        {
+            if(send(client, "test", strlen("test"), 0) == SOCKET_ERROR)
+            {
+                printf("%s%d\n", "Failed to send message to client!", WSAGetLastError());
+            }
+        }
     }
 
     closesocket(client);
