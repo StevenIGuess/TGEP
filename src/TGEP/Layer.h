@@ -2,7 +2,7 @@
 
 #include "Core.h"
 #include "Events/Event.h"
-#include "DeltaTime.h"
+#include "Time.h"
 
 namespace TGEP 
 {
