@@ -157,7 +157,7 @@ if (!(Test-Path "imgui.o"))
 
 Write-Output "STARTING ENGINE COMPILATION"
 
-g++ -c ..\src\TGEP\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/ 
+g++ -c ..\src\TGEP\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/
 g++ -c ..\src\TGEP\Layers\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/ 
 g++ -c ..\src\TGEP\Windows\OpenGL\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/ 
 g++ -c ..\src\TGEP\Renderer\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/ 
@@ -191,7 +191,7 @@ Write-Output "ENGINE COMPILATION DONE!"
 Write-Output "STARTING COMPILATION OF TEST PROJECT"
 
 g++ -o server.exe ..\src\Sandbox\Server.cpp -lwsock32 -static-libgcc -static-libstdc++
-g++ -o sandbox.exe ..\src\Sandbox\sandbox.cpp -L./Libraries/lib/ -L./ -lTGEP -lglfw3 -lgdi32 -lopengl32 -lwsock32 -I../src/ -I./Libraries/include/ -I../src/glad/ -static-libgcc -static-libstdc++
+g++ -o sandbox.exe ..\src\Sandbox\sandbox.cpp -L./Libraries/lib/ -L./ -lTGEP -lpdh -lglfw3 -lgdi32 -lopengl32 -lwsock32 -I../src/ -I./Libraries/include/ -I../src/glad/ -static-libgcc -static-libstdc++
 
 Write-Output "COMPILATION DONE!"
 

@@ -1,6 +1,6 @@
-#include <TGEP.h>
 #include <winsock2.h>
-#include <windows.h>
+#include <TGEP.h>
+#include <TGEP/Profiling.h>
 #include <asio.hpp>
 #include <asio/ts/buffer.hpp>
 
@@ -9,7 +9,6 @@ class TestLayer : public TGEP::Layer
 public:
     TestLayer() : TGEP::Layer("TestLayer"), m_Camera(-1.6, 1.6f, -0.9f, 0.9f, -1.0f, 1.0f) 
     {
-
         WSADATA wsa;
 	
         printf("\n%s\n", "Initialising Winsock...");
@@ -64,6 +63,7 @@ public:
 
     void OnUpdate(TGEP::DeltaTime deltaTime) override
     {
+        t0 = m_Profiler->get_cpu_cycles();
         m_DeltaTime = deltaTime;
         TGEP::RenderCommand::SetClearColor(glm::vec4(0.1f, 0.1f, 0.1f, 1.0f));
         TGEP::RenderCommand::Clear();
@@ -135,6 +135,8 @@ public:
 
         TGEP::Renderer::EndScene();
         /****Render Code****/
+
+        dt = m_Profiler->get_cpu_cycles() - t0;
     }
     
     virtual void OnEvent(TGEP::Event &e)
@@ -217,6 +219,7 @@ public:
             DT << "Delta Time(ms): " << m_DeltaTime << "\n"; 
             std::stringstream FPS;
             FPS << "FPS: " << 1 / m_DeltaTime << "\n";
+            ImGui::TextColored(ImVec4(0,1,1,1), "Performance");
             ImGui::Text(DT.str().c_str());
             ImGui::Text(FPS.str().c_str());
 
@@ -255,6 +258,48 @@ public:
             ImGui::ColorEdit4("FirstColor", (float*)&m_FirstColor);
             ImGui::ColorEdit4("SecondColor", (float*)&m_SecondColor);
 
+            ImGui::BeginChild("Scrolling");
+            if(advancedProfiling)
+            {
+                std::stringstream totalVmem;
+                totalVmem << "Total available Vmemory: " << m_Profiler->get_total_vmem() / 1000000 << "Mb\n";
+
+                std::stringstream usedVmem;
+                usedVmem << "Used Vmemory: " << m_Profiler->get_used_vmem() / 1000000 << "Mb\n";
+
+                std::stringstream totalRam;
+                totalRam << "Total available RAM: " << m_Profiler->get_total_ram() / 1000000 << "Mb\n";
+
+                std::stringstream usedRam;
+                usedRam << "Used RAM: " << m_Profiler->get_used_ram() / 1000000 << "Mb\n";
+
+                std::stringstream updateCycles;
+                updateCycles << "Update CPU Cycles: " << dt / 1000 << "k\n";
+
+                std::stringstream usedCpu;
+                usedCpu << "CPU usage: " << m_Profiler->get_used_cpu() << "%\n";
+
+                std::stringstream numCpu;
+                numCpu << "CPU cores: " << m_Profiler->get_num_processors() << "\n";
+
+                
+                ImGui::Text(totalVmem.str().c_str());
+                ImGui::Text(usedVmem.str().c_str());
+                ImGui::Text(totalRam.str().c_str());
+                ImGui::Text(usedRam.str().c_str());
+                ImGui::Text(updateCycles.str().c_str());
+                ImGui::Text(usedCpu.str().c_str());
+                ImGui::Text(numCpu.str().c_str());
+            } else
+            {
+                if(ImGui::Button("Turn on advanced profiling"))
+                {
+                    advancedProfiling = true;
+                }
+                ImGui::TextColored(ImVec4(1,0,0,1), "WARNING: This might impact performance");
+            }
+            ImGui::EndChild();
+
             ImGui::End();
         }
     }
@@ -276,6 +321,13 @@ public:
     }
 
 private:
+
+    //profiling_fun fun = new profiling_fun;
+    TGEP::Ref<TGEP::Profiling> m_Profiler = std::make_shared<TGEP::Profiling>();
+    uint64_t t0 = 0;
+    uint64_t dt = 0;
+    bool advancedProfiling = false;
+    //fun.realse();
 
     SOCKET m_Socket;
     sockaddr_in m_ConParam;

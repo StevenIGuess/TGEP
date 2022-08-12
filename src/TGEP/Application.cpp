@@ -88,7 +88,6 @@ namespace TGEP {
 
             //update window
             m_Window->OnUpdate();
-
         }
     }
 
