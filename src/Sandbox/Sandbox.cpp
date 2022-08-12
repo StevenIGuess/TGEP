@@ -206,8 +206,7 @@ public:
     {
         if(!m_Connected)
         {
-            if(!m_ConWarning) { return; }
-            ImGui::Begin("Not m_Connected to server!", &m_ConWarning);
+            ImGui::Begin("Not connected to server!");
             ImGui::Text("Go to Settings(esc) and connect to a server!");
             ImGui::End();
         }
@@ -222,6 +221,10 @@ public:
             ImGui::TextColored(ImVec4(0,1,1,1), "Performance");
             ImGui::Text(DT.str().c_str());
             ImGui::Text(FPS.str().c_str());
+
+            ImGui::Separator();
+
+            ImGui::TextColored(ImVec4(0,1,1,1), "Network Settings");
 
             if(m_Connected) 
             {
@@ -255,50 +258,54 @@ public:
                 }
             }
 
+            ImGui::Separator();
+            ImGui::TextColored(ImVec4(0,1,1,1), "General Settings");
+
             ImGui::ColorEdit4("FirstColor", (float*)&m_FirstColor);
             ImGui::ColorEdit4("SecondColor", (float*)&m_SecondColor);
 
-            ImGui::BeginChild("Scrolling");
-            if(advancedProfiling)
+            ImGui::Separator();
+            ImGui::TextColored(ImVec4(0,1,1,1), "Advanced Settings");
+
+            if (ImGui::TreeNode("Advanced performance info"))
             {
-                std::stringstream totalVmem;
-                totalVmem << "Total available Vmemory: " << m_Profiler->get_total_vmem() / 1000000 << "Mb\n";
-
-                std::stringstream usedVmem;
-                usedVmem << "Used Vmemory: " << m_Profiler->get_used_vmem() / 1000000 << "Mb\n";
-
-                std::stringstream totalRam;
-                totalRam << "Total available RAM: " << m_Profiler->get_total_ram() / 1000000 << "Mb\n";
-
-                std::stringstream usedRam;
-                usedRam << "Used RAM: " << m_Profiler->get_used_ram() / 1000000 << "Mb\n";
-
-                std::stringstream updateCycles;
-                updateCycles << "Update CPU Cycles: " << dt / 1000 << "k\n";
-
-                std::stringstream usedCpu;
-                usedCpu << "CPU usage: " << m_Profiler->get_used_cpu() << "%\n";
-
-                std::stringstream numCpu;
-                numCpu << "CPU cores: " << m_Profiler->get_num_processors() << "\n";
-
-                
-                ImGui::Text(totalVmem.str().c_str());
-                ImGui::Text(usedVmem.str().c_str());
-                ImGui::Text(totalRam.str().c_str());
-                ImGui::Text(usedRam.str().c_str());
-                ImGui::Text(updateCycles.str().c_str());
-                ImGui::Text(usedCpu.str().c_str());
-                ImGui::Text(numCpu.str().c_str());
-            } else
-            {
-                if(ImGui::Button("Turn on advanced profiling"))
+                if(advancedProfiling)
                 {
-                    advancedProfiling = true;
+                    std::stringstream totalVmem;
+                    totalVmem << "Total available Vmemory: " << m_Profiler->get_total_vmem() / 1000000 << "Mb\n";
+
+                    std::stringstream usedVmem;
+                    usedVmem << "Used Vmemory: " << m_Profiler->get_used_vmem() / 1000000 << "Mb\n";
+
+                    std::stringstream totalRam;
+                    totalRam << "Total available RAM: " << m_Profiler->get_total_ram() / 1000000 << "Mb\n";
+
+                    std::stringstream usedRam;
+                    usedRam << "Used RAM: " << m_Profiler->get_used_ram() / 1000000 << "Mb\n";
+
+                    std::stringstream updateCycles;
+                    updateCycles << "Update CPU Cycles: " << dt / 1000 << "k\n";
+
+                    std::stringstream numCpu;
+                    numCpu << "CPU cores: " << m_NumCpus << "\n";
+
+                    
+                    ImGui::Text(totalVmem.str().c_str());
+                    ImGui::Text(usedVmem.str().c_str());
+                    ImGui::Text(totalRam.str().c_str());
+                    ImGui::Text(usedRam.str().c_str());
+                    ImGui::Text(updateCycles.str().c_str());
+                    ImGui::Text(numCpu.str().c_str());
+                } else
+                {
+                    if(ImGui::Button("Turn on advanced performance info"))
+                    {
+                        advancedProfiling = true;
+                    }
+                    ImGui::TextColored(ImVec4(1,0,0,1), "WARNING: This might impact performance");
                 }
-                ImGui::TextColored(ImVec4(1,0,0,1), "WARNING: This might impact performance");
+                ImGui::TreePop();
             }
-            ImGui::EndChild();
 
             ImGui::End();
         }
@@ -326,13 +333,14 @@ private:
     TGEP::Ref<TGEP::Profiling> m_Profiler = std::make_shared<TGEP::Profiling>();
     uint64_t t0 = 0;
     uint64_t dt = 0;
+    int m_NumCpus = m_Profiler->get_num_processors();
     bool advancedProfiling = false;
     //fun.realse();
 
     SOCKET m_Socket;
     sockaddr_in m_ConParam;
 
-    char m_ServerAddress[17];
+    char m_ServerAddress[17] = "127.0.0.1";
     int m_ServerPort = 2556;
 
     bool m_Connected = false;
@@ -349,7 +357,6 @@ private:
     float m_DeltaTime = 0.0f;
 
     bool m_Settings = false;
-    bool m_ConWarning = true;
 
     glm::vec3 m_SquarePosition = glm::vec3(0.0f);
     glm::vec3 m_SquareScale = glm::vec3(0.1f);
@@ -362,11 +369,10 @@ private:
 
     float OffsetMulitplier = 1.0f;
 
-    int num_squares_x = 8;
-    int num_squares_y = 8;
+    int num_squares_x = 100;
+    int num_squares_y = 10;
 
     TGEP::Ref<TGEP::Texture2D> m_QueenTexture, m_EnemyQueenTexture;
-
 };
 
 class Sandbox : public TGEP::Application
