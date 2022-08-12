@@ -154,6 +154,22 @@ if (!(Test-Path "imgui.o"))
     g++ -c ..\src\ImGui\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/
 }
 
+if (!(Test-Path "implot.o"))
+{
+    Write-Output "COPYING IMPLOT FILES"
+    if (Test-Path "..\src\ImPlot\")
+    {
+        Remove-Item "..\src\ImPlot\" -Force -Recurse
+        mkdir ..\src\ImPlot\
+    } else {
+        mkdir ..\src\ImPlot\
+    }
+    Copy-Item ..\submodules\implot\*.cpp ..\src\ImPlot
+    Copy-Item ..\submodules\implot\*.h ..\src\ImPlot
+    Write-Output "COMPILING IMPLOT"
+    g++ -c ..\src\ImPlot\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/
+}
+
 
 Write-Output "STARTING ENGINE COMPILATION"
 
