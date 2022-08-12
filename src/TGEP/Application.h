@@ -10,7 +10,7 @@
 #include "TGEP/Renderer/Buffer.h"
 #include "Renderer/Camera.h"
 #include "Layers/OpenGLInfoLayer.h"
-#include "Time.h"
+#include "DeltaTime.h"
 
 namespace TGEP 
 {

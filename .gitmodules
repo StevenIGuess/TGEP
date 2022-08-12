@@ -10,3 +10,6 @@
 [submodule "submodules/asio"]
 	path = submodules/asio
 	url = https://github.com/chriskohlhoff/asio.git
+[submodule "submodules/implot"]
+	path = submodules/implot
+	url = https://github.com/epezent/implot
