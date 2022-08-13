@@ -1,75 +1,47 @@
-#include<stdio.h>
-#include<winsock2.h>
-#include <windows.h>
-#include <string>
+#include <TGEP.h>
 
-#pragma comment(lib,"ws2_32.lib") //Winsock Library
-
-int main(int argc , char *argv[])
+enum class MessageType : int32_t 
 {
-	WSADATA wsa;
-    SOCKET slisten;
-    SOCKET client; 
-    int NumOfClients = 0;
-	
-	printf("\n%s\n", "Initialising Winsock...");
-	if (WSAStartup(MAKEWORD(2,2),&wsa) != 0)
-	{
-		printf("%s%d\n", "Failed. Winsock Error Code : ",WSAGetLastError());
-		return 1;
-	}
-	
-	printf("%s\n", "Initialised Winsock.");
+    ServerAccept,
+    ServerDeny, 
+    ServerPing, 
+    MessageAll, 
+    ServerMessage,
+};
 
-    if((slisten = socket(AF_INET, SOCK_STREAM, 0)) == INVALID_SOCKET)
+class Server : public TGEP::net::server_interface<MessageType>
+{
+public:
+    Server(uint16_t port) : TGEP::net::server_interface<MessageType>(port)
     {
-        printf("%s%d\n", "Failed to create socket : ", WSAGetLastError());
-		return 1;
+
+    }
+protected:
+
+    virtual bool OnClientConnect(std::shared_ptr<TGEP::net::connection<MessageType>> client)
+    {
+        return true;
     }
 
-    printf("%s\n", "Created socket.");
-
-    sockaddr_in info;
-    info.sin_addr.s_addr = inet_addr("127.0.0.1");
-    info.sin_family      = AF_INET;
-    info.sin_port        = htons(2556);
-    int infolen = sizeof(info);
-
-    if((bind(slisten, (struct sockaddr*)&info, infolen)) == SOCKET_ERROR)
+    virtual void OnClientDisconnect(std::shared_ptr<TGEP::net::connection<MessageType>> client)
     {
-        printf("%s%d\n", "Failed to bind socket : ", WSAGetLastError());
-		return 1;
+
     }
 
-    printf("\n\n%s%s:%hu\n", "LISTENING ON SOCKET ", inet_ntoa(info.sin_addr), ntohs(info.sin_port));
-    if(listen(slisten, SOMAXCONN) == SOCKET_ERROR)
+    virtual void OnMessage(std::shared_ptr<TGEP::net::connection<MessageType>> client, TGEP::net::mesage<MessageType> &msg)
     {
-        printf("%s%d\n", "Failed to connect to socket : ", WSAGetLastError());
-        return 1;
-    }
 
-    sockaddr_in clientinfo;
-    int clientinfolen = sizeof(clientinfo);
+    }
+};
+
+int main()
+{
+    Server server(25556);
+    server.Start();
 
     while(1)
     {
-        client = accept(slisten, (struct sockaddr *)&clientinfo, &clientinfolen);
-        if(client != SOCKET_ERROR)
-        {
-            printf("%s%s:%hu\n", "Client accepted:: ", inet_ntoa(clientinfo.sin_addr), ntohs(clientinfo.sin_port));
-        }
-
-        while(1)
-        {
-            if(send(client, "test", strlen("test"), 0) == SOCKET_ERROR)
-            {
-                printf("%s%d\n", "Failed to send message to client!", WSAGetLastError());
-            }
-        }
+        server.Update();
     }
-
-    closesocket(client);
-    closesocket(slisten);
-    WSACleanup();
-	return 0;
+    return 0;
 }
