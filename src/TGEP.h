@@ -59,4 +59,9 @@
 #include "TGEP/DeltaTime.h"
 //Textures
 #include "TGEP/Renderer/Texture.h"
+//Networking
+#include "TGEP/Networking/connection.h"
+#include "TGEP/Networking/client.h"
+#include "TGEP/Networking/server.h"
+#include "TGEP/Networking/message.h"
 #endif // _TGEP_h_

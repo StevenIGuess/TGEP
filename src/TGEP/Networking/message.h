@@ -7,7 +7,7 @@ namespace TGEP
     {
         //Msg header, send at start of msg.
         template<typename T>
-        struct message_header<typename T>
+        struct message_header
         {
             T id{};
             uint32_t size = 0;
