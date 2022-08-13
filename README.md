@@ -1,3 +1,7 @@
+# THIS PROJECT WON'T BUILD, IT'S CURENTLY BEEING MIGRATED!
+
+# USE OLDER VERSIONS IF YOU WANT TO BUILD 
+
 # TheGameEngineProject
 The Official GitHub repo for the "GameEngineProject"
 
