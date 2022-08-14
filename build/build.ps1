@@ -1,35 +1,24 @@
 Clear-Host
 
-[Environment]::SetEnvironmentVariable("PATH", $Env:PATH + ";C:\mingw64\bin\;C:\cmake-3.23.2-windows-x86_64\bin\")
-
-Write-Output "CHECKING IF GCC IS INSTALLED"
-gcc --version
-if (-Not ($?))
-{
-    Clear-Host
-    Write-Output "GCC NOT FOUND!"
-    $options = '&Yes', '&No'
-    $decision = $Host.UI.PromptForChoice("Install gcc", "Gcc.exe was not found, do you wish to install gcc?", $options, 0)
-    if($decision -eq 0)
-    { 
-        Clear-Host
-        Write-Output "Installing mingw64 from https://github.com/niXman/mingw-builds-binaries/releases/download/12.1.0-rt_v10-rev3/x86_64-12.1.0-release-win32-seh-rt_v10-rev3.7z @ C:\MinGW64"
-
-        Start-BitsTransfer -Source "https://github.com/niXman/mingw-builds-binaries/releases/download/12.1.0-rt_v10-rev3/x86_64-12.1.0-release-win32-seh-rt_v10-rev3.7z" -Destination "C:\mingw64.7z"
-
-        Write-Output "Downloaded mingw64.7z"
-        Install-Module -Name 7Zip4PowerShell -Force
-        Expand-7Zip C:\mingw64.7z -TargetPath C:\
-        Remove-Item C:\mingw64.7z
-        Write-Output "Installed mingw64"
-    } else {
-        Write-Output "build canceled"
-        exit
+Write-Output "Setting vc & path vars"
+[Environment]::SetEnvironmentVariable("PATH", $Env:PATH + ";C:\cmake-3.23.2-windows-x86_64\bin\")
+$vcdir = ((Get-Content "buildconfig.json") | ConvertFrom-Json).Vcvarsall_dir
+pushd $vcdir
+Add-Content -Path ".\vcvars64.bat" -Value "set > %temp%\vcvars.txt"
+.\vcvars64.bat
+if (Test-Path "$env:temp\vcvars.txt") {
+    $lines = Get-Content "$env:temp\vcvars.txt"
+    foreach($line in $lines) {
+        $idx = $line.IndexOf('=')
+        if($idx -ne -1) {
+            [System.Environment]::SetEnvironmentVariable($line.Substring(0, $idx), $line.Substring($idx + 1))
+        }
     }
-
 }
+popd
 
 Write-Output "CHECKING IF CMAKE IS INSTALLED"
+
 cmake --version
 if (-Not ($?))
 {
@@ -91,17 +80,16 @@ if (!(Test-Path "Libraries\include\GLFW"))
     mkdir build
     Set-Location build
 
-    cmake "..\" -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX:PATH=.\install
+    cmake -G "Visual Studio 17 2022" -A x64  -S ..\ -B "build64"
+    cmake --build build64 --config Release
 
-    mingw32-make
-    mingw32-make install
 
     Write-Output "COPYING COMPILED FILES"
 
     Set-Location ../../../
 
-    Copy-Item -Path "./tmplib/glfw/build/install/include/GLFW" -Destination "./Libraries/include/GLFW/" -Recurse
-    Copy-Item -Path "./tmplib/glfw/build/install/lib/libglfw3.a" -Destination "./Libraries/lib/" -Recurse
+    Copy-Item -Path "./tmplib/glfw/include/GLFW" -Destination "./Libraries/include/GLFW/" -Recurse
+    Copy-Item -Path "./tmplib/glfw/build/build64/src/Release/glfw3.lib" -Destination "./Libraries/lib/" -Recurse
 
     Write-Output "DELETING OLD FILES"
     
@@ -121,19 +109,19 @@ if (!(Test-Path "Libraries\include\glm"))
     Copy-Item -Path "../submodules/glm/glm/" -Destination "./Libraries/include/glm/" -Recurse
 }
 
-if (!(Test-Path "glad.o"))
+if (!(Test-Path "glad.obj"))
 {
-    Write-Output "COMPILING GLAD"
-    g++ -c ..\src\glad\glad.c -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/
+    Write-Output "COMPILING GLAD.obj"
+    cl /Fo /EHsc /c ../src/glad/glad.c /I..\src\glad\ 
 }
 
-if (!(Test-Path "stb_image.o"))
+if (!(Test-Path "stb_image.obj"))
 {
     Write-Output "COMPILING STB_IMAGE"
-    g++ -c ..\src\stb_image\stb_image.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/
+    cl /Fo /EHsc /c ..\src\stb_image\stb_image.cpp /I../src/ /I../src/ImGui/ /I../src/TGEP/ /I./Libraries/include/ /I../src/glad/  
 }
 
-if (!(Test-Path "imgui.o"))
+if (!(Test-Path "imgui.obj"))
 {
     Write-Output "COPYING IMGUI FILES"
     if (Test-Path "..\src\ImGui\")
@@ -144,17 +132,17 @@ if (!(Test-Path "imgui.o"))
         mkdir ..\src\ImGui\
     }
     Copy-Item ..\submodules\imgui\backends\imgui_impl_opengl3.h ..\src\ImGui
-    Copy-Item ..\submodules\imgui\backends\imgui_impl_opengl3.cpp ..\src\ImGui
+    Copy-Item ..\submodules\imgui\backends\imgui_impl_opengl3.cpp ..\src\ImGui 
     Copy-Item ..\submodules\imgui\backends\imgui_impl_opengl3_loader.h ..\src\ImGui
     Copy-Item ..\submodules\imgui\backends\imgui_impl_glfw.h ..\src\ImGui
     Copy-Item ..\submodules\imgui\backends\imgui_impl_glfw.cpp ..\src\ImGui
     Copy-Item ..\submodules\imgui\*.cpp ..\src\ImGui
-    Copy-Item ..\submodules\imgui\*.h ..\src\ImGui
+    Copy-Item ..\submodules\imgui\*.h ..\src\ImGui 
     Write-Output "COMPILING IMGUI"
-    g++ -c ..\src\ImGui\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/
+    cl /Fo /EHsc /c ..\src\ImGui\*.cpp /I../src/ /I../src/ImGui/ /I../src/TGEP/ / /I../src/glad/  
 }
 
-if (!(Test-Path "implot.o"))
+if (!(Test-Path "implot.obj"))
 {
     Write-Output "COPYING IMPLOT FILES"
     if (Test-Path "..\src\ImPlot\")
@@ -167,48 +155,44 @@ if (!(Test-Path "implot.o"))
     Copy-Item ..\submodules\implot\*.cpp ..\src\ImPlot
     Copy-Item ..\submodules\implot\*.h ..\src\ImPlot
     Write-Output "COMPILING IMPLOT"
-    g++ -c ..\src\ImPlot\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/
+    cl /Fo /EHsc /c ..\src\ImPlot\*.cpp /I../src/ /I../src/ImGui/ /I../src/TGEP/ /I./Libraries/include/ /I../src/glad/  
 }
-
 
 Write-Output "STARTING ENGINE COMPILATION"
 
-g++ -c ..\src\TGEP\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/
-g++ -c ..\src\TGEP\Layers\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/ 
-g++ -c ..\src\TGEP\Windows\OpenGL\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/ 
-g++ -c ..\src\TGEP\Renderer\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/ 
-g++ -c ..\src\TGEP\RenderAPI\OpenGL\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/
-g++ -c ..\src\TGEP\Networking\*.cpp -I../src/ -I../src/ImGui/ -I../src/TGEP/ -I./Libraries/include/ -I../src/glad/ 
+ cl /Fo /EHsc /c  ..\src\TGEP\*.cpp /I../src/ /I../src/ImGui/ /I../src/TGEP/ /I./Libraries/include/ /I../src/glad/  
+ cl /Fo /EHsc /c  ..\src\TGEP\Layers\*.cpp /I../src/ /I../src/ImGui/ /I../src/TGEP/ /I./Libraries/include/ /I../src/glad/  
+ cl /Fo /EHsc /c  ..\src\TGEP\Windows\OpenGL\*.cpp /I../src/ /I../src/ImGui/ /I../src/TGEP/ /I./Libraries/include/ /I../src/glad/  
+ cl /Fo /EHsc /c  ..\src\TGEP\Renderer\*.cpp /I../src/ /I../src/ImGui/ /I../src/TGEP/ /I./Libraries/include/ /I../src/glad/  
+ cl /Fo /EHsc /c  ..\src\TGEP\RenderAPI\OpenGL\*.cpp /I../src/ /I../src/ImGui/ /I../src/TGEP/ /I./Libraries/include/ /I../src/glad/  
+ cl /Fo /EHsc /c  ..\src\TGEP\Networking\*.cpp /I../src/ /I../src/ImGui/ /I../src/TGEP/ /I./Libraries/include/ /I../src/glad/  
 
+ lib *.obj   /OUT:TGEP.lib
 
+Remove-Item Application.obj
+Remove-Item Layer.obj 
+Remove-Item LayerStack.obj
+Remove-Item ImGuiLayer.obj
+Remove-Item Input.obj
+Remove-Item OpenGLWindow.obj
+Remove-Item OpenGLContext.obj
+Remove-Item Window.obj
+Remove-Item OpenGLShader.obj
+Remove-Item Renderer.obj
+Remove-Item RendererAPI.obj
+Remove-Item Shader.obj
+Remove-Item VertexArray.obj
+Remove-Item OpenGLBuffer.obj
+Remove-Item OpenGLRendererAPI.obj
+Remove-Item RenderCommand.obj
+Remove-Item Camera.obj
 
-ar rcs libTGEP.a *.o
-
-Remove-Item Application.o
-Remove-Item Layer.o 
-Remove-Item LayerStack.o
-Remove-Item ImGuiLayer.o
-Remove-Item Input.o
-Remove-Item OpenGLWindow.o
-Remove-Item OpenGLContext.o
-Remove-Item Window.o
-Remove-Item OpenGLShader.o
-Remove-Item Renderer.o
-Remove-Item RendererAPI.o
-Remove-Item Shader.o
-Remove-Item VertexArray.o
-Remove-Item OpenGLBuffer.o
-Remove-Item OpenGLRendererAPI.o
-Remove-Item RenderCommand.o
-Remove-Item Camera.o
-
- 
 Write-Output "ENGINE COMPILATION DONE!"
 
 Write-Output "STARTING COMPILATION OF TEST PROJECT"
 
-g++ -o server.exe ..\src\Sandbox\Server.cpp -lwsock32 -static-libgcc -static-libstdc++
-g++ -o sandbox.exe ..\src\Sandbox\sandbox.cpp -L./Libraries/lib/ -L./ -lTGEP -lpdh -lglfw3 -lgdi32 -lopengl32 -lwsock32 -I../src/ -I./Libraries/include/ -I../src/glad/ -static-libgcc -static-libstdc++
+cl /EHsc ..\src\Sandbox\Server.cpp .\Libraries\lib\glfw3.lib .\TGEP.lib /I../src/ /I./Libraries/include/  
+cl /EHsc ..\src\Sandbox\sandbox.cpp .\Libraries\lib\glfw3.lib .\TGEP.lib /I../src/ /I./Libraries/include/ /I../src/glad/  
 
 Write-Output "COMPILATION DONE!"
 

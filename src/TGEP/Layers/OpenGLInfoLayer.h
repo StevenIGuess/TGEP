@@ -3,7 +3,9 @@
 #include "../Layer.h"
 #include "../Events/Event.h"
 #include "../../ImGui/imgui.h"
+
 #include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
 namespace TGEP 
 {

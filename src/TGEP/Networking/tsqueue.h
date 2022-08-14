@@ -1,5 +1,6 @@
 #pragma once
 #include <mutex>
+#include <deque>
 
 namespace TGEP 
 {
@@ -47,7 +48,7 @@ namespace TGEP
                 return deqQueue.empty();
             }
 
-            bool clear()
+            void clear()
             {
                 std::scoped_lock lock(muxQueue);
                 return deqQueue.clear();

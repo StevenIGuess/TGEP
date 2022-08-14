@@ -60,7 +60,7 @@ namespace TGEP
         }
         else
         {
-            LOG_ERROR("%s%s%s\n", "ERROR::COULD_NOT_LOAD_FILE@'", path, "' THROWN@FN_OPENGLSHADER::READFILE");
+            LOG_ERROR("%s%s%s\n", "ERROR::COULD_NOT_LOAD_FILE@'", path.c_str(), "' THROWN@FN_OPENGLSHADER::READFILE");
         }
 
         return result;

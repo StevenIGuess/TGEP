@@ -5,17 +5,20 @@ namespace TGEP
 {
     namespace net
     {
-        server_interface::server_interface(uint16_t port) : m_AsioAcceptor(m_AsioContext, asio::ip::tcp::endpoint(asio::ip::tcp::v4(), port))
+        template<typename T>
+        server_interface<T>::server_interface(uint16_t port) : m_AsioAcceptor(m_AsioContext, asio::ip::tcp::endpoint(asio::ip::tcp::v4(), port))
         {
 
         }
 
-        server_interface::~server_interface()
+        template<typename T>
+        server_interface<T>::~server_interface<T>()
         {
             Stop();
         }
 
-        bool server_interface::Start()
+        template<typename T>
+        bool server_interface<T>::Start()
         {
             try
             {
@@ -32,7 +35,8 @@ namespace TGEP
             return true;
         }
 
-        bool server_interface::Stop()
+        template<typename T>
+        bool server_interface<T>::Stop()
         {
             m_AsioContext.stop();
 
@@ -42,7 +46,8 @@ namespace TGEP
         }
 
         //ASYNC
-        void server_interface::WaitForClientConnection()
+        template<typename T>
+        void server_interface<T>::WaitForClientConnection()
         {
             m_AsioAcceptor.async_accept(
                 [this](std::error_code ec, asio::ip::tcp::socket socket)
@@ -61,7 +66,7 @@ namespace TGEP
 
                             m_Connections.back()->ConnectToClient(nIDCounter++);
 
-                            LOG("%s%i%s", "Connection request accepted [ID:", m_Connectinos.back()->GetID(), "]\n")
+                            LOG("%s%i%s", "Connection request accepted [ID:", m_Connections.back()->GetID(), "]\n")
                         }
                         else
                         {
@@ -77,7 +82,8 @@ namespace TGEP
                 });
         }
 
-        void server_interface::MessageClient(std::shared_ptr<connection<T>> client, const message<T> &msg)
+        template<typename T>
+        void server_interface<T>::MessageClient(std::shared_ptr<connection<T>> client, const message<T> &msg)
         {
             if(client && client->IsConnected())
             {
@@ -91,7 +97,8 @@ namespace TGEP
             }
         }
 
-        void server_interface::MessageAllClients(const message<T> &msg, std::shared_ptr<connection<T>> IgnoreClient = nullptr)
+        template<typename T>
+        void server_interface<T>::MessageAllClients(const message<T> &msg, std::shared_ptr<connection<T>> IgnoreClient)
         {
             
             bool InvalidClientExists = false;
@@ -117,7 +124,8 @@ namespace TGEP
             }
         }
 
-        void server_interface::Update(size_t MaxMessages = -1)
+        template<typename T>
+        void server_interface<T>::Update(size_t MaxMessages)
         {
             size_t MessageCount = 0;
             while (MessageCount < MaxMessages && !m_MessagesIn.empty())

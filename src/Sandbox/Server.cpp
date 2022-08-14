@@ -1,4 +1,7 @@
-#include <TGEP.h>
+#include <TGEP/Networking/server.h>
+#include <TGEP/Networking/message.h>
+#include <TGEP/Networking/connection.h>
+#include <TGEP/Networking/tsqueue.h>
 
 enum class MessageType : int32_t 
 {
@@ -23,12 +26,12 @@ protected:
         return true;
     }
 
-    virtual void OnClientDisconnect(std::shared_ptr<TGEP::net::connection<MessageType>> client)
+    virtual bool OnClientDisconnect(std::shared_ptr<TGEP::net::connection<MessageType>> client)
     {
-
+        return true;
     }
 
-    virtual void OnMessage(std::shared_ptr<TGEP::net::connection<MessageType>> client, TGEP::net::mesage<MessageType> &msg)
+    virtual void OnMessage(std::shared_ptr<TGEP::net::connection<MessageType>> client, TGEP::net::message<MessageType> &msg)
     {
 
     }

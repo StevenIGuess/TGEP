@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "OpenGLVertexArray.h"
 
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
 namespace TGEP {
 
