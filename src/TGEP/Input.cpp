@@ -1,5 +1,9 @@
 #include "Input.h"
 #include "Application.h"
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
+//@TODO :: Make glfw independent
 
 namespace TGEP
 {

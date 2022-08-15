@@ -5,39 +5,36 @@ namespace TGEP
 {
     namespace net
     {
-        client_interface::client_interface() : m_Socket(m_Context)
+        template<typename T>
+        client_interface<T>::client_interface() : m_Socket(m_Context)
         {
 
         }
 
-        client_interface::~client_interface()
+        template<typename T>
+        client_interface<T>::~client_interface()
         {
             Disconnect();
         }
 
-        bool client_interface::IsConnected()
+        template<typename T>
+        bool client_interface<T>::IsConnected()
         {
             if(m_Connection)
             { 
-                return m_connection->IsConnected();
+                return m_Connection->IsConnected();
             } else 
             { 
                 return false; 
             }
         }
 
-        bool client_interface::Connect(const std::string &address, const std::string &port)
+        template<typename T>
+        bool client_interface<T>::Connect(const std::string &address, const uint16_t port)
         {
             try
             {
-                m_Connection = std::make_unique<Connection<T>>(); //todo
-
-                assio::ip::tcp::resolver resolver(m_Context);
-                m_Endpoints = resolver.resolve(address, std::to_string(port));
-
-                m_Connection->ConnectToServer(m_Endpoints);
-
-                m_Thread = std::thread([this]() { m_Context.run(); });
+                
             }
             catch (std::exception &e)
             {
@@ -45,17 +42,18 @@ namespace TGEP
             }
         }
 
-        void client_interface::Disconnect()
+        template<typename T>
+        void client_interface<T>::Disconnect()
         {
             if(IsConnected())
             {
-                m_connection->Disconnect();
+                m_Connection->Disconnect();
             }
 
             m_Context.stop();
             if(m_Thread.joinable()) { m_Thread.join(); }
 
-            m_connection.release();
+            m_Connection.release();
         }
     }
 }

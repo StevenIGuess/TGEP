@@ -5,13 +5,15 @@ namespace TGEP
 {
     namespace net
     {
-        connection::connection(owner parent, asio::io_context &asioContext, asio::ip::tcp::socket socket, tsqueue<owned_message<T>> &In)
-            : m_AsioContext(asioContext), m_Socket(socket), m_MessagesIn(In);
+        template<typename T>
+        connection<T>::connection(owner parent, asio::io_context &asioContext, asio::ip::tcp::socket socket, tsqueue<owned_message<T>> &In)
+            : m_AsioContext(asioContext), m_Socket(socket), m_MessagesIn(In)
         {
             m_OwnerType = parent;
         }
 
-        void connection::ConnectToClient(uint32_t uid = 0)
+        template<typename T>
+        void connection<T>::ConnectToClient(uint32_t uid)
         {
             if( m_OwnerType == owner::server )
             {
@@ -22,7 +24,8 @@ namespace TGEP
             }
         }
 
-        bool connection::IsConnected() const
+        template<typename T>
+        bool connection<T>::IsConnected() const
         {
             return m_Socket.is_open();
         }

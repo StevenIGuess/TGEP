@@ -48,13 +48,13 @@ namespace TGEP
             std::deque<std::shared_ptr<connection<T>>> m_Connections;
 
             asio::io_context m_AsioContext;
-            std::thread m_ThreadContext;
+            std::thread m_Thread;
             asio::ip::tcp::acceptor m_AsioAcceptor;
 
             //@TODO :: set this to number of max connections
             uint32_t nIDCounter = 10000;
 
 
-        }
+        };
     }
 }

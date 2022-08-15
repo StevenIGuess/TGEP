@@ -15,7 +15,7 @@ namespace TGEP
             client_interface();
             virtual ~client_interface();
 
-            bool Connect(const std::string &addres, const uint16_t port);
+            bool Connect(const std::string &address, const uint16_t port);
 
             void Disconnect();
 
@@ -33,6 +33,6 @@ namespace TGEP
             std::thread m_Thread;
 
             std::unique_ptr<connection<T>> m_Connection;
-        }
+        };
     }
 }

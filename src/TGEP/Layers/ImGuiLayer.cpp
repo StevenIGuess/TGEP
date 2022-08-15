@@ -7,6 +7,9 @@
 #include "../Application.h"
 #include "../Events/KeyCodes.h"
 
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
 namespace TGEP
 {
 

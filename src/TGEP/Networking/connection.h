@@ -32,18 +32,18 @@ namespace TGEP
             bool Send(const message<T> &msg);
 
         protected:
-            assio::ip::tcp::socket m_Socket;
+            asio::ip::tcp::socket m_Socket;
 
-            assio::io_context &m_Context; //shared between whole asio instance 
+            asio::io_context &m_AsioContext; //shared between whole asio instance 
 
             tsqueue<message<T>> m_MessagesOut;
 
-            tsqueue<owned_message> &m_MessagesIn;
+            tsqueue<owned_message<T>> &m_MessagesIn;
 
             owner m_OwnerType = owner::server;
             uint32_t id = 0;
 
-        }
+        };
 
     }
 }

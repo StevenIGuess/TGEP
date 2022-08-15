@@ -33,8 +33,7 @@ namespace TGEP
 
         uint64_t get_cpu_cycles()  // just because inline asm is cool!
         {
-            uint64_t t;
-            __asm volatile ("rdtsc" : "=A"(t));
+            uint64_t t = __rdtsc();
             return t;
         }
 
