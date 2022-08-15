@@ -20,11 +20,11 @@ project "glad"
 	filter "system:windows"
 		systemversion "latest"
 		staticruntime "On"
+		buildoptions "/MT"
 
 	filter "configurations:Debug"
 		runtime "Debug"
 		symbols "on"
-		buildoptions "/MT"
 
 	filter "configurations:Release"
 		runtime "Release"

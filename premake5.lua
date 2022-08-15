@@ -9,6 +9,13 @@ workspace "TGEP"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+IncludeDir = {}
+IncludeDir["GLFW"] = "TGEP/submodules/glfw/include"
+IncludeDir["glad"] = "TGEP/submodules/glad/include"
+
+include "TGEP/submodules/glfw"
+include "TGEP/submodules/glad"
+
 project "TGEP"
 	location "TGEP"
 	kind "StaticLib"
@@ -25,7 +32,16 @@ project "TGEP"
 
 	includedirs
 	{
-		"TGEP/src"
+		"%{prj.name}/src",
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.glad}"
+	}
+
+	links
+	{
+		"GLFW",
+		"glad",
+		"opengl32.lib"
 	}
 
 	filter{"system:windows"}
