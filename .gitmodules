@@ -7,3 +7,6 @@
 [submodule "TGEP/submodules/glm"]
 	path = TGEP/submodules/glm
 	url = https://github.com/g-truc/glm.git
+[submodule "TGEP/submodules/asio"]
+	path = TGEP/submodules/asio
+	url = https://github.com/StevenIGuess/asio.git
