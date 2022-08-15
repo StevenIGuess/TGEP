@@ -1,52 +1,24 @@
 ﻿cl : command line  warning D9025: overriding '/MTd' with '/MT'
-  Application.cpp
-C:\Dev\TGEP\TGEP\src\pch.h(2,10): fatal  error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
-  Input.cpp
-C:\Dev\TGEP\TGEP\src\pch.h(2,10): fatal  error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
-  Layer.cpp
-C:\Dev\TGEP\TGEP\src\pch.h(2,10): fatal  error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
-  LayerStack.cpp
-C:\Dev\TGEP\TGEP\src\pch.h(2,10): fatal  error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
   ImGuiLayer.cpp
-C:\Dev\TGEP\TGEP\src\pch.h(2,10): fatal  error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
+C:\Dev\TGEP\TGEP\src\Layers\ImGuiLayer.cpp(4,10): fatal  error C1083: Cannot open include file: '../../ImGui/imgui_impl_glfw.h': No such file or directory
   client.cpp
-C:\Dev\TGEP\TGEP\src\pch.h(2,10): fatal  error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
+C:\Dev\TGEP\TGEP\src\Networking\connection.h(5,10): fatal  error C1083: Cannot open include file: 'asio.hpp': No such file or directory
   connection.cpp
-C:\Dev\TGEP\TGEP\src\pch.h(2,10): fatal  error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
+C:\Dev\TGEP\TGEP\src\Networking\connection.h(5,10): fatal  error C1083: Cannot open include file: 'asio.hpp': No such file or directory
   server.cpp
-C:\Dev\TGEP\TGEP\src\pch.h(2,10): fatal  error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
+C:\Dev\TGEP\TGEP\src\Networking\connection.h(5,10): fatal  error C1083: Cannot open include file: 'asio.hpp': No such file or directory
   OpenGLBuffer.cpp
-C:\Dev\TGEP\TGEP\src\pch.h(2,10): fatal  error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
   OpenGLContext.cpp
-C:\Dev\TGEP\TGEP\src\pch.h(2,10): fatal  error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
-  OpenGLRendererAPI.cpp
-C:\Dev\TGEP\TGEP\src\pch.h(2,10): fatal  error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
   OpenGLShader.cpp
-C:\Dev\TGEP\TGEP\src\pch.h(2,10): fatal  error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
   OpenGLTexture.cpp
-C:\Dev\TGEP\TGEP\src\pch.h(2,10): fatal  error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
+C:\Dev\TGEP\TGEP\src\RenderAPI\OpenGL\OpenGLTexture.cpp(5,10): fatal  error C1083: Cannot open include file: 'stb_image/stb_image.h': No such file or directory
   OpenGLVertexArray.cpp
-C:\Dev\TGEP\TGEP\src\pch.h(2,10): fatal  error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
+C:\Dev\TGEP\TGEP\src\RenderAPI\OpenGL\OpenGLVertexArray.cpp(58,105): warning C4312: 'type cast': conversion from 'const uint32_t' to 'const void *' of greater size
   Buffer.cpp
-C:\Dev\TGEP\TGEP\src\pch.h(2,10): fatal  error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
   Camera.cpp
-C:\Dev\TGEP\TGEP\src\pch.h(2,10): fatal  error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
-  RenderCommand.cpp
-C:\Dev\TGEP\TGEP\src\pch.h(2,10): fatal  error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
   Renderer.cpp
-C:\Dev\TGEP\TGEP\src\pch.h(2,10): fatal  error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
   RendererAPI.cpp
-C:\Dev\TGEP\TGEP\src\pch.h(2,10): fatal  error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
   Shader.cpp
-C:\Dev\TGEP\TGEP\src\pch.h(2,10): fatal  error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
-  Generating Code...
-  Compiling...
   Texture.cpp
-C:\Dev\TGEP\TGEP\src\pch.h(2,10): fatal  error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
-  VertexArray.cpp
-C:\Dev\TGEP\TGEP\src\pch.h(2,10): fatal  error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
-  Window.cpp
-C:\Dev\TGEP\TGEP\src\pch.h(2,10): fatal  error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
   OpenGLWindow.cpp
-C:\Dev\TGEP\TGEP\src\pch.h(2,10): fatal  error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
   Generating Code...

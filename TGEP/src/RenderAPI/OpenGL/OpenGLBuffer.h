@@ -1,5 +1,5 @@
 #pragma once 
-#include "TGEP/Renderer/Buffer.h"
+#include "Renderer/Buffer.h"
 
 namespace TGEP
 {

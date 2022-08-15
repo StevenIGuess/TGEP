@@ -7,7 +7,7 @@
 #include "Layers/ImGuiLayer.h"
 #include "Renderer/Shader.h"
 #include "Renderer/VertexArray.h"
-#include "TGEP/Renderer/Buffer.h"
+#include "Renderer/Buffer.h"
 #include "Renderer/Camera.h"
 #include "Layers/OpenGLInfoLayer.h"
 #include "DeltaTime.h"

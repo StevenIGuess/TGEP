@@ -13,6 +13,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "TGEP/submodules/glfw/include"
 IncludeDir["glad"] = "TGEP/submodules/glad/include"
 IncludeDir["ImGui"] = "TGEP/submodules/imgui/"
+IncludeDir["glm"] = "TGEP/submodules/glm/"
 
 include "TGEP/submodules/glfw"
 include "TGEP/submodules/glad"
@@ -37,7 +38,8 @@ project "TGEP"
 		"%{prj.name}/src",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.glad}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links
@@ -84,7 +86,8 @@ project "Sandbox"
 
 	includedirs
 	{
-		"TGEP/src"
+		"TGEP/src",
+		"%{IncludeDir.glm}"
 	}
 
 	links

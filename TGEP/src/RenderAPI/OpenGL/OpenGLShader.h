@@ -1,5 +1,5 @@
 #pragma once
-#include "TGEP/Renderer/Shader.h"
+#include "Renderer/Shader.h"
 #include <string>
 #include <glm/glm.hpp>
 #include <unordered_map>
