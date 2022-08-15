@@ -1,6 +1,8 @@
-#vscode files
-.vscode
-.vs
+#vs files
+.sln
+.vcxproj
+.vcxproj.filters
+.vcxproj.user
 
 # Prerequisites
 *.d
@@ -18,16 +20,9 @@
 # Precompiled Headers
 *.gch
 
-#temporary folders
-ImGui/
-ImPlot/
-Libraries/
-tmplib/
-scripts/mingw64/
+#build folder
+bin
+bin-obj
 
-#sandbox and TGEP
-libTGEP.a
-build/Sandbox/
-sandbox.exe
 
 
