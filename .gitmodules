@@ -1,0 +1,6 @@
+[submodule "TGEP/submodules/imgui"]
+	path = TGEP/submodules/imgui
+	url = https://github.com/StevenIGuess/imgui.git
+[submodule "TGEP/submodules/glfw"]
+	path = TGEP/submodules/glfw
+	url = https://github.com/StevenIGuess/glfw.git

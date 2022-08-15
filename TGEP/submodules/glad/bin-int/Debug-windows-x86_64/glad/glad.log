@@ -1,0 +1,3 @@
+﻿cl : command line  warning D9025: overriding '/MTd' with '/MT'
+  glad.c
+  glad.vcxproj -> C:\Dev\TGEP\TGEP\submodules\glad\bin\Debug-windows-x86_64\glad\glad.lib
