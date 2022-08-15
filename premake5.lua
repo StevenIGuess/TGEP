@@ -12,9 +12,11 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "TGEP/submodules/glfw/include"
 IncludeDir["glad"] = "TGEP/submodules/glad/include"
+IncludeDir["ImGui"] = "TGEP/submodules/imgui/"
 
 include "TGEP/submodules/glfw"
 include "TGEP/submodules/glad"
+include "TGEP/submodules/imgui"
 
 project "TGEP"
 	location "TGEP"
@@ -34,13 +36,15 @@ project "TGEP"
 	{
 		"%{prj.name}/src",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.glad}"
+		"%{IncludeDir.glad}",
+		"%{IncludeDir.ImGui}"
 	}
 
 	links
 	{
 		"GLFW",
 		"glad",
+		"ImGui",
 		"opengl32.lib"
 	}
 
