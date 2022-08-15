@@ -1,10 +1,10 @@
 #pragma once 
 
-#include "../Layer.h"
+#include "Layer.h"
 
-#include "../Events/KeyEvent.h"
-#include "../Events/MouseEvent.h"
-#include "../Events/ApplicationEvent.h"
+#include "Events/KeyEvent.h"
+#include "Events/MouseEvent.h"
+#include "Events/ApplicationEvent.h"
 
 namespace TGEP
 {

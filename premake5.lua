@@ -26,6 +26,8 @@ project "TGEP"
 	location "TGEP"
 	kind "StaticLib"
 	language "C++"
+	cppdialect "C++20"
+	staticruntime "on"
 
 	targetdir("bin/" .. outputdir .. "/%{prj.name}")
 	objdir("bin-obj/" .. outputdir .. "/%{prj.name}")
@@ -51,36 +53,38 @@ project "TGEP"
 
 	links
 	{
-		"GLFW",
+		"glfw3",
 		"glad",
 		"ImGui",
 		"opengl32.lib"
 	}
+	
 
 	filter{"system:windows"}
-		cppdialect "C++latest"
 		staticruntime "On"
 		systemversion "latest"
-		buildoptions "/MT"
 
 		defines
 		{
-			_ENGINE_LOG_MACROS_
+			"_ENGINE_LOG_MACROS_",
+			"_WIN32_WINNT=0x0A00"
 		}
 
 	filter "configurations:Debug"
 		defines "TGEP_DEBUG"
-		symbols "On"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "TGEP_RELEASE"
-		optimize "On"
+		optimize "on"
 
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	cppdialect "C++20"
+	staticruntime "on"
 
 	targetdir("bin/" .. outputdir .. "/%{prj.name}")
 	objdir("bin-obj/" .. outputdir .. "/%{prj.name}")
@@ -94,6 +98,10 @@ project "Sandbox"
 	includedirs
 	{
 		"TGEP/src",
+		"%{IncludeDir.asio}",
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.glad}",
+		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}"
 	}
 
@@ -103,14 +111,12 @@ project "Sandbox"
 	}
 
 	filter{"system:windows"}
-		cppdialect "C++latest"
 		staticruntime "On"
 		systemversion "latest"
-		buildoptions "/MT"
 
 		defines
 		{
-
+			"_WIN32_WINNT=0x0A00"
 		}
 
 	filter "configurations:Debug"

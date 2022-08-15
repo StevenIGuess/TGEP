@@ -2,7 +2,8 @@
 
 #include "../../Renderer/RenderContext.h"
 
-struct GLFWwindow;
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
 namespace TGEP
 {

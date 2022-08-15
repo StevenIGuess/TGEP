@@ -1,25 +1,13 @@
-#include <winsock2.h>
-#include <TGEP.h>
-#include <TGEP/Profiling.h>
 #include <asio.hpp>
 #include <asio/ts/buffer.hpp>
+#include <TGEP.h>
+#include <Profiling.h>
 
 class TestLayer : public TGEP::Layer
 {
 public:
     TestLayer() : TGEP::Layer("TestLayer"), m_Camera(-1.6, 1.6f, -0.9f, 0.9f, -1.0f, 1.0f) 
     {
-        WSADATA wsa;
-	
-        printf("\n%s\n", "Initialising Winsock...");
-        if (WSAStartup(MAKEWORD(2,2),&wsa) != 0)
-        {
-            printf("%s%d\n", "Failed. Winsock Error Code : ",WSAGetLastError());
-        }
-        
-        printf("%s\n", "Initialised Winsock.");
-
-        m_ConParam.sin_family = AF_INET;
 
         #pragma region VA data
         float squareVertices[4 * 5] = {
@@ -67,25 +55,6 @@ public:
         m_DeltaTime = deltaTime;
         TGEP::RenderCommand::SetClearColor(glm::vec4(0.1f, 0.1f, 0.1f, 1.0f));
         TGEP::RenderCommand::Clear();
-
-        if(!m_Connected)
-        {
-            m_ConParam.sin_addr.s_addr = inet_addr(m_ServerAddress);
-            m_ConParam.sin_port = htons(m_ServerPort);
-
-            return;
-        }
-
-        memset(&m_SendBuffer, 0, sizeof(m_SendBuffer));
-        memset(&m_RecvBuffer, 0, sizeof(m_RecvBuffer));
-
-        if(recv(m_Socket, m_RecvBuffer, 512, 0) == SOCKET_ERROR)
-        {
-            LOG_ERROR("%s%d", "ERROR::SOCKET_RECV_FAILED::", WSAGetLastError());
-            return;
-        }
-
-        printf("%s%s%s\n", "Server send :: '", m_RecvBuffer, "'");
 
         /****Render Code****/
         TGEP::Renderer::BeginScene(m_Camera);
@@ -313,40 +282,21 @@ public:
 
     bool ConnectToServer()
     {
-        
-        if((m_Socket = socket(AF_INET , SOCK_STREAM , 0 )) == INVALID_SOCKET)
-        {
-            printf("%s%d\n", "Could not create socket : " , WSAGetLastError());
-        }
-
-        printf("%s\n", "Created Socket.");
-        if(connect(m_Socket, (struct sockaddr*)&m_ConParam, sizeof(m_ConParam)) != SOCKET_ERROR)
-        {
-            return true;
-        }
-        return false;
+        return true;
     }
 
 private:
 
-    //profiling_fun fun = new profiling_fun;
     TGEP::Ref<TGEP::Profiling> m_Profiler = std::make_shared<TGEP::Profiling>();
     uint64_t t0 = 0;
     uint64_t dt = 0;
     int m_NumCpus = m_Profiler->get_num_processors();
     bool advancedProfiling = false;
-    //fun.realse();
-
-    SOCKET m_Socket;
-    sockaddr_in m_ConParam;
 
     char m_ServerAddress[17] = "127.0.0.1";
     int m_ServerPort = 2556;
 
     bool m_Connected = false;
-
-    char m_SendBuffer[512];
-    char m_RecvBuffer[512];
 
     TGEP::ShaderLibary m_ShaderLibary;
     TGEP::Ref<TGEP::VertexArray> m_SquareVertexArray;

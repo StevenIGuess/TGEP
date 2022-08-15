@@ -28,40 +28,40 @@
 #ifndef _TGEP_h_
 #define _TGEP_h_
 
-#include "TGEP/Application.h"
+#include "Application.h"
  // ---ENTRY POINT---
-#include "TGEP/EntryPoint.h"
+#include "EntryPoint.h"
 //Event system 
-#include "TGEP/Events/Event.h"
+#include "Events/Event.h"
 //Layer system
-#include "TGEP/Layer.h"
+#include "Layer.h"
 //Imgui
-#include "TGEP/Layers/ImGuiLayer.h"
+#include "Layers/ImGuiLayer.h"
 //Input
-#include "TGEP/Input.h"
+#include "Input.h"
 //Key/Mouse codes
-#include "TGEP/Events/KeyCodes.h"
-#include "TGEP/Events/MouseCodes.h"
+#include "Events/KeyCodes.h"
+#include "Events/MouseCodes.h"
 //ImGui
-#include "TGEP/../ImGui/imgui.h"
+#include "imgui.h"
 //Renderer system
-#include "TGEP/Renderer/Renderer.h"
-#include "TGEP/Renderer/RenderCommand.h"
+#include "Renderer/Renderer.h"
+#include "Renderer/RenderCommand.h"
 //Buffer system
-#include "TGEP/Renderer/Buffer.h"
-#include "TGEP/Renderer/VertexArray.h"
+#include "Renderer/Buffer.h"
+#include "Renderer/VertexArray.h"
 //Shader system
-#include "TGEP/Renderer/Shader.h"
-#include "TGEP/RenderAPI/OpenGL/OpenGLShader.h"
+#include "Renderer/Shader.h"
+#include "RenderAPI/OpenGL/OpenGLShader.h"
 //Camera system
-#include "TGEP/Renderer/Camera.h"
+#include "Renderer/Camera.h"
 //Time system
-#include "TGEP/DeltaTime.h"
+#include "DeltaTime.h"
 //Textures
-#include "TGEP/Renderer/Texture.h"
+#include "Renderer/Texture.h"
 //Networking
-#include "TGEP/Networking/connection.h"
-#include "TGEP/Networking/client.h"
-#include "TGEP/Networking/server.h"
-#include "TGEP/Networking/message.h"
+#include "Networking/connection.h"
+#include "Networking/client.h"
+#include "Networking/server.h"
+#include "Networking/message.h"
 #endif // _TGEP_h_

@@ -1,7 +1,7 @@
-#include <TGEP/Networking/server.h>
-#include <TGEP/Networking/message.h>
-#include <TGEP/Networking/connection.h>
-#include <TGEP/Networking/tsqueue.h>
+#include <Networking/server.h>
+#include <Networking/message.h>
+#include <Networking/connection.h>
+#include <Networking/tsqueue.h>
 
 enum class MessageType : int32_t 
 {

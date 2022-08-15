@@ -1,0 +1,197 @@
+﻿server.obj : error LNK2005: main already defined in Sandbox.obj
+server.obj : error LNK2019: unresolved external symbol "public: __cdecl TGEP::net::server_interface<enum MessageType>::server_interface<enum MessageType>(unsigned short)" (??0?$server_interface@W4MessageType@@@net@TGEP@@QEAA@G@Z) referenced in function main
+server.obj : error LNK2019: unresolved external symbol "public: virtual __cdecl TGEP::net::server_interface<enum MessageType>::~server_interface<enum MessageType>(void)" (??1?$server_interface@W4MessageType@@@net@TGEP@@UEAA@XZ) referenced in function "public: virtual __cdecl Server::~Server(void)" (??1Server@@UEAA@XZ)
+server.obj : error LNK2019: unresolved external symbol "public: bool __cdecl TGEP::net::server_interface<enum MessageType>::Start(void)" (?Start@?$server_interface@W4MessageType@@@net@TGEP@@QEAA_NXZ) referenced in function main
+server.obj : error LNK2019: unresolved external symbol "public: void __cdecl TGEP::net::server_interface<enum MessageType>::Update(unsigned __int64)" (?Update@?$server_interface@W4MessageType@@@net@TGEP@@QEAAX_K@Z) referenced in function main
+ImGui.lib(imgui.obj) : error LNK2019: unresolved external symbol "bool __cdecl ImGui::BeginTable(char const *,int,int,struct ImVec2 const &,float)" (?BeginTable@ImGui@@YA_NPEBDHHAEBUImVec2@@M@Z) referenced in function "void __cdecl ImGui::DebugNodeDockNode(struct ImGuiDockNode *,char const *)" (?DebugNodeDockNode@ImGui@@YAXPEAUImGuiDockNode@@PEBD@Z)
+ImGui.lib(imgui_demo.obj) : error LNK2001: unresolved external symbol "bool __cdecl ImGui::BeginTable(char const *,int,int,struct ImVec2 const &,float)" (?BeginTable@ImGui@@YA_NPEBDHHAEBUImVec2@@M@Z)
+ImGui.lib(imgui.obj) : error LNK2019: unresolved external symbol "void __cdecl ImGui::EndTable(void)" (?EndTable@ImGui@@YAXXZ) referenced in function "void __cdecl ImGui::DebugNodeDockNode(struct ImGuiDockNode *,char const *)" (?DebugNodeDockNode@ImGui@@YAXPEAUImGuiDockNode@@PEBD@Z)
+ImGui.lib(imgui_demo.obj) : error LNK2001: unresolved external symbol "void __cdecl ImGui::EndTable(void)" (?EndTable@ImGui@@YAXXZ)
+ImGui.lib(imgui.obj) : error LNK2019: unresolved external symbol "bool __cdecl ImGui::TableNextColumn(void)" (?TableNextColumn@ImGui@@YA_NXZ) referenced in function "void __cdecl ImGui::DebugNodeDockNode(struct ImGuiDockNode *,char const *)" (?DebugNodeDockNode@ImGui@@YAXPEAUImGuiDockNode@@PEBD@Z)
+ImGui.lib(imgui_demo.obj) : error LNK2001: unresolved external symbol "bool __cdecl ImGui::TableNextColumn(void)" (?TableNextColumn@ImGui@@YA_NXZ)
+ImGui.lib(imgui.obj) : error LNK2019: unresolved external symbol "void __cdecl ImGui::TableSetupColumn(char const *,int,float,unsigned int)" (?TableSetupColumn@ImGui@@YAXPEBDHMI@Z) referenced in function "void __cdecl ImGui::DebugTextEncoding(char const *)" (?DebugTextEncoding@ImGui@@YAXPEBD@Z)
+ImGui.lib(imgui_demo.obj) : error LNK2001: unresolved external symbol "void __cdecl ImGui::TableSetupColumn(char const *,int,float,unsigned int)" (?TableSetupColumn@ImGui@@YAXPEBDHMI@Z)
+ImGui.lib(imgui.obj) : error LNK2019: unresolved external symbol "void __cdecl ImGui::TableHeadersRow(void)" (?TableHeadersRow@ImGui@@YAXXZ) referenced in function "void __cdecl ImGui::DebugTextEncoding(char const *)" (?DebugTextEncoding@ImGui@@YAXPEBD@Z)
+ImGui.lib(imgui_demo.obj) : error LNK2001: unresolved external symbol "void __cdecl ImGui::TableHeadersRow(void)" (?TableHeadersRow@ImGui@@YAXXZ)
+ImGui.lib(imgui.obj) : error LNK2019: unresolved external symbol "void __cdecl ImGui::TableSetBgColor(int,unsigned int,int)" (?TableSetBgColor@ImGui@@YAXHIH@Z) referenced in function "void __cdecl ImGui::ShowStackToolWindow(bool *)" (?ShowStackToolWindow@ImGui@@YAXPEA_N@Z)
+ImGui.lib(imgui_demo.obj) : error LNK2001: unresolved external symbol "void __cdecl ImGui::TableSetBgColor(int,unsigned int,int)" (?TableSetBgColor@ImGui@@YAXHIH@Z)
+ImGui.lib(imgui.obj) : error LNK2019: unresolved external symbol "void __cdecl ImGui::EndColumns(void)" (?EndColumns@ImGui@@YAXXZ) referenced in function "void __cdecl ImGui::End(void)" (?End@ImGui@@YAXXZ)
+ImGui.lib(imgui.obj) : error LNK2019: unresolved external symbol "float __cdecl ImGui::GetColumnOffsetFromNorm(struct ImGuiOldColumns const *,float)" (?GetColumnOffsetFromNorm@ImGui@@YAMPEBUImGuiOldColumns@@M@Z) referenced in function "void __cdecl ImGui::DebugNodeColumns(struct ImGuiOldColumns *)" (?DebugNodeColumns@ImGui@@YAXPEAUImGuiOldColumns@@@Z)
+ImGui.lib(imgui.obj) : error LNK2019: unresolved external symbol "void __cdecl ImGui::TableEndRow(struct ImGuiTable *)" (?TableEndRow@ImGui@@YAXPEAUImGuiTable@@@Z) referenced in function "public: void __cdecl ImGuiListClipper::Begin(int,float)" (?Begin@ImGuiListClipper@@QEAAXHM@Z)
+ImGui.lib(imgui.obj) : error LNK2019: unresolved external symbol "void __cdecl ImGui::TableGcCompactTransientBuffers(struct ImGuiTable *)" (?TableGcCompactTransientBuffers@ImGui@@YAXPEAUImGuiTable@@@Z) referenced in function "void __cdecl ImGui::NewFrame(void)" (?NewFrame@ImGui@@YAXXZ)
+ImGui.lib(imgui.obj) : error LNK2019: unresolved external symbol "void __cdecl ImGui::TableGcCompactTransientBuffers(struct ImGuiTableTempData *)" (?TableGcCompactTransientBuffers@ImGui@@YAXPEAUImGuiTableTempData@@@Z) referenced in function "void __cdecl ImGui::NewFrame(void)" (?NewFrame@ImGui@@YAXXZ)
+ImGui.lib(imgui.obj) : error LNK2019: unresolved external symbol "void __cdecl ImGui::TableGcCompactSettings(void)" (?TableGcCompactSettings@ImGui@@YAXXZ) referenced in function "void __cdecl ImGui::GcCompactTransientMiscBuffers(void)" (?GcCompactTransientMiscBuffers@ImGui@@YAXXZ)
+ImGui.lib(imgui.obj) : error LNK2019: unresolved external symbol "void __cdecl ImGui::TableSettingsAddSettingsHandler(void)" (?TableSettingsAddSettingsHandler@ImGui@@YAXXZ) referenced in function "void __cdecl ImGui::Initialize(void)" (?Initialize@ImGui@@YAXXZ)
+ImGui.lib(imgui.obj) : error LNK2019: unresolved external symbol "void __cdecl ImGui::DebugNodeTable(struct ImGuiTable *)" (?DebugNodeTable@ImGui@@YAXPEAUImGuiTable@@@Z) referenced in function "void __cdecl ImGui::ShowMetricsWindow(bool *)" (?ShowMetricsWindow@ImGui@@YAXPEA_N@Z)
+ImGui.lib(imgui.obj) : error LNK2019: unresolved external symbol "void __cdecl ImGui::DebugNodeTableSettings(struct ImGuiTableSettings *)" (?DebugNodeTableSettings@ImGui@@YAXPEAUImGuiTableSettings@@@Z) referenced in function "void __cdecl ImGui::ShowMetricsWindow(bool *)" (?ShowMetricsWindow@ImGui@@YAXPEA_N@Z)
+ImGui.lib(imgui_widgets.obj) : error LNK2019: unresolved external symbol "void __cdecl ImGui::PushColumnsBackground(void)" (?PushColumnsBackground@ImGui@@YAXXZ) referenced in function "bool __cdecl ImGui::Selectable(char const *,bool,int,struct ImVec2 const &)" (?Selectable@ImGui@@YA_NPEBD_NHAEBUImVec2@@@Z)
+ImGui.lib(imgui_widgets.obj) : error LNK2019: unresolved external symbol "void __cdecl ImGui::PopColumnsBackground(void)" (?PopColumnsBackground@ImGui@@YAXXZ) referenced in function "bool __cdecl ImGui::Selectable(char const *,bool,int,struct ImVec2 const &)" (?Selectable@ImGui@@YA_NPEBD_NHAEBUImVec2@@@Z)
+ImGui.lib(imgui_widgets.obj) : error LNK2019: unresolved external symbol "void __cdecl ImGui::TablePushBackgroundChannel(void)" (?TablePushBackgroundChannel@ImGui@@YAXXZ) referenced in function "bool __cdecl ImGui::Selectable(char const *,bool,int,struct ImVec2 const &)" (?Selectable@ImGui@@YA_NPEBD_NHAEBUImVec2@@@Z)
+ImGui.lib(imgui_widgets.obj) : error LNK2019: unresolved external symbol "void __cdecl ImGui::TablePopBackgroundChannel(void)" (?TablePopBackgroundChannel@ImGui@@YAXXZ) referenced in function "bool __cdecl ImGui::Selectable(char const *,bool,int,struct ImVec2 const &)" (?Selectable@ImGui@@YA_NPEBD_NHAEBUImVec2@@@Z)
+TGEP.lib(Application.obj) : error LNK2019: unresolved external symbol glfwGetTime referenced in function "public: void __cdecl TGEP::Application::Run(void)" (?Run@Application@TGEP@@QEAAXXZ)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2001: unresolved external symbol glfwGetTime
+TGEP.lib(ImGuiLayer.obj) : error LNK2019: unresolved external symbol glfwMakeContextCurrent referenced in function "public: void __cdecl TGEP::ImGuiLayer::End(void)" (?End@ImGuiLayer@TGEP@@QEAAXXZ)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2001: unresolved external symbol glfwMakeContextCurrent
+TGEP.lib(OpenGLContext.obj) : error LNK2001: unresolved external symbol glfwMakeContextCurrent
+TGEP.lib(ImGuiLayer.obj) : error LNK2019: unresolved external symbol glfwGetCurrentContext referenced in function "public: void __cdecl TGEP::ImGuiLayer::End(void)" (?End@ImGuiLayer@TGEP@@QEAAXXZ)
+TGEP.lib(ImGuiLayer.obj) : error LNK2019: unresolved external symbol "bool __cdecl ImGui_ImplOpenGL3_Init(char const *)" (?ImGui_ImplOpenGL3_Init@@YA_NPEBD@Z) referenced in function "public: virtual void __cdecl TGEP::ImGuiLayer::OnAttach(void)" (?OnAttach@ImGuiLayer@TGEP@@UEAAXXZ)
+TGEP.lib(ImGuiLayer.obj) : error LNK2019: unresolved external symbol "void __cdecl ImGui_ImplOpenGL3_Shutdown(void)" (?ImGui_ImplOpenGL3_Shutdown@@YAXXZ) referenced in function "public: virtual void __cdecl TGEP::ImGuiLayer::OnDetach(void)" (?OnDetach@ImGuiLayer@TGEP@@UEAAXXZ)
+TGEP.lib(ImGuiLayer.obj) : error LNK2019: unresolved external symbol "void __cdecl ImGui_ImplOpenGL3_NewFrame(void)" (?ImGui_ImplOpenGL3_NewFrame@@YAXXZ) referenced in function "public: void __cdecl TGEP::ImGuiLayer::Begin(void)" (?Begin@ImGuiLayer@TGEP@@QEAAXXZ)
+TGEP.lib(ImGuiLayer.obj) : error LNK2019: unresolved external symbol "void __cdecl ImGui_ImplOpenGL3_RenderDrawData(struct ImDrawData *)" (?ImGui_ImplOpenGL3_RenderDrawData@@YAXPEAUImDrawData@@@Z) referenced in function "public: void __cdecl TGEP::ImGuiLayer::End(void)" (?End@ImGuiLayer@TGEP@@QEAAXXZ)
+TGEP.lib(OpenGLWindow.obj) : error LNK2019: unresolved external symbol glfwInit referenced in function "private: void __cdecl TGEP::OpenGLWindow::Init(struct TGEP::WindowProperties const &)" (?Init@OpenGLWindow@TGEP@@AEAAXAEBUWindowProperties@2@@Z)
+TGEP.lib(OpenGLWindow.obj) : error LNK2019: unresolved external symbol glfwSetErrorCallback referenced in function "private: void __cdecl TGEP::OpenGLWindow::Init(struct TGEP::WindowProperties const &)" (?Init@OpenGLWindow@TGEP@@AEAAXAEBUWindowProperties@2@@Z)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2001: unresolved external symbol glfwSetErrorCallback
+TGEP.lib(OpenGLWindow.obj) : error LNK2019: unresolved external symbol glfwCreateWindow referenced in function "private: void __cdecl TGEP::OpenGLWindow::Init(struct TGEP::WindowProperties const &)" (?Init@OpenGLWindow@TGEP@@AEAAXAEBUWindowProperties@2@@Z)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2001: unresolved external symbol glfwCreateWindow
+TGEP.lib(OpenGLWindow.obj) : error LNK2019: unresolved external symbol glfwDestroyWindow referenced in function "public: virtual __cdecl TGEP::OpenGLWindow::~OpenGLWindow(void)" (??1OpenGLWindow@TGEP@@UEAA@XZ)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2001: unresolved external symbol glfwDestroyWindow
+TGEP.lib(OpenGLWindow.obj) : error LNK2019: unresolved external symbol glfwSetWindowUserPointer referenced in function "private: void __cdecl TGEP::OpenGLWindow::Init(struct TGEP::WindowProperties const &)" (?Init@OpenGLWindow@TGEP@@AEAAXAEBUWindowProperties@2@@Z)
+TGEP.lib(OpenGLWindow.obj) : error LNK2019: unresolved external symbol glfwGetWindowUserPointer referenced in function "public: static __cdecl `private: void __cdecl TGEP::OpenGLWindow::Init(struct TGEP::WindowProperties const &)'::`2'::<lambda_1>::<lambda_invoker_cdecl>(struct GLFWwindow *,int,int)" (?<lambda_invoker_cdecl>@<lambda_1>@?1??Init@OpenGLWindow@TGEP@@AEAAXAEBUWindowProperties@4@@Z@SA@PEAUGLFWwindow@@HH@Z)
+TGEP.lib(OpenGLWindow.obj) : error LNK2019: unresolved external symbol glfwSetWindowSizeCallback referenced in function "private: void __cdecl TGEP::OpenGLWindow::Init(struct TGEP::WindowProperties const &)" (?Init@OpenGLWindow@TGEP@@AEAAXAEBUWindowProperties@2@@Z)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2001: unresolved external symbol glfwSetWindowSizeCallback
+TGEP.lib(OpenGLWindow.obj) : error LNK2019: unresolved external symbol glfwSetWindowCloseCallback referenced in function "private: void __cdecl TGEP::OpenGLWindow::Init(struct TGEP::WindowProperties const &)" (?Init@OpenGLWindow@TGEP@@AEAAXAEBUWindowProperties@2@@Z)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2001: unresolved external symbol glfwSetWindowCloseCallback
+TGEP.lib(OpenGLWindow.obj) : error LNK2019: unresolved external symbol glfwPollEvents referenced in function "public: virtual void __cdecl TGEP::OpenGLWindow::OnUpdate(void)" (?OnUpdate@OpenGLWindow@TGEP@@UEAAXXZ)
+TGEP.lib(OpenGLWindow.obj) : error LNK2019: unresolved external symbol glfwSetKeyCallback referenced in function "private: void __cdecl TGEP::OpenGLWindow::Init(struct TGEP::WindowProperties const &)" (?Init@OpenGLWindow@TGEP@@AEAAXAEBUWindowProperties@2@@Z)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2001: unresolved external symbol glfwSetKeyCallback
+TGEP.lib(OpenGLWindow.obj) : error LNK2019: unresolved external symbol glfwSetCharCallback referenced in function "private: void __cdecl TGEP::OpenGLWindow::Init(struct TGEP::WindowProperties const &)" (?Init@OpenGLWindow@TGEP@@AEAAXAEBUWindowProperties@2@@Z)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2001: unresolved external symbol glfwSetCharCallback
+TGEP.lib(OpenGLWindow.obj) : error LNK2019: unresolved external symbol glfwSetMouseButtonCallback referenced in function "private: void __cdecl TGEP::OpenGLWindow::Init(struct TGEP::WindowProperties const &)" (?Init@OpenGLWindow@TGEP@@AEAAXAEBUWindowProperties@2@@Z)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2001: unresolved external symbol glfwSetMouseButtonCallback
+TGEP.lib(OpenGLWindow.obj) : error LNK2019: unresolved external symbol glfwSetCursorPosCallback referenced in function "private: void __cdecl TGEP::OpenGLWindow::Init(struct TGEP::WindowProperties const &)" (?Init@OpenGLWindow@TGEP@@AEAAXAEBUWindowProperties@2@@Z)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2001: unresolved external symbol glfwSetCursorPosCallback
+TGEP.lib(OpenGLWindow.obj) : error LNK2019: unresolved external symbol glfwSetScrollCallback referenced in function "private: void __cdecl TGEP::OpenGLWindow::Init(struct TGEP::WindowProperties const &)" (?Init@OpenGLWindow@TGEP@@AEAAXAEBUWindowProperties@2@@Z)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2001: unresolved external symbol glfwSetScrollCallback
+TGEP.lib(OpenGLWindow.obj) : error LNK2019: unresolved external symbol glfwSwapInterval referenced in function "public: virtual void __cdecl TGEP::OpenGLWindow::SetVSync(bool)" (?SetVSync@OpenGLWindow@TGEP@@UEAAX_N@Z)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2001: unresolved external symbol glfwSwapInterval
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwGetMonitors referenced in function "void __cdecl ImGui_ImplGlfw_UpdateMonitors(void)" (?ImGui_ImplGlfw_UpdateMonitors@@YAXXZ)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwGetMonitorPos referenced in function "void __cdecl ImGui_ImplGlfw_UpdateMonitors(void)" (?ImGui_ImplGlfw_UpdateMonitors@@YAXXZ)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwGetMonitorWorkarea referenced in function "void __cdecl ImGui_ImplGlfw_UpdateMonitors(void)" (?ImGui_ImplGlfw_UpdateMonitors@@YAXXZ)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwGetMonitorContentScale referenced in function "void __cdecl ImGui_ImplGlfw_UpdateMonitors(void)" (?ImGui_ImplGlfw_UpdateMonitors@@YAXXZ)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwSetMonitorCallback referenced in function "bool __cdecl ImGui_ImplGlfw_Init(struct GLFWwindow *,bool,enum GlfwClientApi)" (?ImGui_ImplGlfw_Init@@YA_NPEAUGLFWwindow@@_NW4GlfwClientApi@@@Z)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwGetVideoMode referenced in function "void __cdecl ImGui_ImplGlfw_UpdateMonitors(void)" (?ImGui_ImplGlfw_UpdateMonitors@@YAXXZ)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwWindowHint referenced in function "void __cdecl ImGui_ImplGlfw_CreateWindow(struct ImGuiViewport *)" (?ImGui_ImplGlfw_CreateWindow@@YAXPEAUImGuiViewport@@@Z)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwSetWindowTitle referenced in function "void __cdecl ImGui_ImplGlfw_SetWindowTitle(struct ImGuiViewport *,char const *)" (?ImGui_ImplGlfw_SetWindowTitle@@YAXPEAUImGuiViewport@@PEBD@Z)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwGetWindowPos referenced in function "void __cdecl ImGui_ImplGlfw_CursorPosCallback(struct GLFWwindow *,double,double)" (?ImGui_ImplGlfw_CursorPosCallback@@YAXPEAUGLFWwindow@@NN@Z)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwSetWindowPos referenced in function "void __cdecl ImGui_ImplGlfw_CreateWindow(struct ImGuiViewport *)" (?ImGui_ImplGlfw_CreateWindow@@YAXPEAUImGuiViewport@@@Z)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwGetWindowSize referenced in function "struct ImVec2 __cdecl ImGui_ImplGlfw_GetWindowSize(struct ImGuiViewport *)" (?ImGui_ImplGlfw_GetWindowSize@@YA?AUImVec2@@PEAUImGuiViewport@@@Z)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwSetWindowSize referenced in function "void __cdecl ImGui_ImplGlfw_SetWindowSize(struct ImGuiViewport *,struct ImVec2)" (?ImGui_ImplGlfw_SetWindowSize@@YAXPEAUImGuiViewport@@UImVec2@@@Z)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwGetFramebufferSize referenced in function "void __cdecl ImGui_ImplGlfw_NewFrame(void)" (?ImGui_ImplGlfw_NewFrame@@YAXXZ)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwSetWindowOpacity referenced in function "void __cdecl ImGui_ImplGlfw_SetWindowAlpha(struct ImGuiViewport *,float)" (?ImGui_ImplGlfw_SetWindowAlpha@@YAXPEAUImGuiViewport@@M@Z)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwShowWindow referenced in function "void __cdecl ImGui_ImplGlfw_ShowWindow(struct ImGuiViewport *)" (?ImGui_ImplGlfw_ShowWindow@@YAXPEAUImGuiViewport@@@Z)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwFocusWindow referenced in function "void __cdecl ImGui_ImplGlfw_SetWindowFocus(struct ImGuiViewport *)" (?ImGui_ImplGlfw_SetWindowFocus@@YAXPEAUImGuiViewport@@@Z)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwGetWindowAttrib referenced in function "bool __cdecl ImGui_ImplGlfw_GetWindowFocus(struct ImGuiViewport *)" (?ImGui_ImplGlfw_GetWindowFocus@@YA_NPEAUImGuiViewport@@@Z)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwSetWindowAttrib referenced in function "void __cdecl ImGui_ImplGlfw_UpdateMouseData(void)" (?ImGui_ImplGlfw_UpdateMouseData@@YAXXZ)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwSetWindowPosCallback referenced in function "void __cdecl ImGui_ImplGlfw_CreateWindow(struct ImGuiViewport *)" (?ImGui_ImplGlfw_CreateWindow@@YAXPEAUImGuiViewport@@@Z)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwSetWindowFocusCallback referenced in function "void __cdecl ImGui_ImplGlfw_CreateWindow(struct ImGuiViewport *)" (?ImGui_ImplGlfw_CreateWindow@@YAXPEAUImGuiViewport@@@Z)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwGetInputMode referenced in function "void __cdecl ImGui_ImplGlfw_NewFrame(void)" (?ImGui_ImplGlfw_NewFrame@@YAXXZ)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwSetInputMode referenced in function "void __cdecl ImGui_ImplGlfw_NewFrame(void)" (?ImGui_ImplGlfw_NewFrame@@YAXXZ)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwGetKeyName referenced in function "void __cdecl ImGui_ImplGlfw_KeyCallback(struct GLFWwindow *,int,int,int,int)" (?ImGui_ImplGlfw_KeyCallback@@YAXPEAUGLFWwindow@@HHHH@Z)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwGetCursorPos referenced in function "void __cdecl ImGui_ImplGlfw_UpdateMouseData(void)" (?ImGui_ImplGlfw_UpdateMouseData@@YAXXZ)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwSetCursorPos referenced in function "void __cdecl ImGui_ImplGlfw_UpdateMouseData(void)" (?ImGui_ImplGlfw_UpdateMouseData@@YAXXZ)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwCreateStandardCursor referenced in function "bool __cdecl ImGui_ImplGlfw_Init(struct GLFWwindow *,bool,enum GlfwClientApi)" (?ImGui_ImplGlfw_Init@@YA_NPEAUGLFWwindow@@_NW4GlfwClientApi@@@Z)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwDestroyCursor referenced in function "void __cdecl ImGui_ImplGlfw_Shutdown(void)" (?ImGui_ImplGlfw_Shutdown@@YAXXZ)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwSetCursor referenced in function "void __cdecl ImGui_ImplGlfw_NewFrame(void)" (?ImGui_ImplGlfw_NewFrame@@YAXXZ)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwSetCursorEnterCallback referenced in function "void __cdecl ImGui_ImplGlfw_CreateWindow(struct ImGuiViewport *)" (?ImGui_ImplGlfw_CreateWindow@@YAXPEAUImGuiViewport@@@Z)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwGetGamepadState referenced in function "void __cdecl ImGui_ImplGlfw_UpdateGamepads(void)" (?ImGui_ImplGlfw_UpdateGamepads@@YAXXZ)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwSetClipboardString referenced in function "void __cdecl ImGui_ImplGlfw_SetClipboardText(void *,char const *)" (?ImGui_ImplGlfw_SetClipboardText@@YAXPEAXPEBD@Z)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwGetClipboardString referenced in function "char const * __cdecl ImGui_ImplGlfw_GetClipboardText(void *)" (?ImGui_ImplGlfw_GetClipboardText@@YAPEBDPEAX@Z)
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwSwapBuffers referenced in function "void __cdecl ImGui_ImplGlfw_SwapBuffers(struct ImGuiViewport *,void *)" (?ImGui_ImplGlfw_SwapBuffers@@YAXPEAUImGuiViewport@@PEAX@Z)
+TGEP.lib(OpenGLContext.obj) : error LNK2001: unresolved external symbol glfwSwapBuffers
+TGEP.lib(ImGuiBuildcpp.obj) : error LNK2019: unresolved external symbol glfwCreateWindowSurface referenced in function "int __cdecl ImGui_ImplGlfw_CreateVkSurface(struct ImGuiViewport *,unsigned __int64,void const *,unsigned __int64 *)" (?ImGui_ImplGlfw_CreateVkSurface@@YAHPEAUImGuiViewport@@_KPEBXPEA_K@Z)
+TGEP.lib(OpenGLContext.obj) : error LNK2019: unresolved external symbol glfwGetProcAddress referenced in function "public: virtual void __cdecl TGEP::OpenGLContext::Init(void)" (?Init@OpenGLContext@TGEP@@UEAAXXZ)
+glfw3.lib(win32_window.obj) : error LNK2019: unresolved external symbol _glfwInputWindowFocus referenced in function windowProc
+glfw3.lib(win32_window.obj) : error LNK2019: unresolved external symbol _glfwInputWindowPos referenced in function windowProc
+glfw3.lib(win32_window.obj) : error LNK2019: unresolved external symbol _glfwInputWindowSize referenced in function windowProc
+glfw3.lib(win32_window.obj) : error LNK2019: unresolved external symbol _glfwInputFramebufferSize referenced in function windowProc
+glfw3.lib(win32_window.obj) : error LNK2019: unresolved external symbol _glfwInputWindowContentScale referenced in function windowProc
+glfw3.lib(win32_window.obj) : error LNK2019: unresolved external symbol _glfwInputWindowIconify referenced in function windowProc
+glfw3.lib(win32_window.obj) : error LNK2019: unresolved external symbol _glfwInputWindowMaximize referenced in function windowProc
+glfw3.lib(win32_window.obj) : error LNK2019: unresolved external symbol _glfwInputWindowDamage referenced in function windowProc
+glfw3.lib(win32_window.obj) : error LNK2019: unresolved external symbol _glfwInputWindowCloseRequest referenced in function _glfwPollEventsWin32
+glfw3.lib(win32_window.obj) : error LNK2019: unresolved external symbol _glfwInputWindowMonitor referenced in function _glfwSetWindowMonitorWin32
+glfw3.lib(win32_window.obj) : error LNK2019: unresolved external symbol _glfwInputKey referenced in function _glfwPollEventsWin32
+glfw3.lib(win32_window.obj) : error LNK2019: unresolved external symbol _glfwInputChar referenced in function windowProc
+glfw3.lib(win32_window.obj) : error LNK2019: unresolved external symbol _glfwInputScroll referenced in function windowProc
+glfw3.lib(win32_window.obj) : error LNK2019: unresolved external symbol _glfwInputMouseClick referenced in function windowProc
+glfw3.lib(win32_window.obj) : error LNK2019: unresolved external symbol _glfwInputCursorPos referenced in function windowProc
+glfw3.lib(win32_window.obj) : error LNK2019: unresolved external symbol _glfwInputCursorEnter referenced in function windowProc
+glfw3.lib(win32_window.obj) : error LNK2019: unresolved external symbol _glfwInputDrop referenced in function windowProc
+glfw3.lib(win32_window.obj) : error LNK2019: unresolved external symbol _glfwInputMonitorWindow referenced in function acquireMonitor
+glfw3.lib(egl_context.obj) : error LNK2001: unresolved external symbol _glfwInputError
+glfw3.lib(osmesa_context.obj) : error LNK2001: unresolved external symbol _glfwInputError
+glfw3.lib(win32_joystick.obj) : error LNK2001: unresolved external symbol _glfwInputError
+glfw3.lib(win32_thread.obj) : error LNK2001: unresolved external symbol _glfwInputError
+glfw3.lib(win32_window.obj) : error LNK2001: unresolved external symbol _glfwInputError
+glfw3.lib(win32_init.obj) : error LNK2001: unresolved external symbol _glfwInputError
+glfw3.lib(win32_monitor.obj) : error LNK2001: unresolved external symbol _glfwInputError
+glfw3.lib(wgl_context.obj) : error LNK2001: unresolved external symbol _glfwInputError
+glfw3.lib(win32_window.obj) : error LNK2019: unresolved external symbol _glfwRefreshContextAttribs referenced in function _glfwCreateWindowWin32
+glfw3.lib(win32_window.obj) : error LNK2019: unresolved external symbol _glfwCenterCursorInContentArea referenced in function _glfwCreateWindowWin32
+glfw3.lib(win32_window.obj) : error LNK2019: unresolved external symbol _glfwGetVulkanResultString referenced in function _glfwCreateWindowSurfaceWin32
+glfw3.lib(win32_window.obj) : error LNK2019: unresolved external symbol _glfw_min referenced in function _glfwMaximizeWindowWin32
+glfw3.lib(egl_context.obj) : error LNK2001: unresolved external symbol _glfw_calloc
+glfw3.lib(osmesa_context.obj) : error LNK2001: unresolved external symbol _glfw_calloc
+glfw3.lib(win32_joystick.obj) : error LNK2001: unresolved external symbol _glfw_calloc
+glfw3.lib(win32_window.obj) : error LNK2001: unresolved external symbol _glfw_calloc
+glfw3.lib(win32_init.obj) : error LNK2001: unresolved external symbol _glfw_calloc
+glfw3.lib(win32_monitor.obj) : error LNK2001: unresolved external symbol _glfw_calloc
+glfw3.lib(wgl_context.obj) : error LNK2001: unresolved external symbol _glfw_calloc
+glfw3.lib(egl_context.obj) : error LNK2001: unresolved external symbol _glfw_free
+glfw3.lib(osmesa_context.obj) : error LNK2001: unresolved external symbol _glfw_free
+glfw3.lib(win32_joystick.obj) : error LNK2001: unresolved external symbol _glfw_free
+glfw3.lib(win32_window.obj) : error LNK2001: unresolved external symbol _glfw_free
+glfw3.lib(win32_init.obj) : error LNK2001: unresolved external symbol _glfw_free
+glfw3.lib(win32_monitor.obj) : error LNK2001: unresolved external symbol _glfw_free
+glfw3.lib(wgl_context.obj) : error LNK2001: unresolved external symbol _glfw_free
+glfw3.lib(egl_context.obj) : error LNK2001: unresolved external symbol _glfw
+glfw3.lib(osmesa_context.obj) : error LNK2001: unresolved external symbol _glfw
+glfw3.lib(win32_joystick.obj) : error LNK2001: unresolved external symbol _glfw
+glfw3.lib(win32_window.obj) : error LNK2001: unresolved external symbol _glfw
+glfw3.lib(win32_init.obj) : error LNK2001: unresolved external symbol _glfw
+glfw3.lib(win32_monitor.obj) : error LNK2001: unresolved external symbol _glfw
+glfw3.lib(wgl_context.obj) : error LNK2001: unresolved external symbol _glfw
+glfw3.lib(win32_init.obj) : error LNK2019: unresolved external symbol _glfwPlatformLoadModule referenced in function loadLibraries
+glfw3.lib(wgl_context.obj) : error LNK2001: unresolved external symbol _glfwPlatformLoadModule
+glfw3.lib(egl_context.obj) : error LNK2001: unresolved external symbol _glfwPlatformLoadModule
+glfw3.lib(osmesa_context.obj) : error LNK2001: unresolved external symbol _glfwPlatformLoadModule
+glfw3.lib(win32_init.obj) : error LNK2019: unresolved external symbol _glfwPlatformFreeModule referenced in function _glfwTerminateWin32
+glfw3.lib(wgl_context.obj) : error LNK2001: unresolved external symbol _glfwPlatformFreeModule
+glfw3.lib(egl_context.obj) : error LNK2001: unresolved external symbol _glfwPlatformFreeModule
+glfw3.lib(osmesa_context.obj) : error LNK2001: unresolved external symbol _glfwPlatformFreeModule
+glfw3.lib(win32_init.obj) : error LNK2019: unresolved external symbol _glfwPlatformGetModuleSymbol referenced in function loadLibraries
+glfw3.lib(wgl_context.obj) : error LNK2001: unresolved external symbol _glfwPlatformGetModuleSymbol
+glfw3.lib(egl_context.obj) : error LNK2001: unresolved external symbol _glfwPlatformGetModuleSymbol
+glfw3.lib(osmesa_context.obj) : error LNK2001: unresolved external symbol _glfwPlatformGetModuleSymbol
+glfw3.lib(win32_monitor.obj) : error LNK2019: unresolved external symbol _glfwInputMonitor referenced in function _glfwPollMonitorsWin32
+glfw3.lib(win32_monitor.obj) : error LNK2019: unresolved external symbol _glfwChooseVideoMode referenced in function _glfwSetVideoModeWin32
+glfw3.lib(win32_monitor.obj) : error LNK2019: unresolved external symbol _glfwCompareVideoModes referenced in function _glfwGetVideoModesWin32
+glfw3.lib(win32_monitor.obj) : error LNK2019: unresolved external symbol _glfwAllocMonitor referenced in function createMonitor
+glfw3.lib(win32_monitor.obj) : error LNK2019: unresolved external symbol _glfwAllocGammaArrays referenced in function _glfwGetGammaRampWin32
+glfw3.lib(win32_monitor.obj) : error LNK2019: unresolved external symbol _glfwSplitBPP referenced in function _glfwGetVideoModeWin32
+glfw3.lib(win32_monitor.obj) : error LNK2019: unresolved external symbol _glfw_realloc referenced in function _glfwGetVideoModesWin32
+glfw3.lib(wgl_context.obj) : error LNK2019: unresolved external symbol _glfwStringInExtensionString referenced in function extensionSupportedWGL
+glfw3.lib(egl_context.obj) : error LNK2001: unresolved external symbol _glfwStringInExtensionString
+glfw3.lib(wgl_context.obj) : error LNK2019: unresolved external symbol _glfwChooseFBConfig referenced in function choosePixelFormatWGL
+glfw3.lib(egl_context.obj) : error LNK2001: unresolved external symbol _glfwChooseFBConfig
+glfw3.lib(win32_joystick.obj) : error LNK2019: unresolved external symbol _glfwInputJoystick referenced in function _glfwDetectJoystickConnectionWin32
+glfw3.lib(win32_joystick.obj) : error LNK2019: unresolved external symbol _glfwInputJoystickAxis referenced in function _glfwPollJoystickWin32
+glfw3.lib(win32_joystick.obj) : error LNK2019: unresolved external symbol _glfwInputJoystickButton referenced in function _glfwPollJoystickWin32
+glfw3.lib(win32_joystick.obj) : error LNK2019: unresolved external symbol _glfwInputJoystickHat referenced in function _glfwPollJoystickWin32
+glfw3.lib(win32_joystick.obj) : error LNK2019: unresolved external symbol _glfwAllocJoystick referenced in function _glfwDetectJoystickConnectionWin32
+glfw3.lib(win32_joystick.obj) : error LNK2019: unresolved external symbol _glfwFreeJoystick referenced in function _glfwTerminateJoysticksWin32
+ImGui.lib(imgui_demo.obj) : error LNK2019: unresolved external symbol "void __cdecl ImGui::TableNextRow(int,float)" (?TableNextRow@ImGui@@YAXHM@Z) referenced in function "public: static void __cdecl `void __cdecl ShowDemoWindowTables(void)'::`398'::MyTreeNode::DisplayNode(struct `void __cdecl ShowDemoWindowTables(void)'::`398'::MyTreeNode const *,struct `void __cdecl ShowDemoWindowTables(void)'::`398'::MyTreeNode const *)" (?DisplayNode@MyTreeNode@?BIO@??ShowDemoWindowTables@@YAXXZ@SAXPEBU1?BIO@??2@YAXXZ@0@Z)
+ImGui.lib(imgui_demo.obj) : error LNK2019: unresolved external symbol "bool __cdecl ImGui::TableSetColumnIndex(int)" (?TableSetColumnIndex@ImGui@@YA_NH@Z) referenced in function "void __cdecl ShowDemoWindowTables(void)" (?ShowDemoWindowTables@@YAXXZ)
+ImGui.lib(imgui_demo.obj) : error LNK2019: unresolved external symbol "void __cdecl ImGui::TableSetupScrollFreeze(int,int)" (?TableSetupScrollFreeze@ImGui@@YAXHH@Z) referenced in function "void __cdecl ShowDemoWindowTables(void)" (?ShowDemoWindowTables@@YAXXZ)
+ImGui.lib(imgui_demo.obj) : error LNK2019: unresolved external symbol "void __cdecl ImGui::TableHeader(char const *)" (?TableHeader@ImGui@@YAXPEBD@Z) referenced in function "void __cdecl ShowDemoWindowTables(void)" (?ShowDemoWindowTables@@YAXXZ)
+ImGui.lib(imgui_demo.obj) : error LNK2019: unresolved external symbol "struct ImGuiTableSortSpecs * __cdecl ImGui::TableGetSortSpecs(void)" (?TableGetSortSpecs@ImGui@@YAPEAUImGuiTableSortSpecs@@XZ) referenced in function "void __cdecl ShowDemoWindowTables(void)" (?ShowDemoWindowTables@@YAXXZ)
+ImGui.lib(imgui_demo.obj) : error LNK2019: unresolved external symbol "int __cdecl ImGui::TableGetColumnIndex(void)" (?TableGetColumnIndex@ImGui@@YAHXZ) referenced in function "void __cdecl ShowDemoWindowTables(void)" (?ShowDemoWindowTables@@YAXXZ)
+ImGui.lib(imgui_demo.obj) : error LNK2019: unresolved external symbol "int __cdecl ImGui::TableGetRowIndex(void)" (?TableGetRowIndex@ImGui@@YAHXZ) referenced in function "void __cdecl ShowDemoWindowTables(void)" (?ShowDemoWindowTables@@YAXXZ)
+ImGui.lib(imgui_demo.obj) : error LNK2019: unresolved external symbol "char const * __cdecl ImGui::TableGetColumnName(int)" (?TableGetColumnName@ImGui@@YAPEBDH@Z) referenced in function "void __cdecl ShowDemoWindowTables(void)" (?ShowDemoWindowTables@@YAXXZ)
+ImGui.lib(imgui_demo.obj) : error LNK2019: unresolved external symbol "int __cdecl ImGui::TableGetColumnFlags(int)" (?TableGetColumnFlags@ImGui@@YAHH@Z) referenced in function "void __cdecl ShowDemoWindowTables(void)" (?ShowDemoWindowTables@@YAXXZ)
+ImGui.lib(imgui_demo.obj) : error LNK2019: unresolved external symbol "void __cdecl ImGui::Columns(int,char const *,bool)" (?Columns@ImGui@@YAXHPEBD_N@Z) referenced in function "void __cdecl ShowDemoWindowColumns(void)" (?ShowDemoWindowColumns@@YAXXZ)
+ImGui.lib(imgui_demo.obj) : error LNK2019: unresolved external symbol "void __cdecl ImGui::NextColumn(void)" (?NextColumn@ImGui@@YAXXZ) referenced in function "void __cdecl ShowDemoWindowColumns(void)" (?ShowDemoWindowColumns@@YAXXZ)
+ImGui.lib(imgui_demo.obj) : error LNK2019: unresolved external symbol "int __cdecl ImGui::GetColumnIndex(void)" (?GetColumnIndex@ImGui@@YAHXZ) referenced in function "void __cdecl ShowDemoWindowColumns(void)" (?ShowDemoWindowColumns@@YAXXZ)
+ImGui.lib(imgui_demo.obj) : error LNK2019: unresolved external symbol "float __cdecl ImGui::GetColumnWidth(int)" (?GetColumnWidth@ImGui@@YAMH@Z) referenced in function "void __cdecl ShowDemoWindowColumns(void)" (?ShowDemoWindowColumns@@YAXXZ)
+ImGui.lib(imgui_demo.obj) : error LNK2019: unresolved external symbol "float __cdecl ImGui::GetColumnOffset(int)" (?GetColumnOffset@ImGui@@YAMH@Z) referenced in function "void __cdecl ShowDemoWindowColumns(void)" (?ShowDemoWindowColumns@@YAXXZ)
+..\bin\Release-windows-x86_64\Sandbox\Sandbox.exe : fatal error LNK1120: 138 unresolved externals

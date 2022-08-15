@@ -167,6 +167,9 @@
     <ClCompile Include="src\Application.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\ImGuiBuildcpp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
     <ClCompile Include="src\Input.cpp">
       <Filter>src</Filter>
     </ClCompile>

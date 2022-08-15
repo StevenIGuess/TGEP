@@ -3,9 +3,9 @@
 #include "TCHAR.h"
 #include "pdh.h"
 #include "psapi.h"
+#include "stdint.h"
 
-//to do
-//implement system agnostic porifiling
+//@TODO :: implement system agnostic profiling 
 
 
 namespace TGEP
@@ -29,9 +29,10 @@ namespace TGEP
             memcpy(&lastSysCPU, &fsys, sizeof(FILETIME));
             memcpy(&lastUserCPU, &fuser, sizeof(FILETIME));
         }
-        virtual ~Profiling() {}
 
-        uint64_t get_cpu_cycles()  // just because inline asm is cool!
+        virtual ~Profiling() = default;
+
+        uint64_t get_cpu_cycles()
         {
             uint64_t t = __rdtsc();
             return t;

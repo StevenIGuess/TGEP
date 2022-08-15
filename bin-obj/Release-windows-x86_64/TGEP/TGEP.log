@@ -1,0 +1,37 @@
+﻿  Application.cpp
+  ImGuiBuildcpp.cpp
+  Input.cpp
+  Layer.cpp
+  LayerStack.cpp
+  ImGuiLayer.cpp
+  client.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
+C:\Dev\TGEP\TGEP\submodules\glad\include\glad\glad.h(32): message : see previous definition of 'APIENTRY'
+  connection.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
+C:\Dev\TGEP\TGEP\submodules\glad\include\glad\glad.h(32): message : see previous definition of 'APIENTRY'
+  server.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
+C:\Dev\TGEP\TGEP\submodules\glad\include\glad\glad.h(32): message : see previous definition of 'APIENTRY'
+  OpenGLBuffer.cpp
+  OpenGLContext.cpp
+  OpenGLRendererAPI.cpp
+  OpenGLShader.cpp
+  OpenGLTexture.cpp
+  OpenGLVertexArray.cpp
+C:\Dev\TGEP\TGEP\src\RenderAPI\OpenGL\OpenGLVertexArray.cpp(58,105): warning C4312: 'type cast': conversion from 'const uint32_t' to 'const void *' of greater size
+  Buffer.cpp
+  Camera.cpp
+  RenderCommand.cpp
+  Renderer.cpp
+  RendererAPI.cpp
+  Generating Code...
+  Compiling...
+  Shader.cpp
+  Texture.cpp
+  VertexArray.cpp
+  Window.cpp
+  OpenGLWindow.cpp
+  stb_image.cpp
+  Generating Code...
+  TGEP.vcxproj -> C:\Dev\TGEP\bin\Release-windows-x86_64\TGEP\TGEP.lib
