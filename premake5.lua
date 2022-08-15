@@ -14,6 +14,9 @@ IncludeDir["GLFW"] = "TGEP/submodules/glfw/include"
 IncludeDir["glad"] = "TGEP/submodules/glad/include"
 IncludeDir["ImGui"] = "TGEP/submodules/imgui/"
 IncludeDir["glm"] = "TGEP/submodules/glm/"
+IncludeDir["asio"] = "TGEP/submodules/asio/include/"
+IncludeDir["stb_image"] = "TGEP/submodules/stb_image/"
+
 
 include "TGEP/submodules/glfw"
 include "TGEP/submodules/glad"
@@ -30,7 +33,9 @@ project "TGEP"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/submodules/stb_image/**.cpp",
+		"%{prj.name}/submodules/stb_image/**.h"
 	}
 
 	includedirs
@@ -39,7 +44,9 @@ project "TGEP"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.glad}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.asio}",
+		"%{IncludeDir.stb_image}"
 	}
 
 	links

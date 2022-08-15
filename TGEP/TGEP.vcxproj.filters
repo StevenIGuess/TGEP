@@ -1,194 +1,243 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Events">
-      <UniqueIdentifier>{3A8963B1-262B-8E87-0FE6-A1DBFB2615D8}</UniqueIdentifier>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Layers">
-      <UniqueIdentifier>{157446C0-0116-7196-EAD0-84EAD611F8E6}</UniqueIdentifier>
+    <Filter Include="src\Events">
+      <UniqueIdentifier>{7162C20E-5D1A-045C-C621-DDB7B2F89E4C}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Networking">
-      <UniqueIdentifier>{6D615D47-5919-9F94-C220-78F0AEF73985}</UniqueIdentifier>
+    <Filter Include="src\Layers">
+      <UniqueIdentifier>{4C4DA51D-3805-E76A-A10C-C0C68DE3815B}</UniqueIdentifier>
     </Filter>
-    <Filter Include="RenderAPI">
-      <UniqueIdentifier>{BF001F7C-2B6B-D3F2-74A9-8498E052B147}</UniqueIdentifier>
+    <Filter Include="src\Networking">
+      <UniqueIdentifier>{24FE637E-10CC-5784-F95F-C8AAE5CC33E9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="RenderAPI\OpenGL">
-      <UniqueIdentifier>{137DB9EA-FF75-D83C-28A8-BDC11400B848}</UniqueIdentifier>
+    <Filter Include="src\RenderAPI">
+      <UniqueIdentifier>{9662D9BB-0223-55F2-CB5D-9E6F37DD99CE}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Renderer">
-      <UniqueIdentifier>{7CCE658F-689B-C09A-91B4-AE427DE0F528}</UniqueIdentifier>
+    <Filter Include="src\RenderAPI\OpenGL">
+      <UniqueIdentifier>{0A872652-F615-B01B-9F34-C4168BA2C0C1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Windows">
-      <UniqueIdentifier>{5032B729-BC11-36C5-C529-C19B31889C26}</UniqueIdentifier>
+    <Filter Include="src\Renderer">
+      <UniqueIdentifier>{73D1DFBF-5F34-6F64-08BA-A71AF4FB3AE7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Windows\OpenGL">
-      <UniqueIdentifier>{84215AC8-70EF-4DCE-5983-BEF445F02933}</UniqueIdentifier>
+    <Filter Include="src\Windows">
+      <UniqueIdentifier>{6732F132-D3E7-6928-5CDC-63FFC890602C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Windows\OpenGL">
+      <UniqueIdentifier>{BB413E26-A725-FF7B-1086-F9CEFC88E9FD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="submodules">
+      <UniqueIdentifier>{48444C85-34FC-8DD2-9D03-672E89DA28C3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="submodules\stb_image">
+      <UniqueIdentifier>{E2EE3E33-CE7D-C8FC-779C-DCF7630AD9A2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Application.h" />
-    <ClInclude Include="src\Core.h" />
-    <ClInclude Include="src\DeltaTime.h" />
-    <ClInclude Include="src\EntryPoint.h" />
+    <ClInclude Include="src\Application.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DeltaTime.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EntryPoint.h">
+      <Filter>src</Filter>
+    </ClInclude>
     <ClInclude Include="src\Events\ApplicationEvent.h">
-      <Filter>Events</Filter>
+      <Filter>src\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Events\Event.h">
-      <Filter>Events</Filter>
+      <Filter>src\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Events\KeyCodes.h">
-      <Filter>Events</Filter>
+      <Filter>src\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Events\KeyEvent.h">
-      <Filter>Events</Filter>
+      <Filter>src\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Events\MouseCodes.h">
-      <Filter>Events</Filter>
+      <Filter>src\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Events\MouseEvent.h">
-      <Filter>Events</Filter>
+      <Filter>src\Events</Filter>
     </ClInclude>
-    <ClInclude Include="src\Input.h" />
-    <ClInclude Include="src\Layer.h" />
-    <ClInclude Include="src\LayerStack.h" />
+    <ClInclude Include="src\Input.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Layer.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LayerStack.h">
+      <Filter>src</Filter>
+    </ClInclude>
     <ClInclude Include="src\Layers\ImGuiLayer.h">
-      <Filter>Layers</Filter>
+      <Filter>src\Layers</Filter>
     </ClInclude>
     <ClInclude Include="src\Layers\OpenGLInfoLayer.h">
-      <Filter>Layers</Filter>
+      <Filter>src\Layers</Filter>
     </ClInclude>
     <ClInclude Include="src\Networking\client.h">
-      <Filter>Networking</Filter>
+      <Filter>src\Networking</Filter>
     </ClInclude>
     <ClInclude Include="src\Networking\connection.h">
-      <Filter>Networking</Filter>
+      <Filter>src\Networking</Filter>
     </ClInclude>
     <ClInclude Include="src\Networking\message.h">
-      <Filter>Networking</Filter>
+      <Filter>src\Networking</Filter>
     </ClInclude>
     <ClInclude Include="src\Networking\server.h">
-      <Filter>Networking</Filter>
+      <Filter>src\Networking</Filter>
     </ClInclude>
     <ClInclude Include="src\Networking\tsqueue.h">
-      <Filter>Networking</Filter>
+      <Filter>src\Networking</Filter>
     </ClInclude>
-    <ClInclude Include="src\Profiling.h" />
+    <ClInclude Include="src\Profiling.h">
+      <Filter>src</Filter>
+    </ClInclude>
     <ClInclude Include="src\RenderAPI\OpenGL\OpenGLBuffer.h">
-      <Filter>RenderAPI\OpenGL</Filter>
+      <Filter>src\RenderAPI\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\RenderAPI\OpenGL\OpenGLContext.h">
-      <Filter>RenderAPI\OpenGL</Filter>
+      <Filter>src\RenderAPI\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\RenderAPI\OpenGL\OpenGLRendererAPI.h">
-      <Filter>RenderAPI\OpenGL</Filter>
+      <Filter>src\RenderAPI\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\RenderAPI\OpenGL\OpenGLShader.h">
-      <Filter>RenderAPI\OpenGL</Filter>
+      <Filter>src\RenderAPI\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\RenderAPI\OpenGL\OpenGLTexture.h">
-      <Filter>RenderAPI\OpenGL</Filter>
+      <Filter>src\RenderAPI\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\RenderAPI\OpenGL\OpenGLVertexArray.h">
-      <Filter>RenderAPI\OpenGL</Filter>
+      <Filter>src\RenderAPI\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Renderer\Buffer.h">
-      <Filter>Renderer</Filter>
+      <Filter>src\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Renderer\Camera.h">
-      <Filter>Renderer</Filter>
+      <Filter>src\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Renderer\RenderCommand.h">
-      <Filter>Renderer</Filter>
+      <Filter>src\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Renderer\RenderContext.h">
-      <Filter>Renderer</Filter>
+      <Filter>src\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Renderer\Renderer.h">
-      <Filter>Renderer</Filter>
+      <Filter>src\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Renderer\RendererAPI.h">
-      <Filter>Renderer</Filter>
+      <Filter>src\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Renderer\Shader.h">
-      <Filter>Renderer</Filter>
+      <Filter>src\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Renderer\Texture.h">
-      <Filter>Renderer</Filter>
+      <Filter>src\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Renderer\VertexArray.h">
-      <Filter>Renderer</Filter>
+      <Filter>src\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\TGEP.h" />
-    <ClInclude Include="src\Window.h" />
+    <ClInclude Include="src\TGEP.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Window.h">
+      <Filter>src</Filter>
+    </ClInclude>
     <ClInclude Include="src\Windows\OpenGL\OpenGLWindow.h">
-      <Filter>Windows\OpenGL</Filter>
+      <Filter>src\Windows\OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="src\helper.h" />
-    <ClInclude Include="src\pch.h" />
+    <ClInclude Include="src\helper.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\pch.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="submodules\stb_image\stb_image.h">
+      <Filter>submodules\stb_image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Application.cpp" />
-    <ClCompile Include="src\Input.cpp" />
-    <ClCompile Include="src\Layer.cpp" />
-    <ClCompile Include="src\LayerStack.cpp" />
+    <ClCompile Include="src\Application.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Input.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Layer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LayerStack.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
     <ClCompile Include="src\Layers\ImGuiLayer.cpp">
-      <Filter>Layers</Filter>
+      <Filter>src\Layers</Filter>
     </ClCompile>
     <ClCompile Include="src\Networking\client.cpp">
-      <Filter>Networking</Filter>
+      <Filter>src\Networking</Filter>
     </ClCompile>
     <ClCompile Include="src\Networking\connection.cpp">
-      <Filter>Networking</Filter>
+      <Filter>src\Networking</Filter>
     </ClCompile>
     <ClCompile Include="src\Networking\server.cpp">
-      <Filter>Networking</Filter>
+      <Filter>src\Networking</Filter>
     </ClCompile>
     <ClCompile Include="src\RenderAPI\OpenGL\OpenGLBuffer.cpp">
-      <Filter>RenderAPI\OpenGL</Filter>
+      <Filter>src\RenderAPI\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\RenderAPI\OpenGL\OpenGLContext.cpp">
-      <Filter>RenderAPI\OpenGL</Filter>
+      <Filter>src\RenderAPI\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\RenderAPI\OpenGL\OpenGLRendererAPI.cpp">
-      <Filter>RenderAPI\OpenGL</Filter>
+      <Filter>src\RenderAPI\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\RenderAPI\OpenGL\OpenGLShader.cpp">
-      <Filter>RenderAPI\OpenGL</Filter>
+      <Filter>src\RenderAPI\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\RenderAPI\OpenGL\OpenGLTexture.cpp">
-      <Filter>RenderAPI\OpenGL</Filter>
+      <Filter>src\RenderAPI\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\RenderAPI\OpenGL\OpenGLVertexArray.cpp">
-      <Filter>RenderAPI\OpenGL</Filter>
+      <Filter>src\RenderAPI\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Renderer\Buffer.cpp">
-      <Filter>Renderer</Filter>
+      <Filter>src\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Renderer\Camera.cpp">
-      <Filter>Renderer</Filter>
+      <Filter>src\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Renderer\RenderCommand.cpp">
-      <Filter>Renderer</Filter>
+      <Filter>src\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Renderer\Renderer.cpp">
-      <Filter>Renderer</Filter>
+      <Filter>src\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Renderer\RendererAPI.cpp">
-      <Filter>Renderer</Filter>
+      <Filter>src\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Renderer\Shader.cpp">
-      <Filter>Renderer</Filter>
+      <Filter>src\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Renderer\Texture.cpp">
-      <Filter>Renderer</Filter>
+      <Filter>src\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Renderer\VertexArray.cpp">
-      <Filter>Renderer</Filter>
+      <Filter>src\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Window.cpp" />
+    <ClCompile Include="src\Window.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
     <ClCompile Include="src\Windows\OpenGL\OpenGLWindow.cpp">
-      <Filter>Windows\OpenGL</Filter>
+      <Filter>src\Windows\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="submodules\stb_image\stb_image.cpp">
+      <Filter>submodules\stb_image</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

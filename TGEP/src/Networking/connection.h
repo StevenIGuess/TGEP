@@ -2,7 +2,7 @@
 
 #include "tsqueue.h"
 #include "message.h"
-#include <asio.hpp>
+#include <boost/asio.hpp>
 
 namespace TGEP
 {
