@@ -42,8 +42,6 @@
 //Key/Mouse codes
 #include "Events/KeyCodes.h"
 #include "Events/MouseCodes.h"
-//ImGui
-#include "imgui.h"
 //Renderer system
 #include "Renderer/Renderer.h"
 #include "Renderer/RenderCommand.h"
@@ -60,8 +58,10 @@
 //Textures
 #include "Renderer/Texture.h"
 //Networking
+/*
 #include "Networking/connection.h"
 #include "Networking/client.h"
 #include "Networking/server.h"
 #include "Networking/message.h"
+*/
 #endif // _TGEP_h_

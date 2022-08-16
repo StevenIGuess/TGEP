@@ -1,11 +1,10 @@
+#include "pch.h"
 #include "OpenGLWindow.h"
-
 #include "Events/ApplicationEvent.h"
 #include "Events/MouseEvent.h"
 #include "Events/KeyEvent.h"
 #include "Input.h"
 #include "RenderApi/OpenGl/OpenGLContext.h"
-#include "pch.h"
 
 
 namespace TGEP

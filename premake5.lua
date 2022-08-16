@@ -1,81 +1,94 @@
 workspace "TGEP"
 	architecture "x64"
+	startproject "Sandbox"
 
 	configurations
 	{
 		"Debug",
 		"Release"
 	}
+	
+	flags
+	{
+		"MultiProcessorCompile"
+	}
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
-IncludeDir["GLFW"] = "TGEP/submodules/glfw/include"
-IncludeDir["glad"] = "TGEP/submodules/glad/include"
-IncludeDir["ImGui"] = "TGEP/submodules/imgui/"
-IncludeDir["glm"] = "TGEP/submodules/glm/"
-IncludeDir["asio"] = "TGEP/submodules/asio/include/"
-IncludeDir["stb_image"] = "TGEP/submodules/stb_image/"
+IncludeDir["GLFW"] = "TGEP/submodules/GLFW/include"
+IncludeDir["Glad"] = "TGEP/submodules/Glad/include"
+IncludeDir["ImGui"] = "TGEP/submodules/imgui"
+IncludeDir["glm"] = "TGEP/submodules/glm"
+IncludeDir["stb_image"] = "TGEP/submodules/stb_image"
 
+group "Dependencies"
+	include "TGEP/submodules/GLFW"
+	include "TGEP/submodules/Glad"
+	include "TGEP/submodules/imgui"
 
-include "TGEP/submodules/glfw"
-include "TGEP/submodules/glad"
-include "TGEP/submodules/imgui"
+group ""
 
 project "TGEP"
 	location "TGEP"
 	kind "StaticLib"
 	language "C++"
-	cppdialect "C++20"
+	cppdialect "C++17"
 	staticruntime "on"
 
-	targetdir("bin/" .. outputdir .. "/%{prj.name}")
-	objdir("bin-obj/" .. outputdir .. "/%{prj.name}")
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
 
 	files
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/submodules/stb_image/**.h",
 		"%{prj.name}/submodules/stb_image/**.cpp",
-		"%{prj.name}/submodules/stb_image/**.h"
+		"%{prj.name}/submodules/glm/glm/**.hpp",
+		"%{prj.name}/submodules/glm/glm/**.inl",
+	}
+
+	defines
+	{
+		"_CRT_SECURE_NO_WARNINGS"
 	}
 
 	includedirs
 	{
 		"%{prj.name}/src",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.glad}",
+		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.asio}",
 		"%{IncludeDir.stb_image}"
 	}
 
-	links
-	{
-		"glfw3",
-		"glad",
+	links 
+	{ 
+		"GLFW",
+		"Glad",
 		"ImGui",
 		"opengl32.lib"
 	}
-	
 
-	filter{"system:windows"}
-		staticruntime "On"
+	filter "system:windows"
 		systemversion "latest"
 
 		defines
 		{
-			"_ENGINE_LOG_MACROS_",
-			"_WIN32_WINNT=0x0A00"
+			"GLFW_INCLUDE_NONE"
 		}
 
 	filter "configurations:Debug"
 		defines "TGEP_DEBUG"
+		runtime "Debug"
 		symbols "on"
 
 	filter "configurations:Release"
 		defines "TGEP_RELEASE"
+		runtime "Release"
 		optimize "on"
 
 
@@ -83,11 +96,11 @@ project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
-	cppdialect "C++20"
+	cppdialect "C++17"
 	staticruntime "on"
 
-	targetdir("bin/" .. outputdir .. "/%{prj.name}")
-	objdir("bin-obj/" .. outputdir .. "/%{prj.name}")
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
 	files
 	{
@@ -98,10 +111,7 @@ project "Sandbox"
 	includedirs
 	{
 		"TGEP/src",
-		"%{IncludeDir.asio}",
-		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.glad}",
-		"%{IncludeDir.ImGui}",
+		"TGEP/submodules",
 		"%{IncludeDir.glm}"
 	}
 
@@ -110,19 +120,15 @@ project "Sandbox"
 		"TGEP"
 	}
 
-	filter{"system:windows"}
-		staticruntime "On"
+	filter "system:windows"
 		systemversion "latest"
-
-		defines
-		{
-			"_WIN32_WINNT=0x0A00"
-		}
-
+		
 	filter "configurations:Debug"
 		defines "TGEP_DEBUG"
-		symbols "On"
+		runtime "Debug"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "TGEP_RELEASE"
-		optimize "On"
+		runtime "Release"
+		optimize "on"

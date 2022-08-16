@@ -1,8 +1,5 @@
-#include <asio.hpp>
-#include <asio/ts/buffer.hpp>
 #include <TGEP.h>
-#include <Profiling.h>
-
+/*
 class TestLayer : public TGEP::Layer
 {
 public:
@@ -56,7 +53,7 @@ public:
         TGEP::RenderCommand::SetClearColor(glm::vec4(0.1f, 0.1f, 0.1f, 1.0f));
         TGEP::RenderCommand::Clear();
 
-        /****Render Code****/
+
         TGEP::Renderer::BeginScene(m_Camera);
 
         m_Camera.SetPosition(m_Position);
@@ -103,7 +100,6 @@ public:
         TGEP::Renderer::Push(m_SquareVertexArray, TextureShader, transformEnemyQueen);
 
         TGEP::Renderer::EndScene();
-        /****Render Code****/
 
         dt = m_Profiler->get_cpu_cycles() - t0;
     }
@@ -323,6 +319,23 @@ private:
     int num_squares_y = 10;
 
     TGEP::Ref<TGEP::Texture2D> m_QueenTexture, m_EnemyQueenTexture;
+};
+*/
+
+class TestLayer : public TGEP::Layer
+{
+public:
+    TestLayer() : TGEP::Layer("TestLayer")
+    {
+        LOG("TESTLAYER_INIT();");
+    }
+
+    void OnUpdate(TGEP::DeltaTime deltaTime) override
+    {
+        LOG("HELLO, WORLD!");
+    }
+
+
 };
 
 class Sandbox : public TGEP::Application
