@@ -28,6 +28,5 @@ namespace TGEP
     private:
         bool show_ImGui = false;
         bool OnKeyPressed(KeyPressedEvent& e);
-
     };
 }
