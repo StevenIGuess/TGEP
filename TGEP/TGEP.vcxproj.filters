@@ -10,6 +10,9 @@
     <Filter Include="src\Layers">
       <UniqueIdentifier>{4C4DA51D-3805-E76A-A10C-C0C68DE3815B}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Networking">
+      <UniqueIdentifier>{24FE637E-10CC-5784-F95F-C8AAE5CC33E9}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\RenderAPI">
       <UniqueIdentifier>{9662D9BB-0223-55F2-CB5D-9E6F37DD99CE}</UniqueIdentifier>
     </Filter>
@@ -95,6 +98,21 @@
     </ClInclude>
     <ClInclude Include="src\Layers\OpenGLInfoLayer.h">
       <Filter>src\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Networking\client.h">
+      <Filter>src\Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Networking\connection.h">
+      <Filter>src\Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Networking\message.h">
+      <Filter>src\Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Networking\server.h">
+      <Filter>src\Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Networking\tsqueue.h">
+      <Filter>src\Networking</Filter>
     </ClInclude>
     <ClInclude Include="src\Profiling.h">
       <Filter>src</Filter>
@@ -1429,6 +1447,15 @@
     </ClCompile>
     <ClCompile Include="src\Layers\OpenGLInfoLayer.cpp">
       <Filter>src\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Networking\client.cpp">
+      <Filter>src\Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Networking\connection.cpp">
+      <Filter>src\Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Networking\server.cpp">
+      <Filter>src\Networking</Filter>
     </ClCompile>
     <ClCompile Include="src\RenderAPI\OpenGL\OpenGLBuffer.cpp">
       <Filter>src\RenderAPI\OpenGL</Filter>

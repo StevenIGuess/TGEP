@@ -5,8 +5,23 @@
   LayerStack.cpp
   ImGuiLayer.cpp
   OpenGLInfoLayer.cpp
+  client.cpp
+  connection.cpp
+  server.cpp
   OpenGLBuffer.cpp
   OpenGLContext.cpp
+  Please define _WIN32_WINNT or _WIN32_WINDOWS appropriately. For example:
+  - add -D_WIN32_WINNT=0x0601 to the compiler command line; or
+  - add _WIN32_WINNT=0x0601 to your project's Preprocessor Definitions.
+  Assuming _WIN32_WINNT=0x0601 (i.e. Windows 7 target).
+  Please define _WIN32_WINNT or _WIN32_WINDOWS appropriately. For example:
+  - add -D_WIN32_WINNT=0x0601 to the compiler command line; or
+  - add _WIN32_WINNT=0x0601 to your project's Preprocessor Definitions.
+  Assuming _WIN32_WINNT=0x0601 (i.e. Windows 7 target).
+  Please define _WIN32_WINNT or _WIN32_WINDOWS appropriately. For example:
+  - add -D_WIN32_WINNT=0x0601 to the compiler command line; or
+  - add _WIN32_WINNT=0x0601 to your project's Preprocessor Definitions.
+  Assuming _WIN32_WINNT=0x0601 (i.e. Windows 7 target).
   OpenGLRendererAPI.cpp
   OpenGLShader.cpp
   OpenGLTexture.cpp
@@ -16,12 +31,12 @@
   RenderCommand.cpp
   Renderer.cpp
   RendererAPI.cpp
+C:\Dev\TGEP\TGEP\src\RenderAPI\OpenGL\OpenGLVertexArray.cpp(58,105): warning C4312: 'type cast': conversion from 'const uint32_t' to 'const void *' of greater size
   Shader.cpp
   Texture.cpp
   VertexArray.cpp
   Window.cpp
   OpenGLWindow.cpp
   pch.cpp
-C:\Dev\TGEP\TGEP\src\RenderAPI\OpenGL\OpenGLVertexArray.cpp(58,105): warning C4312: 'type cast': conversion from 'const uint32_t' to 'const void *' of greater size
   stb_image.cpp
   TGEP.vcxproj -> C:\Dev\TGEP\bin\Debug-windows-x86_64\TGEP\TGEP.lib

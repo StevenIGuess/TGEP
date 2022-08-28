@@ -57,7 +57,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;GLFW_INCLUDE_NONE;TGEP_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;submodules\GLFW\include;submodules\Glad\include;submodules\imgui;submodules\glm;submodules\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;submodules\GLFW\include;submodules\Glad\include;submodules\imgui;submodules\glm;submodules\stb_image;submodules\asio\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <MinimalRebuild>false</MinimalRebuild>
@@ -78,7 +78,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;GLFW_INCLUDE_NONE;TGEP_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;submodules\GLFW\include;submodules\Glad\include;submodules\imgui;submodules\glm;submodules\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;submodules\GLFW\include;submodules\Glad\include;submodules\imgui;submodules\glm;submodules\stb_image;submodules\asio\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -113,6 +113,11 @@
     <ClInclude Include="src\LayerStack.h" />
     <ClInclude Include="src\Layers\ImGuiLayer.h" />
     <ClInclude Include="src\Layers\OpenGLInfoLayer.h" />
+    <ClInclude Include="src\Networking\client.h" />
+    <ClInclude Include="src\Networking\connection.h" />
+    <ClInclude Include="src\Networking\message.h" />
+    <ClInclude Include="src\Networking\server.h" />
+    <ClInclude Include="src\Networking\tsqueue.h" />
     <ClInclude Include="src\Profiling.h" />
     <ClInclude Include="src\RenderAPI\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\RenderAPI\OpenGL\OpenGLContext.h" />
@@ -559,6 +564,9 @@
     <ClCompile Include="src\LayerStack.cpp" />
     <ClCompile Include="src\Layers\ImGuiLayer.cpp" />
     <ClCompile Include="src\Layers\OpenGLInfoLayer.cpp" />
+    <ClCompile Include="src\Networking\client.cpp" />
+    <ClCompile Include="src\Networking\connection.cpp" />
+    <ClCompile Include="src\Networking\server.cpp" />
     <ClCompile Include="src\RenderAPI\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\RenderAPI\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\RenderAPI\OpenGL\OpenGLRendererAPI.cpp" />

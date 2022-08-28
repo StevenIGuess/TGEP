@@ -21,6 +21,7 @@ IncludeDir["Glad"] = "TGEP/submodules/Glad/include"
 IncludeDir["ImGui"] = "TGEP/submodules/imgui"
 IncludeDir["glm"] = "TGEP/submodules/glm"
 IncludeDir["stb_image"] = "TGEP/submodules/stb_image"
+IncludeDir["asio"] = "TGEP/submodules/asio/include"
 
 group "Dependencies"
 	include "TGEP/submodules/GLFW"
@@ -62,7 +63,8 @@ project "TGEP"
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.stb_image}"
+		"%{IncludeDir.stb_image}",
+		"%{IncludeDir.asio}"
 	}
 
 	links 

@@ -1,5 +1,7 @@
 #include <TGEP.h>
-/*
+#include <Profiling.h>
+#include "imgui/imgui.h"
+
 class TestLayer : public TGEP::Layer
 {
 public:
@@ -320,23 +322,7 @@ private:
 
     TGEP::Ref<TGEP::Texture2D> m_QueenTexture, m_EnemyQueenTexture;
 };
-*/
 
-class TestLayer : public TGEP::Layer
-{
-public:
-    TestLayer() : TGEP::Layer("TestLayer")
-    {
-        LOG("TESTLAYER_INIT();");
-    }
-
-    void OnUpdate(TGEP::DeltaTime deltaTime) override
-    {
-        LOG("HELLO, WORLD!");
-    }
-
-
-};
 
 class Sandbox : public TGEP::Application
 {
