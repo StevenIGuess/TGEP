@@ -15,7 +15,7 @@
 namespace TGEP
 {
 
-    class DLLEXP Application
+    class Application
     {
     public:
         Application();
@@ -30,9 +30,9 @@ namespace TGEP
 
         inline Window& GetWindow() { return *m_Window; }
         inline static Application& Get() { return *s_Instance; }
+
     private:
         bool OnWindowClose(WindowCloseEvent& e);
-
         std::unique_ptr<Window> m_Window;
         ImGuiLayer* m_ImGuiLayer;
         bool m_Running = true;

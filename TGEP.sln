@@ -11,9 +11,16 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImGui", "TGEP\submodules\im
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glad", "TGEP\submodules\Glad\glad.vcxproj", "{DD62977C-C999-980D-7286-7E105E9C140F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sandbox_Server", "Sandbox_Server\Sandbox_Server.vcxproj", "{CA70BD9C-B63E-B1A2-9FD2-21C98B3F8D07}"
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TGEP", "TGEP\TGEP.vcxproj", "{95568C7C-818D-8D0D-2A7A-73101690090F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TGEPNetworking", "TGEPNetworking\TGEPNetworking.vcxitems", "{FDD61471-E9A4-0877-D238-799DBEA5E4DB}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+	TGEPNetworking\TGEPNetworking.vcxitems*{fdd61471-e9a4-0877-d238-799dbea5e4db}*SharedItemsImports = 9
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
 		Release|x64 = Release|x64
@@ -35,6 +42,10 @@ Global
 		{DD62977C-C999-980D-7286-7E105E9C140F}.Debug|x64.Build.0 = Debug|x64
 		{DD62977C-C999-980D-7286-7E105E9C140F}.Release|x64.ActiveCfg = Release|x64
 		{DD62977C-C999-980D-7286-7E105E9C140F}.Release|x64.Build.0 = Release|x64
+		{CA70BD9C-B63E-B1A2-9FD2-21C98B3F8D07}.Debug|x64.ActiveCfg = Debug|x64
+		{CA70BD9C-B63E-B1A2-9FD2-21C98B3F8D07}.Debug|x64.Build.0 = Debug|x64
+		{CA70BD9C-B63E-B1A2-9FD2-21C98B3F8D07}.Release|x64.ActiveCfg = Release|x64
+		{CA70BD9C-B63E-B1A2-9FD2-21C98B3F8D07}.Release|x64.Build.0 = Release|x64
 		{95568C7C-818D-8D0D-2A7A-73101690090F}.Debug|x64.ActiveCfg = Debug|x64
 		{95568C7C-818D-8D0D-2A7A-73101690090F}.Debug|x64.Build.0 = Debug|x64
 		{95568C7C-818D-8D0D-2A7A-73101690090F}.Release|x64.ActiveCfg = Release|x64

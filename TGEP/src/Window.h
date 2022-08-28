@@ -21,7 +21,7 @@ namespace TGEP
     };
 
 
-    class DLLEXP Window
+    class Window
     {
     public:
         using EventCallbackFn = std::function<void(Event&)>;

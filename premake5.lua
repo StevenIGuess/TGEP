@@ -93,6 +93,32 @@ project "TGEP"
 		runtime "Release"
 		optimize "on"
 
+project "TGEPNetworking"
+	location "TGEPNetworking"
+	kind "SharedItems"
+	language "C++"
+
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	files
+	{
+		"%{prj.name}/src/**.h"
+	}
+
+	filter "system:windows"
+		systemversion "latest"
+
+	filter "configurations:Debug"
+		defines "TGEP_DEBUG"
+		runtime "Debug"
+		symbols "on"
+
+	filter "configurations:Release"
+		defines "TGEP_RELEASE"
+		runtime "Release"
+		optimize "on"
+
 
 project "Sandbox"
 	location "Sandbox"
@@ -113,8 +139,53 @@ project "Sandbox"
 	includedirs
 	{
 		"TGEP/src",
+		"TGEPNetworking/src",
 		"TGEP/submodules",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.asio}"
+	}
+
+	links
+	{
+		"TGEP"
+	}
+
+	filter "system:windows"
+		systemversion "latest"
+		
+	filter "configurations:Debug"
+		defines "TGEP_DEBUG"
+		runtime "Debug"
+		symbols "on"
+
+	filter "configurations:Release"
+		defines "TGEP_RELEASE"
+		runtime "Release"
+		optimize "on"
+
+project "Sandbox_Server"
+	location "Sandbox_Server"
+	kind "ConsoleApp"
+	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
+
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	files
+	{
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp"
+	}
+
+	includedirs
+	{
+		"TGEP/src",
+		"TGEPNetworking/src",
+		"TGEP/submodules",
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.asio}"
 	}
 
 	links

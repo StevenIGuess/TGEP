@@ -1,12 +1,45 @@
 #include <TGEP.h>
+#include <TGEPNetworking.h>
 #include <Profiling.h>
 #include "imgui/imgui.h"
+
+enum class MessageTypes : uint32_t
+{
+    ServerAccept,
+    ServerDeny,
+    ServerPing,
+    MessageAll,
+    ServerMessage
+};
+
+
+//do networking here
+class TGEPClient : public TGEP::net::client_interface<MessageTypes>
+{
+public:
+    void PingServer()
+    {
+        TGEP::net::message<MessageTypes> msg;
+        msg.header.id = MessageTypes::ServerPing;
+
+        std::chrono::system_clock::time_point timeNow = std::chrono::system_clock::now();
+
+        msg << timeNow;
+
+        LOG("Pinging Server...\n");
+        Send(msg);
+    }
+
+};
+
 
 class TestLayer : public TGEP::Layer
 {
 public:
     TestLayer() : TGEP::Layer("TestLayer"), m_Camera(-1.6, 1.6f, -0.9f, 0.9f, -1.0f, 1.0f) 
     {
+        //setup networking
+        c.reset(new TGEPClient);
 
         #pragma region VA data
         float squareVertices[4 * 5] = {
@@ -50,10 +83,33 @@ public:
 
     void OnUpdate(TGEP::DeltaTime deltaTime) override
     {
+        m_IsConnected = c->IsConnected();
         t0 = m_Profiler->get_cpu_cycles();
         m_DeltaTime = deltaTime;
         TGEP::RenderCommand::SetClearColor(glm::vec4(0.1f, 0.1f, 0.1f, 1.0f));
         TGEP::RenderCommand::Clear();
+
+        if (!m_IsConnected) { return; }
+
+        if (!c->Incoming().empty())
+        {
+            auto msg = c->Incoming().pop_front().msg;
+
+            //handle headers
+            switch (msg.header.id)
+            {
+            case MessageTypes::ServerPing:
+            {
+                std::chrono::system_clock::time_point timeNow = std::chrono::system_clock::now();
+                std::chrono::system_clock::time_point timeThen;
+                msg >> timeThen;
+
+                double ping = std::chrono::duration<double>(timeNow - timeThen).count();
+
+                LOG("%s%lfs\n", "Reply from server: time:", ping);
+            }
+            }
+        }
 
 
         TGEP::Renderer::BeginScene(m_Camera);
@@ -171,7 +227,7 @@ public:
 
     virtual void OnImGuiRender() override
     {
-        if(!m_Connected)
+        if(!m_IsConnected)
         {
             ImGui::Begin("Not connected to server!");
             ImGui::Text("Go to Settings(esc) and connect to a server!");
@@ -193,11 +249,11 @@ public:
 
             ImGui::TextColored(ImVec4(0,1,1,1), "Network Settings");
 
-            if(m_Connected) 
+            if(m_IsConnected) 
             {
                 ImGui::Text("Server status: Connected!");
             }
-            if(!m_Connected) 
+            if(!m_IsConnected) 
             {
                 ImGui::Text("Server status: Disconnected!");
             }
@@ -207,19 +263,21 @@ public:
 
             if(ImGui::Button("Connect to server"))
             {
-                if(m_Connected) 
+                if(m_IsConnected) 
                 {
                     ImGui::End();
                     return;
                 }
+                ConnectToServer();
+                ImGui::End();
+                return;
+            }
 
-                if(ConnectToServer())
+            if (m_IsConnected)
+            {
+                if (ImGui::Button("Ping server"))
                 {
-                    m_Connected = true;
-                    ImGui::End();
-                    return;
-                } else
-                {
+                    c->PingServer();
                     ImGui::End();
                     return;
                 }
@@ -278,12 +336,14 @@ public:
         }
     }
 
-    bool ConnectToServer()
+    void ConnectToServer()
     {
-        return true;
+        c->Connect(m_ServerAddress, m_ServerPort);
     }
 
 private:
+
+    TGEP::Ref<TGEPClient> c;
 
     TGEP::Ref<TGEP::Profiling> m_Profiler = std::make_shared<TGEP::Profiling>();
     uint64_t t0 = 0;
@@ -294,7 +354,7 @@ private:
     char m_ServerAddress[17] = "127.0.0.1";
     int m_ServerPort = 2556;
 
-    bool m_Connected = false;
+    bool m_IsConnected = false;
 
     TGEP::ShaderLibary m_ShaderLibary;
     TGEP::Ref<TGEP::VertexArray> m_SquareVertexArray;
@@ -338,11 +398,12 @@ public:
     {
 
     }
-    
 
 };
 
+
 TGEP::Application* TGEP::CreateApplication()
 {
-    return new Sandbox();
+    TGEP::Application* sandbox = new Sandbox();
+    return sandbox;
 }

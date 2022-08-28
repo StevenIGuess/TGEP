@@ -20,6 +20,7 @@ namespace TGEP {
         ASSERT_CORE(!s_Instance, "APPLICATION ALREADY EXISTS");
         s_Instance = this;
 
+
         //create windows and set callbacks
         WindowProperties windowProperties;
         m_Window = std::unique_ptr<Window>(OpenGLWindow::Create(windowProperties));

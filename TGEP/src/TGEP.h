@@ -4,7 +4,7 @@
  *------------------------------------------------------------------------
  * The MIT License (MIT)
  *
- * Copyright (c) 2022 Toma-?tefan Cezar
+ * Copyright (c) 2022 Toma-Stefan Cezar
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,10 +28,11 @@
 #ifndef _TGEP_h_
 #define _TGEP_h_
 
+
 #include "Application.h"
  // ---ENTRY POINT---
 #include "EntryPoint.h"
-//Event system 
+ //Event system 
 #include "Events/Event.h"
 //Layer system
 #include "Layer.h"
@@ -57,11 +58,4 @@
 #include "DeltaTime.h"
 //Textures
 #include "Renderer/Texture.h"
-//Networking
-/*
-#include "Networking/connection.h"
-#include "Networking/client.h"
-#include "Networking/server.h"
-#include "Networking/message.h"
-*/
 #endif // _TGEP_h_

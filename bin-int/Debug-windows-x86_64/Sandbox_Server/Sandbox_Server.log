@@ -1,0 +1,65 @@
+﻿  Sandbox_Server.cpp
+  Please define _WIN32_WINNT or _WIN32_WINDOWS appropriately. For example:
+  - add -D_WIN32_WINNT=0x0601 to the compiler command line; or
+  - add _WIN32_WINNT=0x0601 to your project's Preprocessor Definitions.
+  Assuming _WIN32_WINNT=0x0601 (i.e. Windows 7 target).
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wingdi.h(118,1): warning C4005: 'ERROR': macro redefinition
+C:\Dev\TGEP\TGEPNetworking\src\NetCore.h(9): message : see previous definition of 'ERROR'
+C:\Dev\TGEP\TGEPNetworking\src\server.h(35,21): warning C4353: nonstandard extension used: constant 0 as function expression.  Use '__noop' function intrinsic instead
+C:\Dev\TGEP\TGEPNetworking\src\server.h(26): message : while compiling class template member function 'bool TGEP::net::server_interface<MessageTypes>::Start(void)'
+C:\Dev\TGEP\Sandbox_Server\src\Sandbox_Server.cpp(78): message : see reference to function template instantiation 'bool TGEP::net::server_interface<MessageTypes>::Start(void)' being compiled
+C:\Dev\TGEP\Sandbox_Server\src\Sandbox_Server.cpp(13): message : see reference to class template instantiation 'TGEP::net::server_interface<MessageTypes>' being compiled
+C:\Dev\TGEP\TGEPNetworking\src\connection.h(158,29): warning C4353: nonstandard extension used: constant 0 as function expression.  Use '__noop' function intrinsic instead
+C:\Dev\TGEP\TGEPNetworking\src\connection.h(136): message : while compiling class template member function 'void TGEP::net::connection<T>::WriteHeader(void)'
+          with
+          [
+              T=MessageTypes
+          ]
+C:\Dev\TGEP\TGEPNetworking\src\connection.h(82): message : see reference to function template instantiation 'void TGEP::net::connection<T>::WriteHeader(void)' being compiled
+          with
+          [
+              T=MessageTypes
+          ]
+C:\Dev\TGEP\Sandbox_Server\src\Sandbox_Server.cpp(43): message : see reference to class template instantiation 'TGEP::net::connection<T>' being compiled
+          with
+          [
+              T=MessageTypes
+          ]
+C:\Dev\TGEP\TGEPNetworking\src\server.h(60,29): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 2 has type 'std::string'
+C:\Dev\TGEP\TGEPNetworking\src\server.h(54): message : while compiling class template member function 'void TGEP::net::server_interface<MessageTypes>::WaitForClientConnection(void)'
+C:\Dev\TGEP\TGEPNetworking\src\server.h(29): message : see reference to function template instantiation 'void TGEP::net::server_interface<MessageTypes>::WaitForClientConnection(void)' being compiled
+C:\Dev\TGEP\TGEPNetworking\src\server.h(80,29): warning C4353: nonstandard extension used: constant 0 as function expression.  Use '__noop' function intrinsic instead
+C:\Dev\TGEP\TGEPNetworking\src\connection.h(181,29): warning C4353: nonstandard extension used: constant 0 as function expression.  Use '__noop' function intrinsic instead
+C:\Dev\TGEP\TGEPNetworking\src\connection.h(166): message : while compiling class template member function 'void TGEP::net::connection<T>::WriteBody(void)'
+          with
+          [
+              T=MessageTypes
+          ]
+C:\Dev\TGEP\TGEPNetworking\src\connection.h(144): message : see reference to function template instantiation 'void TGEP::net::connection<T>::WriteBody(void)' being compiled
+          with
+          [
+              T=MessageTypes
+          ]
+C:\Dev\TGEP\TGEPNetworking\src\connection.h(109,29): warning C4353: nonstandard extension used: constant 0 as function expression.  Use '__noop' function intrinsic instead
+C:\Dev\TGEP\TGEPNetworking\src\connection.h(91): message : while compiling class template member function 'void TGEP::net::connection<T>::ReadHeader(void)'
+          with
+          [
+              T=MessageTypes
+          ]
+C:\Dev\TGEP\TGEPNetworking\src\connection.h(40): message : see reference to function template instantiation 'void TGEP::net::connection<T>::ReadHeader(void)' being compiled
+          with
+          [
+              T=MessageTypes
+          ]
+C:\Dev\TGEP\TGEPNetworking\src\connection.h(127,29): warning C4353: nonstandard extension used: constant 0 as function expression.  Use '__noop' function intrinsic instead
+C:\Dev\TGEP\TGEPNetworking\src\connection.h(117): message : while compiling class template member function 'void TGEP::net::connection<T>::ReadBody(void)'
+          with
+          [
+              T=MessageTypes
+          ]
+C:\Dev\TGEP\TGEPNetworking\src\connection.h(100): message : see reference to function template instantiation 'void TGEP::net::connection<T>::ReadBody(void)' being compiled
+          with
+          [
+              T=MessageTypes
+          ]
+  Sandbox_Server.vcxproj -> C:\Dev\TGEP\bin\Debug-windows-x86_64\Sandbox_Server\Sandbox_Server.exe
