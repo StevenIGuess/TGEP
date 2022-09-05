@@ -142,13 +142,13 @@ namespace TGEP
 
         protected:
             //called when client connects
-            virtual bool OnClientConnect(std::shared_ptr<connection<T>> client) = 0;
+            virtual bool OnClientConnect(std::shared_ptr<connection<T>> client) { return false; }
 
             //called when client disconnect
-            virtual void OnClientDisconnect(std::shared_ptr<connection<T>> client) = 0;
+            virtual void OnClientDisconnect(std::shared_ptr<connection<T>> client) { }
 
             //called when server received message
-            virtual void OnMessage(std::shared_ptr<connection<T>> client, message<T>& msg) = 0;
+            virtual void OnMessage(std::shared_ptr<connection<T>> client, message<T>& msg) { };
 
 
             //tsqueue for incoming messages

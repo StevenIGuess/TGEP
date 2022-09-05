@@ -1,13 +1,15 @@
 #include <TGEPNetworking.h>
 
-enum class MessageTypes
+enum class MessageTypes : uint32_t
 {
 	ServerAccept,
 	ServerDeny,
 	ServerPing,
 	MessageAll,
-	ServerMessage
+	ServerMessage,
+	BinaryMessage
 };
+
 
 class TestServer : public TGEP::net::server_interface<MessageTypes>
 {
@@ -43,6 +45,38 @@ protected:
 			LOG("[%lu]: Server ping\n", client->GetID());
 
 			client->Send(msg);
+		}
+		case MessageTypes::BinaryMessage:
+		{
+			int message;
+			int res;
+			msg >> message;
+
+			LOG("[%lu]: Incoming message \n", client->GetID());
+			LOG("[%lu]: '%i'", client->GetID(), message);
+
+			if (message == 0x0001)
+			{
+				res = 0xffff;
+			} 
+			else if (message == 0x0002)
+			{
+				res = 0xbbbb;
+			}
+			else
+			{
+				res = 0x0000;
+			}
+
+
+
+			TGEP::net::message<MessageTypes> ResMsg;
+			ResMsg.header.id = MessageTypes::ServerMessage;
+
+			ResMsg << res;
+
+			client->Send(ResMsg);
+
 		}
 		break;
 		}

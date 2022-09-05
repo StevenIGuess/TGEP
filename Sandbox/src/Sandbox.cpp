@@ -9,7 +9,8 @@ enum class MessageTypes : uint32_t
     ServerDeny,
     ServerPing,
     MessageAll,
-    ServerMessage
+    ServerMessage,
+    StringMessage
 };
 
 
@@ -27,6 +28,17 @@ public:
         msg << timeNow;
 
         LOG("Pinging Server...\n");
+        Send(msg);
+    }
+
+    void SendTest(int message)
+    {
+        TGEP::net::message<MessageTypes> msg;
+        msg.header.id = MessageTypes::StringMessage;
+
+        msg << message;
+
+        LOG("%s%X%s", "Sending message [", message, "] to Server...\n");
         Send(msg);
     }
 
@@ -91,7 +103,7 @@ public:
 
         if (!m_IsConnected) { return; }
 
-        if (!c->Incoming().empty())
+        if (!(c->Incoming().empty()))
         {
             auto msg = c->Incoming().pop_front().msg;
 
@@ -107,6 +119,13 @@ public:
                 double ping = std::chrono::duration<double>(timeNow - timeThen).count();
 
                 LOG("%s%lfs\n", "Reply from server: time:", ping);
+            }
+            case MessageTypes::ServerMessage:
+            {
+                int message;
+                msg >> message;
+
+                LOG("%s%X\n", "Reply from server: ", message);
             }
             }
         }
@@ -275,6 +294,12 @@ public:
 
             if (m_IsConnected)
             {
+                if (ImGui::Button("Send Message"))
+                {
+                    c->SendTest(0x0001);
+                    ImGui::End();
+                    return;
+                }
                 if (ImGui::Button("Ping server"))
                 {
                     c->PingServer();

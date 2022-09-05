@@ -7,8 +7,8 @@ C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wingdi.h(118,1): 
 C:\Dev\TGEP\TGEPNetworking\src\NetCore.h(9): message : see previous definition of 'ERROR'
 C:\Dev\TGEP\TGEPNetworking\src\server.h(35,21): warning C4353: nonstandard extension used: constant 0 as function expression.  Use '__noop' function intrinsic instead
 C:\Dev\TGEP\TGEPNetworking\src\server.h(26): message : while compiling class template member function 'bool TGEP::net::server_interface<MessageTypes>::Start(void)'
-C:\Dev\TGEP\Sandbox_Server\src\Sandbox_Server.cpp(78): message : see reference to function template instantiation 'bool TGEP::net::server_interface<MessageTypes>::Start(void)' being compiled
-C:\Dev\TGEP\Sandbox_Server\src\Sandbox_Server.cpp(13): message : see reference to class template instantiation 'TGEP::net::server_interface<MessageTypes>' being compiled
+C:\Dev\TGEP\Sandbox_Server\src\Sandbox_Server.cpp(112): message : see reference to function template instantiation 'bool TGEP::net::server_interface<MessageTypes>::Start(void)' being compiled
+C:\Dev\TGEP\Sandbox_Server\src\Sandbox_Server.cpp(15): message : see reference to class template instantiation 'TGEP::net::server_interface<MessageTypes>' being compiled
 C:\Dev\TGEP\TGEPNetworking\src\connection.h(158,29): warning C4353: nonstandard extension used: constant 0 as function expression.  Use '__noop' function intrinsic instead
 C:\Dev\TGEP\TGEPNetworking\src\connection.h(136): message : while compiling class template member function 'void TGEP::net::connection<T>::WriteHeader(void)'
           with
@@ -20,7 +20,7 @@ C:\Dev\TGEP\TGEPNetworking\src\connection.h(82): message : see reference to func
           [
               T=MessageTypes
           ]
-C:\Dev\TGEP\Sandbox_Server\src\Sandbox_Server.cpp(43): message : see reference to class template instantiation 'TGEP::net::connection<T>' being compiled
+C:\Dev\TGEP\Sandbox_Server\src\Sandbox_Server.cpp(45): message : see reference to class template instantiation 'TGEP::net::connection<T>' being compiled
           with
           [
               T=MessageTypes
@@ -61,5 +61,31 @@ C:\Dev\TGEP\TGEPNetworking\src\connection.h(100): message : see reference to fun
           with
           [
               T=MessageTypes
+          ]
+C:\Dev\TGEP\TGEPNetworking\src\message.h(56,1): warning C4267: '=': conversion from 'size_t' to 'uint32_t', possible loss of data
+C:\Dev\TGEP\Sandbox_Server\src\Sandbox_Server.cpp(53): message : see reference to function template instantiation 'TGEP::net::message<T> &TGEP::net::operator >><int>(TGEP::net::message<T> &,DataType &)' being compiled
+          with
+          [
+              T=MessageTypes,
+              DataType=int
+          ]
+C:\Dev\TGEP\Sandbox_Server\src\Sandbox_Server.cpp(53): message : see reference to function template instantiation 'TGEP::net::message<T> &TGEP::net::operator >><int>(TGEP::net::message<T> &,DataType &)' being compiled
+          with
+          [
+              T=MessageTypes,
+              DataType=int
+          ]
+C:\Dev\TGEP\TGEPNetworking\src\message.h(40,1): warning C4267: '=': conversion from 'size_t' to 'uint32_t', possible loss of data
+C:\Dev\TGEP\Sandbox_Server\src\Sandbox_Server.cpp(76): message : see reference to function template instantiation 'TGEP::net::message<T> &TGEP::net::operator <<<int>(TGEP::net::message<T> &,const DataType &)' being compiled
+          with
+          [
+              T=MessageTypes,
+              DataType=int
+          ]
+C:\Dev\TGEP\Sandbox_Server\src\Sandbox_Server.cpp(76): message : see reference to function template instantiation 'TGEP::net::message<T> &TGEP::net::operator <<<int>(TGEP::net::message<T> &,const DataType &)' being compiled
+          with
+          [
+              T=MessageTypes,
+              DataType=int
           ]
   Sandbox_Server.vcxproj -> C:\Dev\TGEP\bin\Debug-windows-x86_64\Sandbox_Server\Sandbox_Server.exe
