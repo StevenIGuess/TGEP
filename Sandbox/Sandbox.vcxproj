@@ -94,18 +94,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Layer\SandboxLayer.cpp" />
     <ClCompile Include="src\Sandbox.cpp" />
-    <ClCompile Include="src\SandboxApp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TGEP\TGEP.vcxproj">
       <Project>{95568C7C-818D-8D0D-2A7A-73101690090F}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\Layer\SandboxLayer.h" />
-    <ClInclude Include="src\SandboxApp.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

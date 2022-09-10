@@ -3,6 +3,8 @@
 
 #include "RenderAPI/OpenGL/OpenGLShader.h"
 
+#define GLShaderCast(...) std::dynamic_pointer_cast<TGEP::OpenGLShader>(__VA_ARGS__)
+
 namespace TGEP
 {
     Renderer::SceneData* Renderer::m_SceneData = new Renderer::SceneData;
