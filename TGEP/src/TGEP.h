@@ -29,6 +29,7 @@
 #define _TGEP_h_
 
 
+
 #include "Application.h"
  // ---ENTRY POINT---
 #include "EntryPoint.h"
@@ -58,4 +59,9 @@
 #include "DeltaTime.h"
 //Textures
 #include "Renderer/Texture.h"
+
+//Shader cast for OpenGL Shader
+#define TGEPGLSCast(...) std::dynamic_pointer_cast<TGEP::OpenGLShader>(__VA_ARGS__)
+
+
 #endif // _TGEP_h_

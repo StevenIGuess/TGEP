@@ -4,8 +4,6 @@
 #include <glm/glm.hpp>
 #include <unordered_map>
 
-#define GLShaderCast(...) std::dynamic_pointer_cast<TGEP::OpenGLShader>(__VA_ARGS__)
-
 //TEMPORARY
 typedef unsigned int GLenum;
 

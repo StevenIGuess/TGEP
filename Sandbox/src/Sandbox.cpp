@@ -89,8 +89,8 @@ public:
 
         m_EnemyQueenTexture = TGEP::Texture2D::Create("assets/textures/queen.png");
         m_QueenTexture = TGEP::Texture2D::Create("assets/textures/queen.png");
-        GLShaderCast(TextureShader)->Bind();
-        GLShaderCast(TextureShader)->UploadUniform("u_Texture", 0);
+        TGEPGLSCast(TextureShader)->Bind();
+        TGEPGLSCast(TextureShader)->UploadUniform("u_Texture", 0);
     }
 
     void OnUpdate(TGEP::DeltaTime deltaTime) override
@@ -138,7 +138,7 @@ public:
         auto SquareShader = m_ShaderLibary.Get("Square");
         auto TextureShader = m_ShaderLibary.Get("Texture");
 
-        GLShaderCast(SquareShader)->Bind();
+        TGEPGLSCast(SquareShader)->Bind();
         for(int j = 0; j < num_squares_y; j++)
         {
             for(int i = 0; i < num_squares_x; i++)
@@ -150,10 +150,10 @@ public:
                 glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * glm::scale(glm::mat4(1.0f), m_SquareScale);
                 if((i+j) % 2 == 0)
                 {
-                    GLShaderCast(SquareShader)->UploadUniform("u_Color", m_FirstColor);
+                    TGEPGLSCast(SquareShader)->UploadUniform("u_Color", m_FirstColor);
                 }else
                 {
-                    GLShaderCast(SquareShader)->UploadUniform("u_Color", m_SecondColor);
+                    TGEPGLSCast(SquareShader)->UploadUniform("u_Color", m_SecondColor);
                 }
 
                 TGEP::Renderer::Push(m_SquareVertexArray, SquareShader, transform);
@@ -184,7 +184,6 @@ public:
     virtual void OnEvent(TGEP::Event &e)
     {
         TGEP::EventDispatcher dispatcher(e);
-
         dispatcher.Dispatch<TGEP::KeyPressedEvent>(BIND_EVENT_FUNC(TestLayer::OnKeyPressed));
     }
 
