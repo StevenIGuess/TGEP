@@ -9,7 +9,7 @@ Sandbox2D::Sandbox2D()
 
 void Sandbox2D::OnAttach()
 {
-    
+    m_Texture = TGEP::Texture2D::Create("assets/textures/queen.png");
 }
 
 void Sandbox2D::OnDetach()
@@ -31,7 +31,7 @@ void Sandbox2D::OnUpdate(TGEP::DeltaTime deltaTime)
     TGEP::Renderer2D::BeginScene(m_CameraController.GetCamera());
 
     TGEP::Renderer2D::DrawQuad({ 1.0f, 1.0f }, { 1.0f, 1.0f }, m_SquareColor );
-    TGEP::Renderer2D::DrawQuad({ -1.0f, -1.0f }, { 1.5f, 1.5f }, m_SquareColor);
+    TGEP::Renderer2D::DrawQuad({ 1.0f, 1.0f, -0.1f}, { 10.0f, 10.0f }, {1.0f, 0.5f, 0.0f, 1.0f});
     
     TGEP::Renderer2D::EndScene();
 

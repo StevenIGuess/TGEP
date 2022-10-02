@@ -42,4 +42,5 @@ private:
 
     //Gamedata
     glm::vec4 m_SquareColor = glm::vec4(0.8f, 0.4f, 0.2f, 1.0f);
+    TGEP::Ref<TGEP::Texture2D> m_Texture;
 };
