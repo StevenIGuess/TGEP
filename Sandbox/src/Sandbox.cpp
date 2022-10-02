@@ -1,7 +1,8 @@
 #include <TGEP.h>
+#include "EntryPoint.h"
 #include <Profiling.h>
 #include "imgui/imgui.h"
-
+#include "Sandbox2D.h"
 
 class TestLayer : public TGEP::Layer
 {
@@ -29,7 +30,7 @@ public:
         
         #pragma endregion
 
-        m_SquareVertexArray.reset(TGEP::VertexArray::Create());
+        m_SquareVertexArray = TGEP::VertexArray::Create();
 
         TGEP::Ref<TGEP::VertexBuffer> SVB;
         SVB.reset(TGEP::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
@@ -268,7 +269,7 @@ private:
     float OffsetMulitplier = 1.0f;
 
     int num_squares_x = 100;
-    int num_squares_y = 10;
+    int num_squares_y = 100;
 
     TGEP::Ref<TGEP::Texture2D> m_QueenTexture, m_EnemyQueenTexture;
 };
@@ -280,8 +281,7 @@ public:
 
     Sandbox()
     {
-        TestLayer* testLayer = new TestLayer();
-        PushLayer(testLayer);
+        PushLayer(new Sandbox2D());
     }
 
     ~Sandbox()

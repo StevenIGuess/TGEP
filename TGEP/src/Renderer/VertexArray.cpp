@@ -5,12 +5,12 @@
 
 namespace TGEP {
 
-    VertexArray* VertexArray::Create()
+    Ref<VertexArray> VertexArray::Create()
     {
         switch (Renderer::GetAPI())
         {
         case RendererAPI::API::None:     ASSERT_CORE(false, "No Renderer selected") return nullptr;
-        case RendererAPI::API::OpenGL:   return new OpenGLVertexArray();
+        case RendererAPI::API::OpenGL:   return std::make_shared<OpenGLVertexArray>();
         case RendererAPI::API::DirectX:  ASSERT_CORE(false, "DirectX not implemented yet") return nullptr;
 
         }

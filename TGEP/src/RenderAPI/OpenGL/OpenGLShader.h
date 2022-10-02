@@ -19,6 +19,10 @@ namespace TGEP
         virtual void Bind() const override;
         virtual void UnBind() const override;
 
+        virtual void SetUniform(const std::string& name, const glm::mat4& value) override;
+        virtual void SetUniform(const std::string& name, const glm::vec4& value) override;
+        virtual void SetUniform(const std::string& name, const int& value) override;
+
         virtual const std::string& GetName() const override { return m_Name; }
 
         virtual void UploadUniform(const std::string& name, const glm::mat4& value);

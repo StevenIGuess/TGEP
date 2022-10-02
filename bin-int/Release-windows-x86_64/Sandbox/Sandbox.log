@@ -1,1 +1,4 @@
-﻿  Sandbox.vcxproj -> C:\Dev\TGEP\bin\Release-windows-x86_64\Sandbox\Sandbox.exe
+﻿  Sandbox2D.cpp
+C:\Dev\TGEP\TGEP\src\Profiling.h(87,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data
+C:\Dev\TGEP\Sandbox\src\Sandbox2D.cpp(136): warning C4715: 'Sandbox2D::OnKeyPressed': not all control paths return a value
+  Sandbox.vcxproj -> C:\Dev\TGEP\bin\Release-windows-x86_64\Sandbox\Sandbox.exe

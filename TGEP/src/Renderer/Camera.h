@@ -18,7 +18,7 @@ namespace TGEP
 
         glm::mat4 GetProjection() { return m_Projection; }
         glm::mat4 GetView() { return m_View; }
-        glm::mat4 GetPVM() { return m_VPM; }
+        const glm::mat4 GetVPM() const { return m_VPM; }
 
 
     private:

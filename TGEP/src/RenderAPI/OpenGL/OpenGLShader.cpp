@@ -162,6 +162,21 @@ namespace TGEP
         glUseProgram(0);
     }
 
+    void OpenGLShader::SetUniform(const std::string& name, const glm::mat4& value)
+    {
+        UploadUniform(name, value);
+    }
+
+    void OpenGLShader::SetUniform(const std::string& name, const glm::vec4& value)
+    {
+        UploadUniform(name, value);
+    }
+
+    void OpenGLShader::SetUniform(const std::string& name, const int& value)
+    {
+        UploadUniform(name, value);
+    }
+
     void OpenGLShader::UploadUniform(const std::string& name, const glm::mat4& value)
     {
         GLint location = glGetUniformLocation(m_RendererID, name.c_str());

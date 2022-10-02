@@ -31,8 +31,6 @@
 
 
 #include "Application.h"
- // ---ENTRY POINT---
-#include "EntryPoint.h"
  //Event system 
 #include "Events/Event.h"
 //Layer system
@@ -46,6 +44,7 @@
 #include "Events/MouseCodes.h"
 //Renderer system
 #include "Renderer/Renderer.h"
+#include "Renderer/Renderer2D.h"
 #include "Renderer/RenderCommand.h"
 //Buffer system
 #include "Renderer/Buffer.h"
