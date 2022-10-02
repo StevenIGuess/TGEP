@@ -54,6 +54,9 @@
     <ClInclude Include="src\Application.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="src\CameraController.h">
+      <Filter>src</Filter>
+    </ClInclude>
     <ClInclude Include="src\Core.h">
       <Filter>src</Filter>
     </ClInclude>
@@ -1410,6 +1413,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CameraController.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\ImGuiBuild.cpp">

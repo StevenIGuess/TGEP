@@ -9,7 +9,7 @@
 namespace TGEP
 {
 
-    class DLLEXP OpenGLWindow : public Window
+    class OpenGLWindow : public Window
     {
     public:
 

@@ -1,57 +1,13 @@
 #include <TGEP.h>
-#include <TGEPNetworking.h>
 #include <Profiling.h>
 #include "imgui/imgui.h"
-
-enum class MessageTypes : uint32_t
-{
-    ServerAccept,
-    ServerDeny,
-    ServerPing,
-    MessageAll,
-    ServerMessage,
-    StringMessage
-};
-
-
-//do networking here
-class TGEPClient : public TGEP::net::client_interface<MessageTypes>
-{
-public:
-    void PingServer()
-    {
-        TGEP::net::message<MessageTypes> msg;
-        msg.header.id = MessageTypes::ServerPing;
-
-        std::chrono::system_clock::time_point timeNow = std::chrono::system_clock::now();
-
-        msg << timeNow;
-
-        LOG("Pinging Server...\n");
-        Send(msg);
-    }
-
-    void SendTest(int message)
-    {
-        TGEP::net::message<MessageTypes> msg;
-        msg.header.id = MessageTypes::StringMessage;
-
-        msg << message;
-
-        LOG("%s%X%s", "Sending message [", message, "] to Server...\n");
-        Send(msg);
-    }
-
-};
 
 
 class TestLayer : public TGEP::Layer
 {
 public:
-    TestLayer() : TGEP::Layer("TestLayer"), m_Camera(-1.6, 1.6f, -0.9f, 0.9f, -1.0f, 1.0f) 
+    TestLayer() : TGEP::Layer("TestLayer"), m_CameraController(1280.0f / 720.0f)
     {
-        //setup networking
-        c.reset(new TGEPClient);
 
         #pragma region VA data
         float squareVertices[4 * 5] = {
@@ -95,45 +51,16 @@ public:
 
     void OnUpdate(TGEP::DeltaTime deltaTime) override
     {
-        m_IsConnected = c->IsConnected();
+        //Update
         t0 = m_Profiler->get_cpu_cycles();
         m_DeltaTime = deltaTime;
+        m_CameraController.OnUpdate(deltaTime);
+
+        //Render
         TGEP::RenderCommand::SetClearColor(glm::vec4(0.1f, 0.1f, 0.1f, 1.0f));
         TGEP::RenderCommand::Clear();
 
-        if (!m_IsConnected) { return; }
-
-        if (!(c->Incoming().empty()))
-        {
-            auto msg = c->Incoming().pop_front().msg;
-
-            //handle headers
-            switch (msg.header.id)
-            {
-            case MessageTypes::ServerPing:
-            {
-                std::chrono::system_clock::time_point timeNow = std::chrono::system_clock::now();
-                std::chrono::system_clock::time_point timeThen;
-                msg >> timeThen;
-
-                double ping = std::chrono::duration<double>(timeNow - timeThen).count();
-
-                LOG("%s%lfs\n", "Reply from server: time:", ping);
-            }
-            case MessageTypes::ServerMessage:
-            {
-                int message;
-                msg >> message;
-
-                LOG("%s%X\n", "Reply from server: ", message);
-            }
-            }
-        }
-
-
-        TGEP::Renderer::BeginScene(m_Camera);
-
-        m_Camera.SetPosition(m_Position);
+        TGEP::Renderer::BeginScene(m_CameraController.GetCamera());
 
         auto SquareShader = m_ShaderLibary.Get("Square");
         auto TextureShader = m_ShaderLibary.Get("Texture");
@@ -183,6 +110,7 @@ public:
     
     virtual void OnEvent(TGEP::Event &e)
     {
+        m_CameraController.OnEvent(e);
         TGEP::EventDispatcher dispatcher(e);
         dispatcher.Dispatch<TGEP::KeyPressedEvent>(BIND_EVENT_FUNC(TestLayer::OnKeyPressed));
     }
@@ -245,12 +173,6 @@ public:
 
     virtual void OnImGuiRender() override
     {
-        if(!m_IsConnected)
-        {
-            ImGui::Begin("Not connected to server!");
-            ImGui::Text("Go to Settings(esc) and connect to a server!");
-            ImGui::End();
-        }
 
         if(m_Settings)
         {
@@ -262,50 +184,6 @@ public:
             ImGui::TextColored(ImVec4(0,1,1,1), "Performance");
             ImGui::Text(DT.str().c_str());
             ImGui::Text(FPS.str().c_str());
-
-            ImGui::Separator();
-
-            ImGui::TextColored(ImVec4(0,1,1,1), "Network Settings");
-
-            if(m_IsConnected) 
-            {
-                ImGui::Text("Server status: Connected!");
-            }
-            if(!m_IsConnected) 
-            {
-                ImGui::Text("Server status: Disconnected!");
-            }
-
-            ImGui::InputText("Server Ip", m_ServerAddress, 17);
-            ImGui::InputInt("Server port", &m_ServerPort);
-
-            if(ImGui::Button("Connect to server"))
-            {
-                if(m_IsConnected) 
-                {
-                    ImGui::End();
-                    return;
-                }
-                ConnectToServer();
-                ImGui::End();
-                return;
-            }
-
-            if (m_IsConnected)
-            {
-                if (ImGui::Button("Send Message"))
-                {
-                    c->SendTest(0x0001);
-                    ImGui::End();
-                    return;
-                }
-                if (ImGui::Button("Ping server"))
-                {
-                    c->PingServer();
-                    ImGui::End();
-                    return;
-                }
-            }
 
             ImGui::Separator();
             ImGui::TextColored(ImVec4(0,1,1,1), "General Settings");
@@ -360,14 +238,7 @@ public:
         }
     }
 
-    void ConnectToServer()
-    {
-        c->Connect(m_ServerAddress, m_ServerPort);
-    }
-
 private:
-
-    TGEP::Ref<TGEPClient> c;
 
     TGEP::Ref<TGEP::Profiling> m_Profiler = std::make_shared<TGEP::Profiling>();
     uint64_t t0 = 0;
@@ -375,15 +246,10 @@ private:
     int m_NumCpus = m_Profiler->get_num_processors();
     bool advancedProfiling = false;
 
-    char m_ServerAddress[17] = "127.0.0.1";
-    int m_ServerPort = 2556;
-
-    bool m_IsConnected = false;
-
     TGEP::ShaderLibary m_ShaderLibary;
     TGEP::Ref<TGEP::VertexArray> m_SquareVertexArray;
 
-    TGEP::OrthoCamera m_Camera;
+    TGEP::OrthoCameraController m_CameraController;
 
     glm::vec3 m_Position = glm::vec3(0.0f);
     float m_DeltaTime = 0.0f;

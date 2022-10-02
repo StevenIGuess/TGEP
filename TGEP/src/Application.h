@@ -33,9 +33,11 @@ namespace TGEP
 
     private:
         bool OnWindowClose(WindowCloseEvent& e);
+        bool OnWindowResize(WindowResizedEvent& e);
         std::unique_ptr<Window> m_Window;
         ImGuiLayer* m_ImGuiLayer;
         bool m_Running = true;
+        bool m_Minimized = false;
         float m_LastFrameTime = 0.0f;
         LayerStack m_LayerStack;
         static Application* s_Instance;

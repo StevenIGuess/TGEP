@@ -1,16 +1,9 @@
 ﻿  Application.cpp
-  ImGuiBuild.cpp
+  CameraController.cpp
   Input.cpp
-  Layer.cpp
-  LayerStack.cpp
   ImGuiLayer.cpp
-  OpenGLInfoLayer.cpp
-  OpenGLBuffer.cpp
-  OpenGLContext.cpp
   OpenGLRendererAPI.cpp
   OpenGLShader.cpp
-  OpenGLTexture.cpp
-  OpenGLVertexArray.cpp
   Buffer.cpp
   Camera.cpp
   RenderCommand.cpp
@@ -19,9 +12,5 @@
   Shader.cpp
   Texture.cpp
   VertexArray.cpp
-  Window.cpp
   OpenGLWindow.cpp
-  pch.cpp
-C:\Dev\TGEP\TGEP\src\RenderAPI\OpenGL\OpenGLVertexArray.cpp(58,105): warning C4312: 'type cast': conversion from 'const uint32_t' to 'const void *' of greater size
-  stb_image.cpp
   TGEP.vcxproj -> C:\Dev\TGEP\bin\Debug-windows-x86_64\TGEP\TGEP.lib

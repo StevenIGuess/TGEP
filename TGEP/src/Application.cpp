@@ -58,6 +58,7 @@ namespace TGEP {
     {
         EventDispatcher dispatcher(e);
         dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FUNC(Application::OnWindowClose));
+        dispatcher.Dispatch<WindowResizedEvent>(BIND_EVENT_FUNC(Application::OnWindowResize));
 
 
         for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
@@ -79,9 +80,12 @@ namespace TGEP {
             m_LastFrameTime = time;
 
             //call OnUpdate() for each layer
-            for (Layer* layer : m_LayerStack)
+            if (!m_Minimized)
             {
-                layer->OnUpdate(deltaTime);
+                for (Layer* layer : m_LayerStack)
+                {
+                    layer->OnUpdate(deltaTime);
+                }
             }
 
             m_ImGuiLayer->Begin();
@@ -101,6 +105,21 @@ namespace TGEP {
         m_Running = false;
 
         return true;
+    }
+
+    bool Application::OnWindowResize(WindowResizedEvent& e)
+    {
+        if (e.GetWidth() == 0 || e.GetHeight() == 0)
+        {
+            m_Minimized = true;
+            return false;
+        }
+
+        m_Minimized = false;
+
+        Renderer::OnWindowResize(e.GetWidth(), e.GetHeight());
+
+        return false;
     }
 
 }

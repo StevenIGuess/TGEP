@@ -55,6 +55,7 @@
 #include "RenderAPI/OpenGL/OpenGLShader.h"
 //Camera system
 #include "Renderer/Camera.h"
+#include "CameraController.h"
 //Time system
 #include "DeltaTime.h"
 //Textures
