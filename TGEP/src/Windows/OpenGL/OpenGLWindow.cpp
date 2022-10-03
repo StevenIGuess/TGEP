@@ -30,11 +30,13 @@ namespace TGEP
 
     OpenGLWindow::~OpenGLWindow()
     {
+        PROFILE_FUNCTION()
         Shutdown();
     }
 
     void OpenGLWindow::Init(const WindowProperties& properties)
     {
+        PROFILE_FUNCTION()
         m_Data.Title = properties.Title;
         m_Data.Width = properties.Width;
         m_Data.Height = properties.Height;
@@ -153,11 +155,13 @@ namespace TGEP
 
     void OpenGLWindow::Shutdown()
     {
+        PROFILE_FUNCTION()
         glfwDestroyWindow(m_Window);
     }
 
     void OpenGLWindow::OnUpdate()
     {
+        PROFILE_FUNCTION()
         glfwPollEvents();
         m_Context->SwapBuffers();
 
@@ -165,6 +169,7 @@ namespace TGEP
 
     void OpenGLWindow::SetVSync(bool enabled)
     {
+        PROFILE_FUNCTION()
         if (enabled)
         {
             glfwSwapInterval(1);

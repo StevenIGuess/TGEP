@@ -26,8 +26,6 @@ private:
     bool advancedProfiling = false;
     float m_DeltaTime = 0.0f;
 
-
-
     //Shader
     TGEP::ShaderLibary m_ShaderLibary;
 

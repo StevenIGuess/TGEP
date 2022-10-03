@@ -9,38 +9,38 @@ Sandbox2D::Sandbox2D()
 
 void Sandbox2D::OnAttach()
 {
+    PROFILE_FUNCTION();
     m_Texture = TGEP::Texture2D::Create("assets/textures/queen.png");
 }
 
 void Sandbox2D::OnDetach()
 {
+    PROFILE_FUNCTION();
 }
 
 void Sandbox2D::OnUpdate(TGEP::DeltaTime deltaTime)
 {
-    //Update
+    //Update & Profileing
+    PROFILE_FUNCTION()
     t0 = m_Profiler->get_cpu_cycles();
     m_DeltaTime = deltaTime;
     m_CameraController.OnUpdate(deltaTime);
 
-    //Render
+
+    //PreRender
     TGEP::RenderCommand::SetClearColor(glm::vec4(0.1f, 0.1f, 0.1f, 1.0f));
     TGEP::RenderCommand::Clear();
+    
 
     //Begin Scene
     TGEP::Renderer2D::BeginScene(m_CameraController.GetCamera());
-
-    TGEP::Renderer2D::DrawQuad({ 1.0f, 1.0f }, { 1.0f, 1.0f }, m_SquareColor);
-    TGEP::Renderer2D::DrawQuad({ 1.0f, 1.0f, -0.1f}, { 10.0f, 10.0f }, {1.0f, 0.5f, 0.0f, 1.0f});
-
-    TGEP::Renderer2D::EndScene();
-
-
-    /*
-    auto Square2DShader = m_ShaderLibary.Get("Square2D");
     
-    TGEP::Renderer::Push(m_SquareVertexArray, Square2DShader, transform);
-    */
+    //Render
+    TGEP::Renderer2D::DrawQuad({ 1.0f, 1.0f }, { 1.0f, 1.0f }, m_SquareColor);
+    TGEP::Renderer2D::DrawQuad({ 1.0f, 1.0f, -0.1f }, { 10.0f, 10.0f }, { 1.0f, 0.5f, 0.0f, 1.0f });
+    
+    //End Scene
+    TGEP::Renderer2D::EndScene();
 
 }
 
@@ -67,6 +67,8 @@ void Sandbox2D::OnImGuiRender()
 
         if (ImGui::TreeNode("Advanced performance info"))
         {
+            ImGui::Separator();
+
             if (advancedProfiling)
             {
                 std::stringstream totalVmem;
@@ -134,3 +136,5 @@ bool Sandbox2D::OnKeyPressed(TGEP::KeyPressedEvent& e)
     }
     
 }
+
+

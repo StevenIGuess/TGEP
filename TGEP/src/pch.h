@@ -3,6 +3,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include "Core.h"
+#include "Profiling.h"
 #include <cstdint>
 #include <utility>
 #include <string>

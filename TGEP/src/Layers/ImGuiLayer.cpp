@@ -27,6 +27,7 @@ namespace TGEP
 
     void ImGuiLayer::OnAttach()
     {
+        PROFILE_FUNCTION();
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
         ImGuiIO& io = ImGui::GetIO(); (void)io;
@@ -58,6 +59,7 @@ namespace TGEP
 
     void ImGuiLayer::OnDetach()
     {
+        PROFILE_FUNCTION();
         ImGui_ImplOpenGL3_Shutdown();
         ImGui_ImplGlfw_Shutdown();
         ImGui::DestroyContext();
@@ -65,6 +67,7 @@ namespace TGEP
 
     void ImGuiLayer::Begin()
     {
+        PROFILE_FUNCTION();
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
@@ -72,6 +75,7 @@ namespace TGEP
 
     void ImGuiLayer::End()
     {
+        PROFILE_FUNCTION();
         ImGuiIO& io = ImGui::GetIO();
         Application& app = Application::Get();
 

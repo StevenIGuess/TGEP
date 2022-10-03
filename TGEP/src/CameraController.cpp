@@ -2,6 +2,7 @@
 #include "CameraController.h"
 #include "Input.h"
 #include "Events/KeyCodes.h"
+#include<algorithm>
 
 namespace TGEP
 {
@@ -12,6 +13,7 @@ namespace TGEP
 	}
 	void OrthoCameraController::OnUpdate(DeltaTime dt)
 	{
+		PROFILE_FUNCTION();
 		if (Input::IsKeyPressed(TGEP_KEY_A))
 		{
 			m_CameraPosition.x -= m_CameraMoveSpeed * dt;
@@ -46,19 +48,22 @@ namespace TGEP
 	}
 	void OrthoCameraController::OnEvent(Event& e)
 	{
+		PROFILE_FUNCTION();
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<MouseScrolledEvent>(BIND_EVENT_FUNC(TGEP::OrthoCameraController::OnMouseScrolled));
 		dispatcher.Dispatch<WindowResizedEvent>(BIND_EVENT_FUNC(TGEP::OrthoCameraController::OnWindowResized));
 	}
 	bool OrthoCameraController::OnMouseScrolled(MouseScrolledEvent& e)
 	{
+		PROFILE_FUNCTION();
 		m_Zoom -= e.GetYOffset() * 0.25f;
-		m_Zoom = std::max(m_Zoom, 0.25f);
+		m_Zoom = max(m_Zoom, 0.25f);
 		m_Camera.SetProjection(-m_AspectRatio * m_Zoom, m_AspectRatio * m_Zoom, -m_Zoom, m_Zoom);
 		return false;
 	}
 	bool OrthoCameraController::OnWindowResized(WindowResizedEvent& e)
 	{
+		PROFILE_FUNCTION();
 		m_AspectRatio = (float)e.GetWidth() / (float)e.GetHeight();
 		m_Camera.SetProjection(-m_AspectRatio * m_Zoom, m_AspectRatio * m_Zoom, -m_Zoom, m_Zoom);
 		return false;

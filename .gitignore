@@ -23,4 +23,8 @@ libTGEP.a
 build/Sandbox/
 sandbox.exe
 
+#profileing
+TGEP_RUNTIME.json
+TGEP_SHUTDOWN.json
+TGEP_STARTUP.json
 

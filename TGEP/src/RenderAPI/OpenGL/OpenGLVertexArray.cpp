@@ -24,26 +24,31 @@ namespace TGEP {
 
     OpenGLVertexArray::OpenGLVertexArray()
     {
+        PROFILE_FUNCTION()
         glGenVertexArrays(1, &m_RendererID);
     }
 
     OpenGLVertexArray::~OpenGLVertexArray()
     {
+        PROFILE_FUNCTION()
         glDeleteVertexArrays(1, &m_RendererID);
     }
 
     void OpenGLVertexArray::Bind() const
     {
+        PROFILE_FUNCTION()
         glBindVertexArray(m_RendererID);
     }
 
     void OpenGLVertexArray::UnBind() const
     {
+        PROFILE_FUNCTION()
         glBindVertexArray(0);
     }
 
     void OpenGLVertexArray::AddVertexBuffer(const Ref<VertexBuffer>& vertex)
     {
+        PROFILE_FUNCTION()
         ASSERT_CORE(vertex->GetLayout().GetElements().size(), "VERTEX_BUFFER_LAYOUT_MISSING");
 
         glBindVertexArray(m_RendererID);
@@ -63,6 +68,7 @@ namespace TGEP {
 
     void OpenGLVertexArray::SetIndexBuffer(const Ref<IndexBuffer>& index)
     {
+        PROFILE_FUNCTION()
         glBindVertexArray(m_RendererID);
         index->Bind();
         m_IndexBuffer = index;

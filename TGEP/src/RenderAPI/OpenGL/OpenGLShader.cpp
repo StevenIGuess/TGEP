@@ -21,6 +21,7 @@ namespace TGEP
 
     OpenGLShader::OpenGLShader(const std::string& path)
     {
+        PROFILE_FUNCTION();
         std::string src = ReadFile(path);
         auto shaderSources = OpenGLShader::PreProcess(src);
         Compile(shaderSources);
@@ -34,6 +35,7 @@ namespace TGEP
 
     OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc)
     {
+        PROFILE_FUNCTION();
         std::unordered_map<GLenum, std::string> sources;
         sources[GL_VERTEX_SHADER] = vertexSrc;
         sources[GL_FRAGMENT_SHADER] = fragmentSrc;
@@ -43,11 +45,13 @@ namespace TGEP
 
     OpenGLShader::~OpenGLShader()
     {
+        PROFILE_FUNCTION();
         glDeleteProgram(m_RendererID);
     }
 
     std::string OpenGLShader::ReadFile(const std::string& path)
     {
+        PROFILE_FUNCTION();
         std::string result;
         std::ifstream in(path.c_str(), std::ios::in | std::ios::binary);
         if (in)
@@ -90,6 +94,7 @@ namespace TGEP
 
     void OpenGLShader::Compile(const std::unordered_map<GLenum, std::string>& shaderSources)
     {
+        PROFILE_FUNCTION();
         GLuint program = glCreateProgram();
         ASSERT_CORE(shaderSources.size() <= 2, "TOO MANY SHADERS IN ONE FILE!");
         std::array<GLenum, 2> glShaderIDs;
@@ -154,26 +159,31 @@ namespace TGEP
 
     void OpenGLShader::Bind() const
     {
+        PROFILE_FUNCTION();
         glUseProgram(m_RendererID);
     }
 
     void OpenGLShader::UnBind() const
     {
+        PROFILE_FUNCTION();
         glUseProgram(0);
     }
 
     void OpenGLShader::SetUniform(const std::string& name, const glm::mat4& value)
     {
+        PROFILE_FUNCTION();
         UploadUniform(name, value);
     }
 
     void OpenGLShader::SetUniform(const std::string& name, const glm::vec4& value)
     {
+        PROFILE_FUNCTION();
         UploadUniform(name, value);
     }
 
     void OpenGLShader::SetUniform(const std::string& name, const int& value)
     {
+        PROFILE_FUNCTION();
         UploadUniform(name, value);
     }
 

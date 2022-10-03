@@ -12,6 +12,7 @@ namespace TGEP
 
     void OpenGLContext::Init()
     {
+        PROFILE_FUNCTION()
         glfwMakeContextCurrent(m_Window);
         int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
         ASSERT_CORE(status, "FAILED TO LOAD GLAD");
@@ -20,6 +21,7 @@ namespace TGEP
 
     void OpenGLContext::SwapBuffers()
     {
+        PROFILE_FUNCTION()
         glfwSwapBuffers(m_Window);
     }
 }

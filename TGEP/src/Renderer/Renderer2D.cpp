@@ -18,6 +18,7 @@ namespace TGEP
 
 	void Renderer2D::Init()
 	{
+		PROFILE_FUNCTION()
 		s_Data = new Renderer2DData();
 		s_Data->QuadVertexArray = TGEP::VertexArray::Create();
 
@@ -58,17 +59,19 @@ namespace TGEP
 	}
 	void Renderer2D::Shutdown()
 	{
+		PROFILE_FUNCTION();
 		delete s_Data;
 	}
 
 	void Renderer2D::BeginScene(const OrthoCamera& camera)
 	{
+		PROFILE_FUNCTION();
 		s_Data->TextureShader->Bind();
 		s_Data->TextureShader->SetUniform("u_ViewProjection", camera.GetVPM());
 	}
 	void Renderer2D::EndScene()
 	{
-
+		PROFILE_FUNCTION();
 	}
 
 	void Renderer2D::DrawQuad(const glm::vec2& pos, const glm::vec2& size, const glm::vec4& color)
@@ -77,6 +80,7 @@ namespace TGEP
 	}
 	void Renderer2D::DrawQuad(const glm::vec3& pos, const glm::vec2& size, const glm::vec4& color)
 	{
+		PROFILE_FUNCTION();
 		s_Data->TextureShader->SetUniform("u_Color", color);
 		s_Data->WhiteTexture->Bind();
 		
@@ -94,6 +98,7 @@ namespace TGEP
 
 	void Renderer2D::DrawQuad(const glm::vec3& pos, const glm::vec2& size, const Ref<Texture2D>& texture)
 	{
+		PROFILE_FUNCTION();
 		s_Data->TextureShader->SetUniform("u_Color", glm::vec4(1.0f));
 		texture->Bind();
 
