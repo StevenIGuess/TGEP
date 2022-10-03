@@ -10,7 +10,29 @@ Sandbox2D::Sandbox2D()
 void Sandbox2D::OnAttach()
 {
     PROFILE_FUNCTION();
-    m_Texture = TGEP::Texture2D::Create("assets/textures/queen.png");
+    m_Texture = TGEP::Texture2D::Create("assets/textures/Texture.png");
+
+    m_QuadData[0].Pos = { 1.0f, 1.0f, 0.0f };
+    m_QuadData[0].Scale = { 1.0f, 1.0f};
+    m_QuadData[0].Color = { 0.2f, 0.3f, 0.8f, 1.0f};
+    m_QuadData[0].TextureScale = 1.0f;
+
+    m_QuadData[1].Pos = { 2.0f, 1.0f, 0.0f };
+    m_QuadData[1].Scale = { 1.0f, 1.0f };
+    m_QuadData[1].Color = { 0.2f, 0.3f, 0.8f, 1.0f };
+    m_QuadData[1].TextureScale = 1.0f;
+
+    m_QuadDataR[0].Pos = { 3.5f, 1.0f, 0.0f};
+    m_QuadDataR[0].Scale = { 1.0f, 1.0f };
+    m_QuadDataR[0].Rot= 45.0f;
+    m_QuadDataR[0].Color = { 0.2f, 0.3f, 0.8f, 1.0f };
+    m_QuadDataR[0].TextureScale = 1.0f;
+
+    m_QuadDataR[1].Pos = { 4.5f, 1.0f, 0.0f };
+    m_QuadDataR[1].Scale = { 1.0f, 1.0f };
+    m_QuadDataR[1].Rot = 45.0f;
+    m_QuadDataR[1].Color = { 0.2f, 0.3f, 0.8f, 1.0f };
+    m_QuadDataR[1].TextureScale = 1.0f;
 }
 
 void Sandbox2D::OnDetach()
@@ -36,8 +58,11 @@ void Sandbox2D::OnUpdate(TGEP::DeltaTime deltaTime)
     TGEP::Renderer2D::BeginScene(m_CameraController.GetCamera());
     
     //Render
-    TGEP::Renderer2D::DrawQuad({ 1.0f, 1.0f }, { 1.0f, 1.0f }, m_SquareColor);
-    TGEP::Renderer2D::DrawQuad({ 1.0f, 1.0f, -0.1f }, { 10.0f, 10.0f }, { 1.0f, 0.5f, 0.0f, 1.0f });
+    TGEP::Renderer2D::DrawQuad(m_QuadData[0].Pos, m_QuadData[0].Scale, m_QuadData[0].Color);
+    TGEP::Renderer2D::DrawQuad(m_QuadData[1].Pos, m_QuadData[1].Scale, m_QuadData[1].Color);
+
+    //TGEP::Renderer2D::DrawQuadR(m_QuadDataR[0].Pos, m_QuadDataR[0].Scale, glm::radians(m_QuadDataR[0].Rot), m_QuadDataR[0].Color);
+    //TGEP::Renderer2D::DrawQuadR(m_QuadDataR[1].Pos, m_QuadDataR[1].Scale, glm::radians(m_QuadDataR[1].Rot), m_QuadDataR[1].Color, m_Texture, m_QuadDataR[1].TextureScale);
     
     //End Scene
     TGEP::Renderer2D::EndScene();
@@ -61,6 +86,46 @@ void Sandbox2D::OnImGuiRender()
         ImGui::TextColored(ImVec4(0, 1, 1, 1), "General Settings");
 
         ImGui::ColorEdit4("Color", (float*)&m_SquareColor);
+        ImGui::ColorEdit4("Tint", (float*)&m_Tint);
+
+        ImGui::Separator();
+        ImGui::TextColored(ImVec4(0, 1, 1, 1), "Game Data");
+
+        if (ImGui::TreeNode("Quad data"))
+        {
+            for (int i = 0; i < (sizeof(m_QuadData) / sizeof(QuadData)); i++)
+            {
+                ImGui::Separator;
+                std::stringstream ss;
+                ss << "Quad " << i;
+                if (ImGui::TreeNode(ss.str().c_str()))
+                {
+                    ImGui::DragFloat3("Position", (float*)&m_QuadData[i].Pos);
+                    ImGui::DragFloat2("Scale", (float*)&m_QuadData[i].Scale);
+                    ImGui::ColorEdit4("Color", (float*)&m_QuadData[i].Color);
+                    ImGui::DragFloat("Texture Scale", (float*)&m_QuadData[i].TextureScale);
+                    ImGui::TreePop();
+                }
+            }
+
+            for (int i = 0; i < (sizeof(m_QuadDataR) / sizeof(QuadDataR)); i++)
+            {
+                ImGui::Separator;
+                std::stringstream ss;
+                ss << "QuadR " << i;
+                if (ImGui::TreeNode(ss.str().c_str()))
+                {
+                    ImGui::DragFloat3("Position", (float*)&m_QuadDataR[i].Pos);
+                    ImGui::DragFloat2("Scale", (float*)&m_QuadDataR[i].Scale);
+                    ImGui::DragFloat("Rotation", (float*)&m_QuadDataR[i].Rot);
+                    ImGui::ColorEdit4("Color", (float*)&m_QuadDataR[i].Color);
+                    ImGui::DragFloat("Texture Scale", (float*)&m_QuadDataR[i].TextureScale);
+                    ImGui::TreePop();
+                }
+            }
+            ImGui::TreePop();
+        }
+
 
         ImGui::Separator();
         ImGui::TextColored(ImVec4(0, 1, 1, 1), "Advanced Settings");
@@ -110,6 +175,7 @@ void Sandbox2D::OnImGuiRender()
 
         ImGui::End();
     }
+
 }
 
 void Sandbox2D::OnEvent(TGEP::Event& e)

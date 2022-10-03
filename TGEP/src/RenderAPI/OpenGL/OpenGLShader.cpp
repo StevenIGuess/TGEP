@@ -187,6 +187,12 @@ namespace TGEP
         UploadUniform(name, value);
     }
 
+    void OpenGLShader::SetUniform(const std::string& name, const float& value)
+    {
+        PROFILE_FUNCTION();
+        UploadUniform(name, value);
+    }
+
     void OpenGLShader::UploadUniform(const std::string& name, const glm::mat4& value)
     {
         GLint location = glGetUniformLocation(m_RendererID, name.c_str());
@@ -201,5 +207,10 @@ namespace TGEP
     {
         GLint location = glGetUniformLocation(m_RendererID, name.c_str());
         glUniform1i(location, value);
+    }
+    void OpenGLShader::UploadUniform(const std::string& name, const float& value)
+    {
+        GLint location = glGetUniformLocation(m_RendererID, name.c_str());
+        glUniform1f(location, value);
     }
 }

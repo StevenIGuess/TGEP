@@ -2,6 +2,23 @@
 #include <TGEP.h>
 #include <Profiling.h>
 
+struct QuadData
+{
+    glm::vec3 Pos;
+    glm::vec2 Scale;
+    glm::vec4 Color;
+    float TextureScale;
+};
+
+struct QuadDataR
+{
+    glm::vec3 Pos;
+    glm::vec2 Scale;
+    float Rot;
+    glm::vec4 Color;
+    float TextureScale;
+};
+
 class Sandbox2D : public TGEP::Layer
 {
 public:
@@ -40,5 +57,9 @@ private:
 
     //Gamedata
     glm::vec4 m_SquareColor = glm::vec4(0.8f, 0.4f, 0.2f, 1.0f);
+    glm::vec4 m_Tint = glm::vec4(0.8f, 0.4f, 0.2f, 1.0f);
     TGEP::Ref<TGEP::Texture2D> m_Texture;
+    
+    QuadData m_QuadData[2];
+    QuadDataR m_QuadDataR[2];
 };

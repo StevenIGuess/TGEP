@@ -7,12 +7,13 @@
 
 namespace TGEP
 {
-    VertexBuffer* VertexBuffer::Create(float* verticies, uint32_t size)
+
+    Ref<VertexBuffer> VertexBuffer::Create(uint32_t size)
     {
         switch (Renderer::GetAPI())
         {
         case RendererAPI::API::None:     ASSERT_CORE(false, "No Renderer selected") return nullptr;
-        case RendererAPI::API::OpenGL:   return new OpenGLVertexBuffer(verticies, size);
+        case RendererAPI::API::OpenGL:   return std::make_shared<OpenGLVertexBuffer>(size);
         case RendererAPI::API::DirectX:  ASSERT_CORE(false, "DirectX not implemented yet") return nullptr;
 
         }
@@ -21,12 +22,26 @@ namespace TGEP
             return nullptr;
     }
 
-    IndexBuffer* IndexBuffer::Create(uint32_t* indices, uint32_t count)
+    Ref<VertexBuffer> VertexBuffer::Create(float* verticies, uint32_t size)
     {
         switch (Renderer::GetAPI())
         {
         case RendererAPI::API::None:     ASSERT_CORE(false, "No Renderer selected") return nullptr;
-        case RendererAPI::API::OpenGL:   return new OpenGLIndexBuffer(indices, count);
+        case RendererAPI::API::OpenGL:   return std::make_shared<OpenGLVertexBuffer>(verticies, size);
+        case RendererAPI::API::DirectX:  ASSERT_CORE(false, "DirectX not implemented yet") return nullptr;
+
+        }
+
+        ASSERT_CORE(false, "Unknown RendererAPI!")
+            return nullptr;
+    }
+
+    Ref<IndexBuffer> IndexBuffer::Create(uint32_t* indices, uint32_t count)
+    {
+        switch (Renderer::GetAPI())
+        {
+        case RendererAPI::API::None:     ASSERT_CORE(false, "No Renderer selected") return nullptr;
+        case RendererAPI::API::OpenGL:   return std::make_shared<OpenGLIndexBuffer>(indices, count);
         case RendererAPI::API::DirectX:  ASSERT_CORE(false, "DirectX not implemented yet") return nullptr;
 
         }

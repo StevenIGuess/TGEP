@@ -32,13 +32,11 @@ public:
 
         m_SquareVertexArray = TGEP::VertexArray::Create();
 
-        TGEP::Ref<TGEP::VertexBuffer> SVB;
-        SVB.reset(TGEP::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+        TGEP::Ref<TGEP::VertexBuffer> SVB = TGEP::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
         SVB->SetLayout(squareLayout);
         m_SquareVertexArray->AddVertexBuffer(SVB);
 
-        TGEP::Ref<TGEP::IndexBuffer> SIB;
-        SIB.reset(TGEP::IndexBuffer::Create(squareIndices, (sizeof(squareIndices) / sizeof(uint32_t))));
+        TGEP::Ref<TGEP::IndexBuffer> SIB = TGEP::IndexBuffer::Create(squareIndices, (sizeof(squareIndices) / sizeof(uint32_t)));
         m_SquareVertexArray->SetIndexBuffer (SIB);
 
         auto SquareShader = m_ShaderLibary.Load("assets/Shader/Square.glsl");
