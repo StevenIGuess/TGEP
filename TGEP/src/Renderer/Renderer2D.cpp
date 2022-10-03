@@ -10,8 +10,8 @@ namespace TGEP
 	struct Renderer2DData
 	{
 		Ref<VertexArray> QuadVertexArray;
-		Ref<Shader> FlatColorShader;
 		Ref<Shader> TextureShader;
+		Ref<Texture2D> WhiteTexture;
 	};
 
 	static Renderer2DData* s_Data;
@@ -48,7 +48,10 @@ namespace TGEP
 		SIB.reset(IndexBuffer::Create(m_SquareIndices, (sizeof(m_SquareIndices) / sizeof(uint32_t))));
 		s_Data->QuadVertexArray->SetIndexBuffer(SIB);
 
-		s_Data->FlatColorShader = Shader::Create("assets/Shader/FlatColorShader.glsl");
+		s_Data->WhiteTexture = Texture2D::Create(1, 1);
+		uint32_t textureData = 0xffffffff;
+		s_Data->WhiteTexture->SetData(&textureData, sizeof(uint32_t));
+
 		s_Data->TextureShader = Shader::Create("assets/Shader/TextureShader.glsl");
 		s_Data->TextureShader->Bind();
 		s_Data->TextureShader->SetUniform("u_Texture", 0);
@@ -60,9 +63,6 @@ namespace TGEP
 
 	void Renderer2D::BeginScene(const OrthoCamera& camera)
 	{
-		s_Data->FlatColorShader->Bind();
-		s_Data->FlatColorShader->SetUniform("u_ViewProjection", camera.GetVPM());
-
 		s_Data->TextureShader->Bind();
 		s_Data->TextureShader->SetUniform("u_ViewProjection", camera.GetVPM());
 	}
@@ -77,11 +77,11 @@ namespace TGEP
 	}
 	void Renderer2D::DrawQuad(const glm::vec3& pos, const glm::vec2& size, const glm::vec4& color)
 	{
-		s_Data->FlatColorShader->Bind();
-		s_Data->FlatColorShader->SetUniform("u_Color", color);
-
+		s_Data->TextureShader->SetUniform("u_Color", color);
+		s_Data->WhiteTexture->Bind();
+		
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * /* rotation */ glm::scale(glm::mat4(1.0f), {size.x, size.y, 1.0f});
-		s_Data->FlatColorShader->SetUniform("u_Transform", transform);
+		s_Data->TextureShader->SetUniform("u_Transform", transform);
 
 		s_Data->QuadVertexArray->Bind();
 		RenderCommand::DrawIndexed(s_Data->QuadVertexArray);
@@ -94,7 +94,7 @@ namespace TGEP
 
 	void Renderer2D::DrawQuad(const glm::vec3& pos, const glm::vec2& size, const Ref<Texture2D>& texture)
 	{
-		s_Data->TextureShader->Bind();
+		s_Data->TextureShader->SetUniform("u_Color", glm::vec4(1.0f));
 		texture->Bind();
 
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * /* rotation */ glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
