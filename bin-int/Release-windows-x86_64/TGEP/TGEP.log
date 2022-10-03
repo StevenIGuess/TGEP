@@ -1,4 +1,83 @@
-﻿  CameraController.cpp
-C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data
-C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data
+﻿  Application.cpp
+  CameraController.cpp
+  ImGuiBuild.cpp
+  Input.cpp
+  Layer.cpp
+  LayerStack.cpp
+  ImGuiLayer.cpp
+  OpenGLInfoLayer.cpp
+  OpenGLBuffer.cpp
+  OpenGLContext.cpp
+  OpenGLRendererAPI.cpp
+  OpenGLShader.cpp
+C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data (compiling source file src\ImGuiBuild.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data (compiling source file src\ImGuiBuild.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data (compiling source file src\CameraController.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data (compiling source file src\Application.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data (compiling source file src\CameraController.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data (compiling source file src\Application.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data (compiling source file src\LayerStack.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data (compiling source file src\LayerStack.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data (compiling source file src\Layers\ImGuiLayer.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data (compiling source file src\Layers\ImGuiLayer.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data (compiling source file src\Input.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data (compiling source file src\Input.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data (compiling source file src\Layer.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data (compiling source file src\Layer.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data (compiling source file src\Layers\OpenGLInfoLayer.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data (compiling source file src\Layers\OpenGLInfoLayer.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data (compiling source file src\RenderAPI\OpenGL\OpenGLShader.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data (compiling source file src\RenderAPI\OpenGL\OpenGLBuffer.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data (compiling source file src\RenderAPI\OpenGL\OpenGLShader.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data (compiling source file src\RenderAPI\OpenGL\OpenGLBuffer.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data (compiling source file src\RenderAPI\OpenGL\OpenGLContext.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data (compiling source file src\RenderAPI\OpenGL\OpenGLContext.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data (compiling source file src\RenderAPI\OpenGL\OpenGLRendererAPI.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data (compiling source file src\RenderAPI\OpenGL\OpenGLRendererAPI.cpp)
+  OpenGLTexture.cpp
+  OpenGLVertexArray.cpp
+  Buffer.cpp
+  Camera.cpp
+  RenderCommand.cpp
+  Renderer.cpp
+  Renderer2D.cpp
+  RendererAPI.cpp
+  Shader.cpp
+  Texture.cpp
+  VertexArray.cpp
+  Window.cpp
+C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data (compiling source file src\RenderAPI\OpenGL\OpenGLVertexArray.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data (compiling source file src\RenderAPI\OpenGL\OpenGLVertexArray.cpp)
+C:\Dev\TGEP\TGEP\src\RenderAPI\OpenGL\OpenGLVertexArray.cpp(63,105): warning C4312: 'type cast': conversion from 'const uint32_t' to 'const void *' of greater size
+C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data (compiling source file src\Renderer\Camera.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data (compiling source file src\Renderer\Camera.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data (compiling source file src\Renderer\Buffer.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data (compiling source file src\Renderer\Buffer.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data (compiling source file src\RenderAPI\OpenGL\OpenGLTexture.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data (compiling source file src\RenderAPI\OpenGL\OpenGLTexture.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data (compiling source file src\Renderer\RenderCommand.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data (compiling source file src\Renderer\RenderCommand.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data (compiling source file src\Renderer\Renderer2D.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data (compiling source file src\Renderer\Renderer2D.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data (compiling source file src\Renderer\Shader.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data (compiling source file src\Renderer\Shader.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data (compiling source file src\Renderer\RendererAPI.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data (compiling source file src\Renderer\RendererAPI.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data (compiling source file src\Renderer\Renderer.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data (compiling source file src\Renderer\Renderer.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data (compiling source file src\Renderer\Texture.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data (compiling source file src\Renderer\Texture.cpp)
+  OpenGLWindow.cpp
+C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data (compiling source file src\Renderer\VertexArray.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data (compiling source file src\Renderer\VertexArray.cpp)
+  pch.cpp
+  stb_image.cpp
+C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data (compiling source file src\Window.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data (compiling source file src\Window.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data (compiling source file src\Windows\OpenGL\OpenGLWindow.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data (compiling source file src\Windows\OpenGL\OpenGLWindow.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data (compiling source file submodules\stb_image\stb_image.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data (compiling source file submodules\stb_image\stb_image.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data (compiling source file src\pch.cpp)
+C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data (compiling source file src\pch.cpp)
   TGEP.vcxproj -> C:\Dev\TGEP\bin\Release-windows-x86_64\TGEP\TGEP.lib

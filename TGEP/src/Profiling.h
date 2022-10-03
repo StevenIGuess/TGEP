@@ -10,7 +10,7 @@
 #include <chrono>
 #include <thread>
 
-#define TGEP_DEBUG_PROFILEING 1
+//#define TGEP_DEBUG_PROFILEING 1
 
 #if TGEP_DEBUG_PROFILEING
 #define PROFILE_BEGIN(name, filepath) TGEP::Instrumentor::Get().BeginSession(name, filepath)
