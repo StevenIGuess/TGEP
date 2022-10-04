@@ -181,13 +181,19 @@ namespace TGEP
         UploadUniform(name, value);
     }
 
-    void OpenGLShader::SetUniform(const std::string& name, const int& value)
+    void OpenGLShader::SetUniform(const std::string& name, const int value)
     {
         PROFILE_FUNCTION();
         UploadUniform(name, value);
     }
 
-    void OpenGLShader::SetUniform(const std::string& name, const float& value)
+    void OpenGLShader::SetUniform(const std::string& name, const int* values, uint32_t count)
+    {
+        PROFILE_FUNCTION();
+        UploadUniform(name, values, count);
+    }
+
+    void OpenGLShader::SetUniform(const std::string& name, const float value)
     {
         PROFILE_FUNCTION();
         UploadUniform(name, value);
@@ -203,12 +209,17 @@ namespace TGEP
         GLint location = glGetUniformLocation(m_RendererID, name.c_str());
         glUniform4f(location, value.x, value.y, value.z, value.w);
     }
-    void OpenGLShader::UploadUniform(const std::string& name, const int& value)
+    void OpenGLShader::UploadUniform(const std::string& name, const int value)
     {
         GLint location = glGetUniformLocation(m_RendererID, name.c_str());
         glUniform1i(location, value);
     }
-    void OpenGLShader::UploadUniform(const std::string& name, const float& value)
+    void OpenGLShader::UploadUniform(const std::string& name, const int* values, uint32_t count)
+    {
+        GLint location = glGetUniformLocation(m_RendererID, name.c_str());
+        glUniform1iv(location, count, values);
+    }
+    void OpenGLShader::UploadUniform(const std::string& name, const float value)
     {
         GLint location = glGetUniformLocation(m_RendererID, name.c_str());
         glUniform1f(location, value);

@@ -59,7 +59,7 @@ void Sandbox2D::OnUpdate(TGEP::DeltaTime deltaTime)
     
     //Render
     TGEP::Renderer2D::DrawQuad(m_QuadData[0].Pos, m_QuadData[0].Scale, m_QuadData[0].Color);
-    TGEP::Renderer2D::DrawQuad(m_QuadData[1].Pos, m_QuadData[1].Scale, m_QuadData[1].Color);
+    TGEP::Renderer2D::DrawQuad(m_QuadData[1].Pos, m_QuadData[1].Scale, m_QuadData[1].Color, m_Texture, m_QuadData[1].TextureScale);
 
     //TGEP::Renderer2D::DrawQuadR(m_QuadDataR[0].Pos, m_QuadDataR[0].Scale, glm::radians(m_QuadDataR[0].Rot), m_QuadDataR[0].Color);
     //TGEP::Renderer2D::DrawQuadR(m_QuadDataR[1].Pos, m_QuadDataR[1].Scale, glm::radians(m_QuadDataR[1].Rot), m_QuadDataR[1].Color, m_Texture, m_QuadDataR[1].TextureScale);

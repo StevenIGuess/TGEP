@@ -21,15 +21,17 @@ namespace TGEP
 
         virtual void SetUniform(const std::string& name, const glm::mat4& value) override;
         virtual void SetUniform(const std::string& name, const glm::vec4& value) override;
-        virtual void SetUniform(const std::string& name, const int& value) override;
-        virtual void SetUniform(const std::string& name, const float& value) override;
+        virtual void SetUniform(const std::string& name, const int value) override;
+        virtual void SetUniform(const std::string& name, const int* values, uint32_t count) override;
+        virtual void SetUniform(const std::string& name, const float value) override;
 
         virtual const std::string& GetName() const override { return m_Name; }
 
         virtual void UploadUniform(const std::string& name, const glm::mat4& value);
         virtual void UploadUniform(const std::string& name, const glm::vec4& value);
-        virtual void UploadUniform(const std::string& name, const int& value);
-        virtual void UploadUniform(const std::string& name, const float& value);
+        virtual void UploadUniform(const std::string& name, const int value);
+        virtual void UploadUniform(const std::string& name, const int* values, uint32_t count);
+        virtual void UploadUniform(const std::string& name, const float value);
     private:
         std::string ReadFile(const std::string& path);
         std::unordered_map<GLenum, std::string> PreProcess(const std::string& src);
