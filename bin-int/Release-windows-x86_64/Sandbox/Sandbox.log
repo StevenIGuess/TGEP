@@ -1,13 +1,10 @@
-﻿  Sandbox.cpp
-  Sandbox2D.cpp
-C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data (compiling source file src\Sandbox2D.cpp)
-C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data (compiling source file src\Sandbox.cpp)
-C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data (compiling source file src\Sandbox2D.cpp)
-C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data (compiling source file src\Sandbox.cpp)
+﻿  Sandbox2D.cpp
+C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data
+C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data
 C:\Dev\TGEP\Sandbox\src\Sandbox2D.cpp(35,5): warning C4003: not enough arguments for function-like macro invocation 'PROFILE_FUNCTION'
-C:\Dev\TGEP\Sandbox\src\Sandbox2D.cpp(83,5): warning C4003: not enough arguments for function-like macro invocation 'PROFILE_FUNCTION'
-C:\Dev\TGEP\Sandbox\src\Sandbox2D.cpp(89,5): warning C4003: not enough arguments for function-like macro invocation 'PROFILE_FUNCTION'
-C:\Dev\TGEP\Sandbox\src\Sandbox2D.cpp(101,27): warning C4018: '>': signed/unsigned mismatch
-C:\Dev\TGEP\Sandbox\src\Sandbox2D.cpp(103,27): warning C4018: '>': signed/unsigned mismatch
-C:\Dev\TGEP\Sandbox\src\Sandbox2D.cpp(302): warning C4715: 'Sandbox2D::OnKeyPressed': not all control paths return a value
+C:\Dev\TGEP\Sandbox\src\Sandbox2D.cpp(84,5): warning C4003: not enough arguments for function-like macro invocation 'PROFILE_FUNCTION'
+C:\Dev\TGEP\Sandbox\src\Sandbox2D.cpp(90,5): warning C4003: not enough arguments for function-like macro invocation 'PROFILE_FUNCTION'
+C:\Dev\TGEP\Sandbox\src\Sandbox2D.cpp(102,27): warning C4018: '>': signed/unsigned mismatch
+C:\Dev\TGEP\Sandbox\src\Sandbox2D.cpp(104,27): warning C4018: '>': signed/unsigned mismatch
+C:\Dev\TGEP\Sandbox\src\Sandbox2D.cpp(303): warning C4715: 'Sandbox2D::OnKeyPressed': not all control paths return a value
   Sandbox.vcxproj -> C:\Dev\TGEP\bin\Release-windows-x86_64\Sandbox\Sandbox.exe

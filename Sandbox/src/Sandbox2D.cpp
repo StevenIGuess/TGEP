@@ -51,6 +51,7 @@ void Sandbox2D::OnAttach()
     s_TextureMap['9'] = TGEP::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 3,5 }, { 16,16 });
     s_TextureMap['C'] = TGEP::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 1,4 }, { 16,16 });
     s_TextureMap['L'] = TGEP::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 3,4 }, { 16,16 });
+    s_TextureMap['A'] = TGEP::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 8,6 }, { 16,16 });
 
     s_PlayerSprites['D'][0] = TGEP::SubTexture2D::CreateFromCoords(m_PlayerSpriteSheet, { 0,7 }, { 16,16 });
     s_PlayerSprites['D'][1] = TGEP::SubTexture2D::CreateFromCoords(m_PlayerSpriteSheet, { 1,7 }, { 16,16 });
