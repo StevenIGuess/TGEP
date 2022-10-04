@@ -50,6 +50,7 @@ void Sandbox2D::OnUpdate(TGEP::DeltaTime deltaTime)
 
 
     //PreRender
+    TGEP::Renderer2D::ResetStats();
     TGEP::RenderCommand::SetClearColor(glm::vec4(0.1f, 0.1f, 0.1f, 1.0f));
     TGEP::RenderCommand::Clear();
     
@@ -58,15 +59,27 @@ void Sandbox2D::OnUpdate(TGEP::DeltaTime deltaTime)
     TGEP::Renderer2D::BeginScene(m_CameraController.GetCamera());
     
     //Render
-    TGEP::Renderer2D::DrawQuad(m_QuadData[0].Pos, m_QuadData[0].Scale, m_QuadData[0].Color);
-    TGEP::Renderer2D::DrawQuad(m_QuadData[1].Pos, m_QuadData[1].Scale, m_QuadData[1].Color, m_Texture, m_QuadData[1].TextureScale);
+    for (int i = 0; i < m_NumberOfQuadsX; i++)
+    {
+        for (int j = 0; j < m_NumberOfQuadsY; j++)
+        {
+            float r = i / 0.5;
+            float g = j / 0.5;
+            float b = (i + 1) / (j + 1);
+            TGEP::Renderer2D::DrawQuad({ m_QuadData[0].Pos.x * i, m_QuadData[0].Pos.y * j }, m_QuadData[0].Scale, { m_QuadData[0].Color.x * r,  m_QuadData[0].Color.y + g, m_QuadData[0].Color.z * b, m_QuadData[0].Color.w});
+        }
+    }
 
-    //TGEP::Renderer2D::DrawQuadR(m_QuadDataR[0].Pos, m_QuadDataR[0].Scale, glm::radians(m_QuadDataR[0].Rot), m_QuadDataR[0].Color);
-    //TGEP::Renderer2D::DrawQuadR(m_QuadDataR[1].Pos, m_QuadDataR[1].Scale, glm::radians(m_QuadDataR[1].Rot), m_QuadDataR[1].Color, m_Texture, m_QuadDataR[1].TextureScale);
     
     //End Scene
     TGEP::Renderer2D::EndScene();
 
+
+
+    //TGEP::Renderer2D::DrawQuad(m_QuadData[0].Pos, m_QuadData[0].Scale, m_QuadData[0].Color);
+    //TGEP::Renderer2D::DrawQuad(m_QuadData[1].Pos, m_QuadData[1].Scale, m_QuadData[1].Color, m_Texture, m_QuadData[1].TextureScale);
+    //TGEP::Renderer2D::DrawQuadR(m_QuadDataR[0].Pos, m_QuadDataR[0].Scale, m_QuadDataR[0].Rot, m_QuadDataR[0].Color);
+    //TGEP::Renderer2D::DrawQuadR(m_QuadDataR[1].Pos, m_QuadDataR[1].Scale, m_QuadDataR[1].Rot, m_QuadDataR[1].Color, m_Texture, m_QuadDataR[1].TextureScale);
 }
 
 void Sandbox2D::OnImGuiRender()
@@ -83,13 +96,20 @@ void Sandbox2D::OnImGuiRender()
         ImGui::Text(FPS.str().c_str());
 
         ImGui::Separator();
-        ImGui::TextColored(ImVec4(0, 1, 1, 1), "General Settings");
-
-        ImGui::ColorEdit4("Color", (float*)&m_SquareColor);
-        ImGui::ColorEdit4("Tint", (float*)&m_Tint);
+        ImGui::Text("Rederer2D Stats");
+        
+        auto stats = TGEP::Renderer2D::GetStats();
+        ImGui::Text("Draw Calls: %d", stats.DrawCalls);
+        ImGui::Text("Quads: %d", stats.QuadCount);
+        ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
+        ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
 
         ImGui::Separator();
         ImGui::TextColored(ImVec4(0, 1, 1, 1), "Game Data");
+
+        ImGui::DragInt("Number of Quads on X axis", &m_NumberOfQuadsX);
+        ImGui::DragInt("Number of Quads on Y axis", &m_NumberOfQuadsY);
+
 
         if (ImGui::TreeNode("Quad data"))
         {

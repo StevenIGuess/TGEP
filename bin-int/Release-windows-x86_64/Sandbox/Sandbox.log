@@ -1,1 +1,13 @@
-﻿  Sandbox.vcxproj -> C:\Dev\TGEP\bin\Release-windows-x86_64\Sandbox\Sandbox.exe
+﻿  Sandbox2D.cpp
+C:\Dev\TGEP\TGEP\src\Profiling.h(132,1): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data
+C:\Dev\TGEP\TGEP\src\Profiling.h(217,60): warning C4244: '=': conversion from 'ULONGLONG' to 'double', possible loss of data
+C:\Dev\TGEP\Sandbox\src\Sandbox2D.cpp(12,5): warning C4003: not enough arguments for function-like macro invocation 'PROFILE_FUNCTION'
+C:\Dev\TGEP\Sandbox\src\Sandbox2D.cpp(40,5): warning C4003: not enough arguments for function-like macro invocation 'PROFILE_FUNCTION'
+C:\Dev\TGEP\Sandbox\src\Sandbox2D.cpp(46,5): warning C4003: not enough arguments for function-like macro invocation 'PROFILE_FUNCTION'
+C:\Dev\TGEP\Sandbox\src\Sandbox2D.cpp(66,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Dev\TGEP\Sandbox\src\Sandbox2D.cpp(67,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Dev\TGEP\Sandbox\src\Sandbox2D.cpp(68,21): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Dev\TGEP\Sandbox\src\Sandbox2D.cpp(118,24): warning C4551: function call missing argument list
+C:\Dev\TGEP\Sandbox\src\Sandbox2D.cpp(133,24): warning C4551: function call missing argument list
+C:\Dev\TGEP\Sandbox\src\Sandbox2D.cpp(224): warning C4715: 'Sandbox2D::OnKeyPressed': not all control paths return a value
+  Sandbox.vcxproj -> C:\Dev\TGEP\bin\Release-windows-x86_64\Sandbox\Sandbox.exe

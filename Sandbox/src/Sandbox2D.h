@@ -62,4 +62,7 @@ private:
     
     QuadData m_QuadData[2];
     QuadDataR m_QuadDataR[2];
+
+    int m_NumberOfQuadsX = 10;
+    int m_NumberOfQuadsY = 10;
 };

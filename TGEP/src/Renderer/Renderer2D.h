@@ -30,5 +30,18 @@ namespace TGEP
 		static void DrawQuadR(const glm::vec2& pos, const glm::vec2& size, const float rotation, const glm::vec4 tint, const Ref<Texture2D>& texture, float textureScale = 1.0f);
 		static void DrawQuadR(const glm::vec3& pos, const glm::vec2& size, const float rotation, const glm::vec4 tint, const Ref<Texture2D>& texture, float textureScale = 1.0f);
 
+		struct Satistics
+		{
+			uint32_t DrawCalls = 0;
+			uint32_t QuadCount = 0;
+
+			uint32_t GetTotalVertexCount() { return QuadCount * 4; }
+			uint32_t GetTotalIndexCount() { return QuadCount * 6; }
+		};
+
+		static void ResetStats();
+		static Satistics GetStats();
+	private:
+		static void StartNewBatch();
 	};
 }
