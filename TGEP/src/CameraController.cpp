@@ -6,46 +6,58 @@
 
 namespace TGEP
 {
-	OrthoCameraController::OrthoCameraController(float aspectRatio, bool rotation)
-		: m_AspectRatio(aspectRatio), m_Camera(-m_AspectRatio * m_Zoom, m_AspectRatio * m_Zoom, -m_Zoom, m_Zoom), m_Rotation(rotation)
+	OrthoCameraController::OrthoCameraController(float aspectRatio, bool movement, bool rotation)
+		: m_AspectRatio(aspectRatio), m_Camera(-m_AspectRatio * m_Zoom, m_AspectRatio * m_Zoom, -m_Zoom, m_Zoom), m_Movement(movement), m_Rotation(rotation)
 	{
 
 	}
 	void OrthoCameraController::OnUpdate(DeltaTime dt)
 	{
 		PROFILE_FUNCTION();
-		if (Input::IsKeyPressed(TGEP_KEY_A))
+		if (m_Movement)
 		{
-			m_CameraPosition.x -= m_CameraMoveSpeed * dt;
-		} else if (Input::IsKeyPressed(TGEP_KEY_D))
-		{
-			m_CameraPosition.x += m_CameraMoveSpeed * dt;
-		}
-
-		if (Input::IsKeyPressed(TGEP_KEY_W))
-		{
-			m_CameraPosition.y += m_CameraMoveSpeed * dt;
-		}else if (Input::IsKeyPressed(TGEP_KEY_S))
-		{
-			m_CameraPosition.y -= m_CameraMoveSpeed * dt;
-		}
-
-		if (m_Rotation)
-		{
-			if (Input::IsKeyPressed(TGEP_KEY_Q))
+			if (Input::IsKeyPressed(TGEP_KEY_A))
 			{
-				m_CameraRotation += m_CameraMoveSpeed * dt;
+				m_CameraPosition.x -= m_CameraMoveSpeed * dt;
 			}
-			if (Input::IsKeyPressed(TGEP_KEY_E))
+			else if (Input::IsKeyPressed(TGEP_KEY_D))
 			{
-				m_CameraRotation -= m_CameraMoveSpeed * dt;
+				m_CameraPosition.x += m_CameraMoveSpeed * dt;
 			}
-			m_Camera.SetRotation(m_CameraRotation);
+
+			if (Input::IsKeyPressed(TGEP_KEY_W))
+			{
+				m_CameraPosition.y += m_CameraMoveSpeed * dt;
+			}
+			else if (Input::IsKeyPressed(TGEP_KEY_S))
+			{
+				m_CameraPosition.y -= m_CameraMoveSpeed * dt;
+			}
+
+			if (m_Rotation)
+			{
+				if (Input::IsKeyPressed(TGEP_KEY_Q))
+				{
+					m_CameraRotation += m_CameraMoveSpeed * dt;
+				}
+				if (Input::IsKeyPressed(TGEP_KEY_E))
+				{
+					m_CameraRotation -= m_CameraMoveSpeed * dt;
+				}
+				m_Camera.SetRotation(m_CameraRotation);
+			}
 		}
 
 		m_Camera.SetPosition(m_CameraPosition);
 		
 	}
+
+	void OrthoCameraController::UpdateView()
+	{
+		m_Camera.SetProjection(-m_AspectRatio * m_Zoom, m_AspectRatio * m_Zoom, -m_Zoom, m_Zoom);
+	}
+
+
 	void OrthoCameraController::OnEvent(Event& e)
 	{
 		PROFILE_FUNCTION();
@@ -58,14 +70,14 @@ namespace TGEP
 		PROFILE_FUNCTION();
 		m_Zoom -= e.GetYOffset() * 0.25f;
 		m_Zoom = max(m_Zoom, 0.25f);
-		m_Camera.SetProjection(-m_AspectRatio * m_Zoom, m_AspectRatio * m_Zoom, -m_Zoom, m_Zoom);
+		UpdateView();
 		return false;
 	}
 	bool OrthoCameraController::OnWindowResized(WindowResizedEvent& e)
 	{
 		PROFILE_FUNCTION();
 		m_AspectRatio = (float)e.GetWidth() / (float)e.GetHeight();
-		m_Camera.SetProjection(-m_AspectRatio * m_Zoom, m_AspectRatio * m_Zoom, -m_Zoom, m_Zoom);
+		UpdateView();
 		return false;
 	}
 }

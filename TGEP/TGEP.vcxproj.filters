@@ -1411,6 +1411,7 @@
       <Filter>submodules\stb_image</Filter>
     </ClInclude>
     <ClInclude Include="src\Renderer\Renderer2D.h" />
+    <ClInclude Include="src\Renderer\SubTexture2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp">
@@ -1492,5 +1493,6 @@
       <Filter>submodules\stb_image</Filter>
     </ClCompile>
     <ClCompile Include="src\Renderer\Renderer2D.cpp" />
+    <ClCompile Include="src\Renderer\SubTexture2D.cpp" />
   </ItemGroup>
 </Project>

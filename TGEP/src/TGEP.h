@@ -59,6 +59,7 @@
 #include "DeltaTime.h"
 //Textures
 #include "Renderer/Texture.h"
+#include "Renderer/SubTexture2D.h"
 
 //Shader cast for OpenGL Shader
 #define TGEPGLSCast(...) std::dynamic_pointer_cast<TGEP::OpenGLShader>(__VA_ARGS__)

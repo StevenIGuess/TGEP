@@ -1,6 +1,7 @@
 #pragma once 
 #include <TGEP.h>
 #include <Profiling.h>
+#include <chrono>
 
 struct QuadData
 {
@@ -56,13 +57,16 @@ private:
     bool m_Settings = false;
 
     //Gamedata
-    glm::vec4 m_SquareColor = glm::vec4(0.8f, 0.4f, 0.2f, 1.0f);
-    glm::vec4 m_Tint = glm::vec4(0.8f, 0.4f, 0.2f, 1.0f);
-    TGEP::Ref<TGEP::Texture2D> m_Texture;
-    
-    QuadData m_QuadData[2];
-    QuadDataR m_QuadDataR[2];
-
-    int m_NumberOfQuadsX = 10;
-    int m_NumberOfQuadsY = 10;
+    uint32_t m_MapHeight, m_MapWidth;
+    TGEP::Ref<TGEP::Texture2D> m_SpriteSheet;
+    TGEP::Ref<TGEP::Texture2D> m_PlayerSpriteSheet;
+    std::unordered_map<char, TGEP::Ref<TGEP::SubTexture2D>> s_TextureMap;
+    std::unordered_map<char, TGEP::Ref<TGEP::SubTexture2D>[4]> s_PlayerSprites;
+    char m_PlayerDirection;
+    bool m_PlayerIsMoving;
+    uint32_t m_CurrentPlayerSprite;
+    long long m_CurrentFrame;
+    glm::vec2 m_PlayerPos;
+    glm::ivec2 m_PlayerTilePos;
+    float m_PlayerMoveSpeed;
 };
