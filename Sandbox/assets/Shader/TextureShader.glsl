@@ -37,6 +37,8 @@ uniform sampler2D u_Textures[32];
 
 void main()
 {
-	color = texture(u_Textures[int(v_TexIndex)], v_TexCoord * v_TexScale) * v_Color;
+	color = texture(u_Textures[int(v_TexIndex)], v_TexCoord * v_TexScale) * v_Color; 
+	//might not work on amd, due to u_Texture[in(v_TexIndex)]
+	//if this doesnt work try switch
 }
         

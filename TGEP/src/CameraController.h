@@ -14,6 +14,8 @@ namespace TGEP
 		void OnUpdate(DeltaTime dt);
 		void OnEvent(Event& e);
 
+		void ResizeBounds(float width, float heigth);
+
 		OrthoCamera& GetCamera() { return m_Camera; }
 		const OrthoCamera& GetCamera() const { return m_Camera; }
 

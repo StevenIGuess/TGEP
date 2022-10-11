@@ -108,6 +108,9 @@
     <ClInclude Include="src\RenderAPI\OpenGL\OpenGLContext.h">
       <Filter>src\RenderAPI\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="src\RenderAPI\OpenGL\OpenGLFramebuffer.h">
+      <Filter>src\RenderAPI\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\RenderAPI\OpenGL\OpenGLRendererAPI.h">
       <Filter>src\RenderAPI\OpenGL</Filter>
     </ClInclude>
@@ -126,6 +129,9 @@
     <ClInclude Include="src\Renderer\Camera.h">
       <Filter>src\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Renderer\Framebuffer.h">
+      <Filter>src\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Renderer\RenderCommand.h">
       <Filter>src\Renderer</Filter>
     </ClInclude>
@@ -135,10 +141,16 @@
     <ClInclude Include="src\Renderer\Renderer.h">
       <Filter>src\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Renderer\Renderer2D.h">
+      <Filter>src\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Renderer\RendererAPI.h">
       <Filter>src\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Renderer\Shader.h">
+      <Filter>src\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\SubTexture2D.h">
       <Filter>src\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Renderer\Texture.h">
@@ -1410,8 +1422,6 @@
     <ClInclude Include="submodules\stb_image\stb_image.h">
       <Filter>submodules\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Renderer\Renderer2D.h" />
-    <ClInclude Include="src\Renderer\SubTexture2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp">
@@ -1444,6 +1454,9 @@
     <ClCompile Include="src\RenderAPI\OpenGL\OpenGLContext.cpp">
       <Filter>src\RenderAPI\OpenGL</Filter>
     </ClCompile>
+    <ClCompile Include="src\RenderAPI\OpenGL\OpenGLFramebuffer.cpp">
+      <Filter>src\RenderAPI\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\RenderAPI\OpenGL\OpenGLRendererAPI.cpp">
       <Filter>src\RenderAPI\OpenGL</Filter>
     </ClCompile>
@@ -1462,16 +1475,25 @@
     <ClCompile Include="src\Renderer\Camera.cpp">
       <Filter>src\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Renderer\Framebuffer.cpp">
+      <Filter>src\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Renderer\RenderCommand.cpp">
       <Filter>src\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Renderer\Renderer.cpp">
       <Filter>src\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Renderer\Renderer2D.cpp">
+      <Filter>src\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Renderer\RendererAPI.cpp">
       <Filter>src\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Renderer\Shader.cpp">
+      <Filter>src\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\SubTexture2D.cpp">
       <Filter>src\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Renderer\Texture.cpp">
@@ -1492,7 +1514,5 @@
     <ClCompile Include="submodules\stb_image\stb_image.cpp">
       <Filter>submodules\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Renderer\Renderer2D.cpp" />
-    <ClCompile Include="src\Renderer\SubTexture2D.cpp" />
   </ItemGroup>
 </Project>

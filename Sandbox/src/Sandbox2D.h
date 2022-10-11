@@ -52,6 +52,7 @@ private:
 
     //Camera
     TGEP::OrthoCameraController m_CameraController;
+
     
     //ImGUI Settings tab
     bool m_Settings = false;

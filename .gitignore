@@ -2,6 +2,8 @@
 .vscode
 .vs
 
+.idea
+
 # Prerequisites
 *.d
 
@@ -28,3 +30,6 @@ TGEP_RUNTIME.json
 TGEP_SHUTDOWN.json
 TGEP_STARTUP.json
 
+
+Sandbox/assets/
+TGEPEditor/assets/

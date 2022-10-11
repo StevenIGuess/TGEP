@@ -80,4 +80,10 @@ namespace TGEP
 		UpdateView();
 		return false;
 	}
+
+	void OrthoCameraController::ResizeBounds(float width, float heigth)
+	{
+		m_AspectRatio = width / heigth;
+		UpdateView();
+	}
 }

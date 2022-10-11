@@ -71,12 +71,14 @@ void Sandbox2D::OnAttach()
     s_PlayerSprites['R'][3] = TGEP::SubTexture2D::CreateFromCoords(m_PlayerSpriteSheet, { 3,1 }, { 16,16 });
 
     m_CameraController.SetZoom(10.0f);
+
     m_PlayerPos = { 0.0f, 0.0f };
     m_PlayerDirection = 'U';
     m_PlayerIsMoving = false;
     m_PlayerMoveSpeed = 10.0f;
     m_CurrentPlayerSprite = 0;
     m_CurrentFrame = 0;
+
 }
 
 void Sandbox2D::OnDetach()
@@ -87,8 +89,8 @@ void Sandbox2D::OnDetach()
 void Sandbox2D::OnUpdate(TGEP::DeltaTime deltaTime)
 {
     //Update & Profileing
-    PROFILE_FUNCTION()
-        t0 = m_Profiler->get_cpu_cycles();
+    PROFILE_FUNCTION();
+    t0 = m_Profiler->get_cpu_cycles();
     m_DeltaTime = deltaTime;
     m_CameraController.OnUpdate(deltaTime);
 
@@ -111,27 +113,32 @@ void Sandbox2D::OnUpdate(TGEP::DeltaTime deltaTime)
 
 
 
-    if (TGEP::Input::IsKeyPressed(TGEP_KEY_A) && s_MapTiles[(m_PlayerTilePos.x - 1) + m_PlayerTilePos.y * m_MapWidth] == '0')
+    if (TGEP::Input::IsKeyPressed(TGEP_KEY_A))
     {
+
         m_PlayerDirection = 'L';
         m_PlayerIsMoving = true;
         m_PlayerPos.x -= m_PlayerMoveSpeed * deltaTime;
+
     }
-    else if (TGEP::Input::IsKeyPressed(TGEP_KEY_D) && s_MapTiles[(m_PlayerTilePos.x + 1)+ m_PlayerTilePos.y * m_MapWidth] == '0')
+    else if (TGEP::Input::IsKeyPressed(TGEP_KEY_D))
     {
+
         m_PlayerDirection = 'R';
         m_PlayerIsMoving = true;
         m_PlayerPos.x += m_PlayerMoveSpeed * deltaTime;
+
     }
 
 
-    if (TGEP::Input::IsKeyPressed(TGEP_KEY_W) && s_MapTiles[m_PlayerTilePos.x + (m_PlayerTilePos.y + 1 ) * m_MapWidth] == '0')
+    if (TGEP::Input::IsKeyPressed(TGEP_KEY_W))
     {
         m_PlayerDirection = 'U';
         m_PlayerIsMoving = true;
         m_PlayerPos.y += m_PlayerMoveSpeed * deltaTime;
+
     }
-    else if (TGEP::Input::IsKeyPressed(TGEP_KEY_S) && s_MapTiles[m_PlayerTilePos.x + (m_PlayerTilePos.y - 1) * m_MapWidth] == '0')
+    else if (TGEP::Input::IsKeyPressed(TGEP_KEY_S))
     {
         m_PlayerDirection = 'D';
         m_PlayerIsMoving = true;
@@ -181,8 +188,6 @@ void Sandbox2D::OnUpdate(TGEP::DeltaTime deltaTime)
         TGEP::Renderer2D::DrawQuad({ m_PlayerPos.x, m_PlayerPos.y, 0.5f }, { 1.0f, 1.0f }, { 1.0f, 1.0f, 1.0f, 1.0f }, s_PlayerSprites[m_PlayerDirection][0]);
     }
 
-    
-
     m_CameraController.SetPosition({ m_PlayerPos.x, m_PlayerPos.y, 0.0f });
 
     //End Scene
@@ -194,6 +199,7 @@ void Sandbox2D::OnImGuiRender()
 {
     if (m_Settings)
     {
+
         ImGui::Begin("Settings", &m_Settings);
         std::stringstream DT;
         DT << "Delta Time(ms): " << m_DeltaTime << "\n";
@@ -205,7 +211,7 @@ void Sandbox2D::OnImGuiRender()
 
         ImGui::Separator();
         ImGui::Text("Rederer2D Stats");
-        
+
         auto stats = TGEP::Renderer2D::GetStats();
         ImGui::Text("Draw Calls: %d", stats.DrawCalls);
         ImGui::Text("Quads: %d", stats.QuadCount);
@@ -273,8 +279,8 @@ void Sandbox2D::OnImGuiRender()
         }
 
         ImGui::End();
-    }
 
+    }
 }
 
 void Sandbox2D::OnEvent(TGEP::Event& e)

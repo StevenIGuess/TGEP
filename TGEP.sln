@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glad", "TGEP\submodules\Gla
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TGEP", "TGEP\TGEP.vcxproj", "{95568C7C-818D-8D0D-2A7A-73101690090F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TGEPEditor", "TGEPEditor\TGEPEditor.vcxproj", "{1C48DB3B-0800-1D89-7107-F6E45DDEB779}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -39,6 +41,10 @@ Global
 		{95568C7C-818D-8D0D-2A7A-73101690090F}.Debug|x64.Build.0 = Debug|x64
 		{95568C7C-818D-8D0D-2A7A-73101690090F}.Release|x64.ActiveCfg = Release|x64
 		{95568C7C-818D-8D0D-2A7A-73101690090F}.Release|x64.Build.0 = Release|x64
+		{1C48DB3B-0800-1D89-7107-F6E45DDEB779}.Debug|x64.ActiveCfg = Debug|x64
+		{1C48DB3B-0800-1D89-7107-F6E45DDEB779}.Debug|x64.Build.0 = Debug|x64
+		{1C48DB3B-0800-1D89-7107-F6E45DDEB779}.Release|x64.ActiveCfg = Release|x64
+		{1C48DB3B-0800-1D89-7107-F6E45DDEB779}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

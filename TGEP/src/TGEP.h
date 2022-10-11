@@ -46,6 +46,7 @@
 #include "Renderer/Renderer.h"
 #include "Renderer/Renderer2D.h"
 #include "Renderer/RenderCommand.h"
+#include "Renderer/Framebuffer.h"
 //Buffer system
 #include "Renderer/Buffer.h"
 #include "Renderer/VertexArray.h"

@@ -15,10 +15,15 @@
 namespace TGEP
 {
 
+    struct ApplicationSettings
+    {
+        bool Vsync = true;
+    };
+
     class Application
     {
     public:
-        Application();
+        Application(ApplicationSettings settings);
         virtual ~Application();
 
         void Run();
@@ -29,9 +34,13 @@ namespace TGEP
         void PushOverlay(Layer* overlay);
 
         inline Window& GetWindow() { return *m_Window; }
+
+        void Close();
+
         inline static Application& Get() { return *s_Instance; }
 
     private:
+        ApplicationSettings m_Settings;
         bool OnWindowClose(WindowCloseEvent& e);
         bool OnWindowResize(WindowResizedEvent& e);
         std::unique_ptr<Window> m_Window;

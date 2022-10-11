@@ -15,7 +15,8 @@ namespace TGEP {
 
     Application* Application::s_Instance = nullptr;
 
-    Application::Application()
+    Application::Application(ApplicationSettings settings)
+        :m_Settings(settings)
     {
         PROFILE_FUNCTION()
         ASSERT_CORE(!s_Instance, "APPLICATION ALREADY EXISTS");
@@ -26,7 +27,7 @@ namespace TGEP {
         WindowProperties windowProperties;
         m_Window = std::unique_ptr<Window>(OpenGLWindow::Create(windowProperties));
         m_Window->SetEventCallback(BIND_EVENT_FUNC(Application::OnEvent));
-        m_Window->SetVSync(true);
+        m_Window->SetVSync(m_Settings.Vsync);
 
         Renderer::Init();
 
@@ -55,6 +56,11 @@ namespace TGEP {
         PROFILE_FUNCTION();
         m_LayerStack.PushLayer(overlay);
         overlay->OnAttach();
+    }
+
+    void Application::Close()
+    {
+        m_Running = false;
     }
 
     void Application::OnEvent(Event& e)
